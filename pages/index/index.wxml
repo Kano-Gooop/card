@@ -1,0 +1,97 @@
+<view class="full-loading" wx:if="{{full_loading}}">
+  <view class="image"></view>
+</view>
+
+<view class="page">
+  <!-- banner -->
+  <swiper indicator-dots="{{true}}"
+          autoplay="{{true}}"
+          circular="{{true}}"
+          previous-margin="27rpx"
+          next-margin="27rpx"
+          class="banner">
+    <swiper-item wx:for="{{banner}}" wx:key="index">
+      <image src="{{item}}"></image>
+    </swiper-item>
+  </swiper>
+
+  <view class="main">
+    <!-- 金刚区 -->
+    <view class="king-kong">
+      <view class="kk1">
+        <image src="/images/rules.png"></image>
+      </view>
+      <view class="kk2">
+        <image src="/images/bloodgas.png"></image>
+      </view>
+    </view>
+
+    <!-- 文章公告 -->
+    <view class="gong-gao">
+      <view class="blue-title-line">
+        <view class="title">文章公告</view>
+        <view class="more">
+          <view class="text">更多</view>
+          <image src="/icons/you.png" class="icon"></image>
+        </view>
+      </view>
+      <view class="gg-list">
+        <view class="gg">
+          <view class="title">《掌控的历史》产品形式变更公告</view>
+          <view class="time">2019.11.10</view>
+        </view>
+        <view class="gg">
+          <view class="title">问鼎FAQ发布</view>
+          <view class="time">2019.11.09</view>
+        </view>
+        <view class="gg">
+          <view class="title">《掌控的历史》产品形式变更公告</view>
+          <view class="time">2019.11.10</view>
+        </view>
+        <view class="gg">
+          <view class="title">问鼎FAQ发布</view>
+          <view class="time">2019.11.10</view>
+        </view>
+        <view class="gg">
+          <view class="title">《掌控的历史》产品形式变更公告</view>
+          <view class="time">2019.11.10</view>
+        </view>
+        <view class="gg">
+          <view class="title">问鼎FAQ发布</view>
+          <view class="time">2019.11.10</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 新品推荐 -->
+    <view class="product-box">
+      <view class="blue-title-line">
+        <view class="title">新品推荐</view>
+        <view class="more">
+          <view class="text">更多</view>
+          <image src="/icons/you.png" class="icon"></image>
+        </view>
+      </view>
+      <view class="np-list">
+        <view class="np" wx:for="{{[0, 1, 2]}}">
+          <image src="/images/t-goods.png" class="cover"></image>
+          <view class="info">
+            <view class="title two-line-ellipsis">掌控的历史 初阵【081】征西将军 陈到 普卡 蜀银</view>
+            <view class="xia">
+              <view class="price">50.00</view>
+              <view class="rest">剩余561件</view>
+            </view>
+          </view>
+        </view>
+        <view class="np vh"></view>
+      </view>
+
+      <view class="nomore" wx:if="{{nomore}}">
+        已经没有更多了哦
+      </view>
+      <view class="nodata" wx:if="{{nodata}}">
+        暂无数据
+      </view>
+    </view>
+  </view>
+</view>

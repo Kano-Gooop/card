@@ -1,0 +1,96 @@
+<view class="page">
+  <!-- banner -->
+  <view class="banner">
+    <image src="/images/my_img_bg.png" class="my-img-bg"></image>
+    <view class="user-info">
+      <image src="/images/default-header.png" class="header"></image>
+      <view class="nickname">某某某</view>
+    </view>
+  </view>
+
+  <!-- 金刚区 -->
+  <view class="king-kong">
+    <view class="menu">
+      <image src="/icons/my_icon_myorder.png" class="icon"></image>
+      <view class="text">我的订单</view>
+    </view>
+    <view class="menu">
+      <image src="/icons/my_icon_address.png" class="icon"></image>
+      <view class="text">收货地址</view>
+    </view>
+    <view class="menu">
+      <image src="/icons/my_icon_information.png" class="icon"></image>
+      <view class="text">个人信息</view>
+    </view>
+    <view class="menu">
+      <image src="/icons/my_icon_aftersale.png" class="icon"></image>
+      <view class="text">售后服务</view>
+    </view>
+    <view class="menu">
+      <image src="/icons/my_icon_customerservice.png" class="icon"></image>
+      <view class="text">客服中心</view>
+    </view>
+    <view class="menu">
+      <image src="/icons/my_icon_aboutus.png" class="icon"></image>
+      <view class="text">关于我们</view>
+    </view>
+  </view>
+
+  <!-- 我的套牌 -->
+  <view class="set-card-box">
+    <view class="title-line">
+      <view class="title">我的套牌</view>
+      <view class="create">
+        <view class="text">创建套牌</view>
+        <image src="/icons/create-cards.png"></image>
+      </view>
+    </view>
+
+    <view class="info-line">
+      <view class="count">全部（3）</view>
+      <view class="edit">编辑</view>
+    </view>
+
+    <view class="card-list">
+      <navigator class="card">
+        <image src="/images/t-cardset1.png" class="cover"></image>
+        <view class="info">
+          <view class="title one-line-ellipsis">套牌组建1</view>
+          <view class="counts">
+            <view class="zhu">主牌：10</view>
+            <view class="bei">备牌：15</view>
+          </view>
+        </view>
+      </navigator>
+
+      <navigator class="card">
+        <image src="/images/t-cardset2.png" class="cover"></image>
+        <view class="info">
+          <view class="title one-line-ellipsis">套牌组建2</view>
+          <view class="counts">
+            <view class="zhu">主牌：10</view>
+            <view class="bei">备牌：15</view>
+          </view>
+        </view>
+      </navigator>
+
+      <navigator class="card">
+        <image src="/images/t-cardset3.png" class="cover"></image>
+        <view class="info">
+          <view class="title one-line-ellipsis">套牌组建3</view>
+          <view class="counts">
+            <view class="zhu">主牌：10</view>
+            <view class="bei">备牌：15</view>
+          </view>
+        </view>
+      </navigator>
+    </view>
+
+    <view class="nomore" wx:if="{{nomore}}">
+      已经没有更多了哦
+    </view>
+    <view class="nodata" wx:if="{{nodata}}">
+      暂无数据
+    </view>
+  </view>
+</view>

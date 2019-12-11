@@ -1,0 +1,47 @@
+.page {
+  background: #fcfafa;
+  padding-top: 196rpx;
+}
+
+.scroll-tab {
+  color:#666;
+  background-color: #fff;
+  white-space: nowrap;
+}
+
+.scroll-tab .tab-item {
+  font-size: 32rpx;
+  display: inline-block;
+  height: 84rpx;
+  box-sizing: border-box;
+  line-height: 79rpx;
+  width: 25%;
+  text-align: center;
+  color: #4583fb;
+  letter-spacing: 1rpx;
+  position: relative;
+  opacity: 0.4;
+  border-bottom: 5rpx solid transparent;
+}
+
+.scroll-tab .tab-item.active {
+  opacity: 1;
+  border-color: #3c78f5;
+}
+
+.product-box {
+  margin-top: 0 !important;
+  background: transparent;
+}
+
+.product-box .np-list {
+  margin-top: 0;
+}
+
+.product-box .np-list .np {
+  width: 339rpx;
+}
+
+.product-box .np-list .np .cover {
+  height: 339rpx;
+}
