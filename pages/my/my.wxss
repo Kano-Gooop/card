@@ -68,6 +68,19 @@
   font-size: 26rpx;
 }
 
+.share-box {
+  border-top: 7rpx solid #fcfafa;
+  padding: 40rpx 0;
+  background: linear-gradient(to bottom, skyblue, #4583fb, skyblue);
+}
+
+.share-box .text {
+  text-align: center;
+  color: #fff;
+  font-size: 36rpx;
+  letter-spacing: 2rpx;
+}
+
 .set-card-box {
   border-top: 7rpx solid #fcfafa;
   padding: 40rpx 24rpx;
@@ -119,6 +132,7 @@
   margin-top: 25rpx;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .set-card-box .info-line .count {
@@ -128,8 +142,15 @@
 }
 
 .set-card-box .info-line .edit {
-  font-size: 26rpx;
-  color: #2b8efd;
+  font-size: 24rpx;
+  background: #2b8efd;
+  padding: 0 25rpx;
+  margin: 0;
+  line-height: 46rpx;
+  height: 46rpx;
+  border-radius: 4rpx;
+  width: auto;
+  color: #fff;
 }
 
 .set-card-box .card-list {
@@ -169,7 +190,7 @@
 }
 
 .set-card-box .card-list .card .info .counts {
-  font-size: 24rpx;
+  font-size: 26rpx;
   color: #000;
   opacity: 0.4;
   display: flex;

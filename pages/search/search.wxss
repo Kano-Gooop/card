@@ -1,6 +1,6 @@
 .page {
   background: #fcfafa;
-  padding-top: 520rpx;
+  padding-top: 382rpx;
 }
 
 .filter-box .prop-box {
@@ -26,9 +26,9 @@
 }
 
 .filter-box .prop-box .p-list .prop {
-  width: 46rpx;
-  height: 46rpx;
-  border-radius: 23rpx;
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 25rpx;
   box-sizing: border-box;
   border: 2rpx solid #4583fb;
   display: flex;
@@ -37,7 +37,7 @@
   font-size: 26rpx;
   letter-spacing: 1rpx;
   color: #4583fb;
-  margin-left: 22rpx;
+  margin-left: 24rpx;
 }
 
 .filter-box .prop-box .p-list .prop.active {
@@ -50,7 +50,7 @@
 }
 
 .filter-box .prop-line {
-  margin: 40rpx 24rpx 0;
+  margin-top: 40rpx;
   display: flex;
   background: #fff;
   position: relative;
@@ -89,21 +89,25 @@
 .filter-box .prop-line .pop-list {
   position: absolute;
   top: 100%;
-  width: calc(100% + 48rpx);
-  left: -24rpx;
   background: #eff6fe;
   display: flex;
-  flex-wrap: wrap;
   box-sizing: border-box;
-  padding: 40rpx 24rpx 0;
+  padding: 40rpx 24rpx 16rpx;
+  width: 100%;
 }
 
-.filter-box .prop-line .pop-list::after {
-  content: '';
-  display: block;
-  width: 100%;
-  height: 0;
-  margin-top: 16rpx;
+.filter-box .prop-line .pop-list.num .prop {
+  width: 50rpx;
+  padding: 0;
+}
+
+.filter-box .prop-line .pop-list.num .prop.all, .filter-box .prop-line .pop-list.num .prop.not {
+  width: auto;
+  padding: 0 18rpx;
+}
+
+.filter-box .prop-line .pop-list .prop.all {
+  flex-shrink: 0;
 }
 
 .filter-box .prop-line .pop-list .prop {
@@ -120,6 +124,12 @@
   text-align: center;
   flex-grow: 0;
   margin-bottom: 24rpx;
+}
+
+.filter-box .prop-line .pop-list .option-box {
+  display: flex;
+  flex-wrap: wrap;
+  flex-grow: 1;
 }
 
 .filter-box .prop-line .pop-list .prop::after {

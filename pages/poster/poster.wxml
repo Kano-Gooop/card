@@ -1,0 +1,84 @@
+<view class="page">
+  <view class="poster">
+    <image src="/images/default-header.png" class="cover"></image>
+    <button class="create-poster">邀请好友</button>
+  </view>
+
+  <view class="invite-box">
+    <view class="title">邀请列表</view>
+    <view class="invite-list">
+      <view class="invite hd">
+        <view class="hd-box">头像</view>
+        <view class="nickname">昵称</view>
+        <view class="date">邀请时间</view>
+        <view class="price one-line-ellipsis">消费金额</view>
+        <view class="detail">详情</view>
+      </view>
+      <view class="invite">
+        <view class="hd-box">
+          <image src="/images/t-cardset1.png" class="header"></image>
+        </view>
+        <view class="nickname one-line-ellipsis">环形山</view>
+        <view class="date">2019-12-12</view>
+        <view class="price one-line-ellipsis">¥35.23</view>
+        <view class="detail">
+          <button size="mini">查看</button>
+        </view>
+      </view>
+      <view class="invite">
+        <view class="hd-box">
+          <image src="/images/t-cardset1.png" class="header"></image>
+        </view>
+        <view class="nickname one-line-ellipsis">环形山</view>
+        <view class="date">2019-12-12</view>
+        <view class="price one-line-ellipsis">¥35.23</view>
+        <view class="detail">
+          <button size="mini">查看</button>
+        </view>
+      </view>
+      <view class="invite">
+        <view class="hd-box">
+          <image src="/images/t-cardset1.png" class="header"></image>
+        </view>
+        <view class="nickname one-line-ellipsis">环形山</view>
+        <view class="date">2019-12-12</view>
+        <view class="price one-line-ellipsis">¥35.23</view>
+        <view class="detail">
+          <button size="mini">查看</button>
+        </view>
+      </view>
+      <view class="invite">
+        <view class="hd-box">
+          <image src="/images/t-cardset1.png" class="header"></image>
+        </view>
+        <view class="nickname one-line-ellipsis">环形山</view>
+        <view class="date">2019-12-12</view>
+        <view class="price one-line-ellipsis">¥35.23</view>
+        <view class="detail">
+          <button size="mini">查看</button>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="modal-wrapper">
+    <view class="modal">
+      <view class="close">
+        <image src="/icons/delete.png"></image>
+      </view>
+    </view>
+<!--    <view class="iinvite-list">-->
+<!--      <view class="iinvite" wx:for="{{[0, 1, 2]}}">-->
+<!--        <view class="hd-box">-->
+<!--          <image src="/images/t-cardset1.png" class="header"></image>-->
+<!--        </view>-->
+<!--        <view class="nickname one-line-ellipsis">环形山</view>-->
+<!--        <view class="date">2019-12-12</view>-->
+<!--        <view class="price one-line-ellipsis">¥35.23</view>-->
+<!--        <view class="detail">-->
+<!--          <button size="mini">查看</button>-->
+<!--        </view>-->
+<!--      </view>-->
+<!--    </view>-->
+  </view>
+</view>

@@ -64,6 +64,13 @@
 					"id": -1,
 					"name": "我的",
 					"pathName": "pages/my/my",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "分享页面",
+					"pathName": "pages/poster/poster",
 					"scene": null
 				}
 			]

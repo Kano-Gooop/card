@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/search/search",
     "pages/shop/shop",
-    "pages/my/my"
+    "pages/my/my",
+    "pages/poster/poster"
   ],
   "window": {
     "navigationBarBackgroundColor": "#fff",

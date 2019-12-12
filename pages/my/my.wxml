@@ -36,6 +36,11 @@
     </view>
   </view>
 
+  <!-- 邀请好友 -->
+  <navigator url="/pages/poster/poster" class="share-box">
+    <view class="text">邀请好友</view>
+  </navigator>
+
   <!-- 我的套牌 -->
   <view class="set-card-box">
     <view class="title-line">
@@ -48,7 +53,7 @@
 
     <view class="info-line">
       <view class="count">全部（3）</view>
-      <view class="edit">编辑</view>
+      <button class="edit" size="mini">编辑</button>
     </view>
 
     <view class="card-list">
