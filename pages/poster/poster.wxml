@@ -5,13 +5,13 @@
   </view>
 
   <view class="invite-box">
-    <view class="title">邀请列表</view>
+    <view class="title">邀请列表(15)</view>
     <view class="invite-list">
       <view class="invite hd">
         <view class="hd-box">头像</view>
         <view class="nickname">昵称</view>
         <view class="date">邀请时间</view>
-        <view class="price one-line-ellipsis">消费金额</view>
+        <view class="price one-line-ellipsis">消费</view>
         <view class="detail">详情</view>
       </view>
       <view class="invite">
@@ -22,7 +22,7 @@
         <view class="date">2019-12-12</view>
         <view class="price one-line-ellipsis">¥35.23</view>
         <view class="detail">
-          <button size="mini">查看</button>
+          <button bindtap="show_modal" size="mini">查看</button>
         </view>
       </view>
       <view class="invite">
@@ -61,24 +61,79 @@
     </view>
   </view>
 
-  <view class="modal-wrapper">
+  <view class="modal-wrapper" wx:if="{{modal_show}}">
     <view class="modal">
-      <view class="close">
+      <view bindtap="hide_modal" class="close">
         <image src="/icons/delete.png"></image>
       </view>
+
+      <view class="content">
+        <view class="invitee">
+          <image src="/images/t-cardset1.png" class="header"></image>
+          <view class="info">
+            <view class="info-item">
+              <view class="label">昵称</view>
+              <view class="value nickname">环形山</view>
+            </view>
+            <view class="info-item">
+              <view class="label">注册时间</view>
+              <view class="value date">2019-12-12</view>
+            </view>
+            <view class="info-item">
+              <view class="label">消费</view>
+              <view class="value price">￥35.23</view>
+            </view>
+          </view>
+        </view>
+
+        <view class="ta-title">TA的邀请(8)</view>
+
+        <view class="iinvite-box">
+          <view class="iinvite hd">
+            <view class="hd-box">头像</view>
+            <view class="nickname">昵称</view>
+            <view class="date">邀请时间</view>
+            <view class="price">消费</view>
+          </view>
+          <view class="il-wrapper">
+            <scroll-view scroll-y class="iinvite-list" style="height: {{il_height}}px;">
+              <view class="iinvite" wx:for="{{temp_arr}}">
+                <view class="hd-box">
+                  <image src="/images/t-cardset1.png" class="header"></image>
+                </view>
+                <view class="nickname">环形山</view>
+                <view class="date">2019-12-12</view>
+                <view class="price">¥35.23</view>
+              </view>
+            </scroll-view>
+          </view>
+        </view>
+      </view>
     </view>
-<!--    <view class="iinvite-list">-->
-<!--      <view class="iinvite" wx:for="{{[0, 1, 2]}}">-->
-<!--        <view class="hd-box">-->
-<!--          <image src="/images/t-cardset1.png" class="header"></image>-->
-<!--        </view>-->
-<!--        <view class="nickname one-line-ellipsis">环形山</view>-->
-<!--        <view class="date">2019-12-12</view>-->
-<!--        <view class="price one-line-ellipsis">¥35.23</view>-->
-<!--        <view class="detail">-->
-<!--          <button size="mini">查看</button>-->
-<!--        </view>-->
-<!--      </view>-->
-<!--    </view>-->
+  </view>
+
+  <view class="modal-wrapper" wx:if="{{poster_show}}">
+    <view class="modal">
+      <view bindtap="hide_modal" class="close">
+        <image src="/icons/delete.png"></image>
+      </view>
+
+      <view class="poster-content">
+        <view class="img-box">
+          <image src="{{poster}}" class="poster"></image>
+          <image bindtap="hide_poser" src="/icons/poster-x.png" class="cancel"></image>
+        </view>
+        <button catchtap="save_poster" class="save-btn">保存</button>
+      </view>
+    </view>
+  </view>
+
+  <view bindtap="hide_set_btn" class="setting-box" wx:if="{{show_set_btn}}">
+    <view class="os-box">
+      <view>
+        请在设置中打开保存图片到相册的权限
+      </view>
+      <button catchtap="hide_set_btn" open-type="openSetting" class="set_btn">打开设置</button>
+    </view>
   </view>
 </view>

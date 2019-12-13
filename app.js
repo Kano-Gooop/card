@@ -177,4 +177,12 @@ App({
     arr[num - 1] = null;
     return arr;
   },
+  // 创建用来循环元素的空数组
+  empty_arr(length) {
+    let arr = [];
+    for (let i = 0; i < length; i++) {
+      arr[i] = null;
+    }
+    return arr;
+  }
 });

@@ -73,6 +73,10 @@
   height: auto;
 }
 
+.invite-list .invite.hd .price {
+  color: inherit;
+}
+
 .invite-list .invite {
   margin-top: 24rpx;
   display: flex;
@@ -109,6 +113,7 @@
 
 .invite-list .invite > .price {
   width: 120rpx;
+  color: red;
 }
 
 .invite-list .invite > .detail {
@@ -152,6 +157,81 @@
   background: #fff;
 }
 
+.modal > .content {
+  padding: 24rpx;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.invitee {
+  display: flex;
+  background: #eee;
+  padding: 18rpx;
+}
+
+.invitee .header {
+  flex-shrink: 0;
+  width: 110rpx;
+  height: 110rpx;
+}
+
+.invitee .info {
+  flex-grow: 1;
+  margin-left: 20rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* font-size: 26rpx; */
+}
+
+.invitee .info .info-item {
+  display: flex;
+  align-items: center;
+}
+
+.invitee .info .info-item .label {
+  width: 110rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+  text-align: justify;
+  overflow: hidden;
+  color: #333;
+  flex-shrink: 0;
+}
+
+.invitee .info .info-item .label::after {
+  content: "";
+  display: inline-block;
+  width: 100%;
+}
+
+.invitee .info .info-item .value {
+  flex-grow: 1;
+  margin-left: 25rpx;
+  caption-side: #888;
+}
+
+.invitee .info .value.nickname {
+}
+
+.invitee .info .value.date {
+}
+
+.invitee .info .value.price {
+  color: red;
+}
+
+.content .ta-title {
+  border-top: 2rpx dashed #ccc;
+  margin-top: 30rpx;
+  padding-top: 30rpx;
+  font-size: 32rpx;
+  padding-bottom: 22rpx;
+}
+
 .modal .close {
   padding: 10rpx;
   position: absolute;
@@ -166,27 +246,82 @@
   border-radius: 50%;
 }
 
+.iinvite-box {
+  flex-grow: 1;
+  background: #eee;
+  border: 2rpx solid #ddd;
+  padding: 20rpx;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.il-wrapper {
+  flex-grow: 1;
+}
+
 .iinvite-list {
-  display: none;
 }
 
-.iinvite-list .iinvite:first-child {
+.iinvite-box .iinvite:first-child {
+  margin-top: 0;
 }
 
-.iinvite-list .iinvite {
+.iinvite-box .iinvite.hd {
+  color: #4583fb;
+  font-size: 28rpx;
+  margin-bottom: 20rpx;
 }
 
-.iinvite-list .iinvite .header {
+.iinvite-box .iinvite.hd .header {
+  height: auto;
+}
+
+.iinvite-box .iinvite.hd .price {
+  color: inherit;
+}
+
+.iinvite-box .iinvite {
+  margin-top: 24rpx;
+  display: flex;
+  align-items: center;
+  border-bottom: 2rpx solid #ddd;
+  padding-bottom: 20rpx;
+}
+
+.iinvite-box .iinvite:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.iinvite-box .iinvite > view:first-child {
+  margin-left: 0;
+}
+
+.iinvite-box .iinvite > view {
+  margin-left: 24rpx;
+}
+
+.iinvite-box .iinvite .hd-box {
   width: 80rpx;
-  height: 80rpx;
+}
+
+.iinvite-box .iinvite .header {
+  width: 70rpx;
+  height: 70rpx;
   border-radius: 50%;
 }
 
-.iinvite-list .iinvite .nickname {
+.iinvite-box .iinvite .nickname {
+  width: 120rpx;
 }
 
-.iinvite-list .iinvite .date {
+.iinvite-box .iinvite .date {
+  width: 160rpx;
 }
 
-.iinvite-list .iinvite .price {
+.iinvite-box .iinvite .price {
+  flex-grow: 1;
+  color: red;
 }
+
