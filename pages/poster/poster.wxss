@@ -325,3 +325,47 @@
   color: red;
 }
 
+.canvas {
+  position: fixed;
+  left: -10000rpx;
+}
+
+.poster-canvas {
+  width: 1000rpx;
+  height: 1600rpx;
+}
+
+.modal.poster-modal {
+  background: transparent;
+  left: 0;
+  right: 0;
+  width: 500rpx;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  height: 900rpx;
+}
+
+.poster-modal .poster-img {
+  width: 500rpx;
+  height: 800rpx;
+  display: block;
+  border-radius: 10rpx;
+}
+
+.poster-modal .save-btn {
+  width: 500rpx;
+  height: 76rpx;
+  line-height: 76rpx;
+  padding: 0;
+  border: 0;
+  box-shadow: 0 1rpx 1rpx 0 rgba(253, 67, 70, 0.75);
+  margin: 0;
+  border-radius: 4rpx;
+  background: #f94548;
+  font-size: 32rpx;
+  letter-spacing: 1rpx;
+  color: #e6e6e6;
+  margin-top: 32rpx;
+  font-weight: normal;
+}

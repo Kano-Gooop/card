@@ -4,6 +4,9 @@
     "pages/search/search",
     "pages/shop/shop",
     "pages/my/my",
+    "pages/shop-detail/shop-detail",
+    "pages/cart-order-create/cart-order-create",
+    "pages/shop-car/shop-car",
     "pages/poster/poster"
   ],
   "window": {

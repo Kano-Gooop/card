@@ -1,0 +1,47 @@
+<view class="page">
+  <navigator url="/pages/my-address/my-address?type=2">
+    <view class="address-choose">
+      <view class="address-icon">
+        <image src="/icons/address2.png"></image>
+      </view>
+      <view class="info" wx:if="{{tel}}">
+        <view class="top">
+          <view class="nickname">{{receiver}}</view>
+          <view class="tel">{{tel}}</view>
+        </view>
+        <view class="detail">
+          <view class="ad-text">{{address}}</view>
+          <view class="edit">
+            <image src="/icons/you3.png"></image>
+          </view>
+        </view>
+      </view>
+      <view wx:else class="no-default-add">
+        暂无默认收货地址，请添加
+      </view>
+    </view>
+  </navigator>
+  <view class="pro-info">
+    <view class="pro" wx:for="{{cartList}}" wx:key="id">
+      <image src="{{item.cover}}"></image>
+      <view class="info">
+        <view class="title">{{item.name}}</view>
+        <view class="price">
+          <view>¥{{item.price}}
+            <text>x {{item.num}}</text>
+          </view>
+          <view class="carriage">运费：¥{{item.carriage}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="foot">
+    <view class="left">
+      总计：
+      <text>¥{{total}}</text>
+    </view>
+    <form bindsubmit="cartToPurchase" class="pay-btn" report-submit>
+      <button form-type="submit" loading="{{purchase_loading}}" >支付</button>
+    </form>
+  </view>
+</view>

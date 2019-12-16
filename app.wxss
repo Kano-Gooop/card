@@ -248,7 +248,6 @@ button::after {
   align-items: center;
   justify-content: center;
   background: #fff;
-  border-radius: 20rpx;
   flex-direction: column;
   padding: 47rpx 30rpx;
 }
@@ -264,11 +263,16 @@ button::after {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 30rpx;
+  font-size: 28rpx;
   padding: 0;
   background: #8e97b4;
   color: #fff;
   margin-top: 20rpx;
+  border-radius: 0;
+  height: 60rpx;
+  line-height: 60rpx;
+  min-height: auto;
+  font-weight: normal;
 }
 
 .setting-box .set_btn:active {
