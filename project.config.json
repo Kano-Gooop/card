@@ -71,6 +71,20 @@
 					"id": -1,
 					"name": "分享页面",
 					"pathName": "pages/poster/poster",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "创建/编辑套牌",
+					"pathName": "pages/cardset-edit/cardset-edit",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "测试",
+					"pathName": "pages/test/test",
 					"scene": null
 				}
 			]

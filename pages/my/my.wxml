@@ -18,10 +18,10 @@
       <image src="/icons/my_icon_address.png" class="icon"></image>
       <view class="text">收货地址</view>
     </view>
-    <view class="menu">
-      <image src="/icons/my_icon_information.png" class="icon"></image>
-      <view class="text">个人信息</view>
-    </view>
+    <navigator url="/pages/poster/poster" class="menu">
+      <image src="/icons/my_icon_friend.png" class="icon"></image>
+      <view class="text">邀请好友</view>
+    </navigator>
     <view class="menu">
       <image src="/icons/my_icon_aftersale.png" class="icon"></image>
       <view class="text">售后服务</view>
@@ -36,19 +36,14 @@
     </view>
   </view>
 
-  <!-- 邀请好友 -->
-  <navigator url="/pages/poster/poster" class="share-box">
-    <view class="text">邀请好友</view>
-  </navigator>
-
   <!-- 我的套牌 -->
   <view class="set-card-box">
     <view class="title-line">
       <view class="title">我的套牌</view>
-      <view class="create">
+      <navigator url="/pages/cardset-edit/cardset-edit" class="create">
         <view class="text">创建套牌</view>
         <image src="/icons/create-cards.png"></image>
-      </view>
+      </navigator>
     </view>
 
     <view class="info-line">

@@ -1,0 +1,15 @@
+  <scroll-view scroll-y class="DrawerPage {{modalName=='viewModal'?'show':''}}">
+    <view class='cu-btn bg-green lg block shadow radius margin-xl' bindtap="showModal" data-target="viewModal">
+      打开抽屉
+    </view>
+  </scroll-view>
+
+  <view class="DrawerClose {{modalName=='viewModal'?'show':''}}" bindtap="hideModal">
+    <text class="cuIcon-pullright"></text>
+  </view>
+
+  <scroll-view scroll-y class="DrawerWindow {{modalName=='viewModal'?'show':''}}">
+    <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg">
+      左侧列表
+    </view>
+  </scroll-view>

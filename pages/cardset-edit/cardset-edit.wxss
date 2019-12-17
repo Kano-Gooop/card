@@ -1,0 +1,145 @@
+page {
+  width: 100vw;
+  overflow: hidden;
+}
+
+.DrawerPage {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  left: 0;
+  background-color: #f1f1f1;
+  transition: all 0.4s;
+  display: flex;
+  flex-direction: column;
+}
+
+.DrawerPage.show {
+  left: 85vw;
+  box-shadow: 0 0 60rpx rgba(0, 0, 0, 0.2);
+  transform-origin: 0;
+}
+
+.DrawerWindow {
+  position: absolute;
+  width: 85vw;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  transform: scale(0.9, 0.9) translateX(-100%);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.4s;
+}
+
+.DrawerWindow.show {
+  transform: scale(1, 1) translateX(0%);
+  opacity: 1;
+  pointer-events: all;
+}
+
+.DrawerClose {
+  position: absolute;
+  width: 40vw;
+  height: 100vh;
+  right: 0;
+  top: 0;
+  color: transparent;
+  padding-bottom: 30rpx;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.01), rgba(0, 0, 0, 0.6));
+  letter-spacing: 5px;
+  font-size: 50rpx;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.4s;
+}
+
+.DrawerClose.show {
+  opacity: 1;
+  pointer-events: all;
+  width: 15vw;
+  color: #fff;
+}
+
+.DrawerPage .cu-bar.tabbar .action button.icon {
+  width: 64rpx;
+  height: 64rpx;
+  line-height: 64rpx;
+  margin: 0;
+  display: inline-block;
+}
+
+.DrawerPage .cu-bar.tabbar .action .cu-avatar {
+  margin: 0;
+}
+
+.DrawerPage .nav {
+  flex: 1;
+}
+
+.DrawerPage .cu-bar.tabbar .action {
+  flex: initial;
+}
+
+/* 下面是我写的 */
+
+/* 搜索框 start */
+.filter-box2 {
+  flex-shrink: 0;
+  background: #fcfafa;
+  padding-bottom: 24rpx;
+}
+
+.filter-box2 .search-box {
+  display: flex;
+  align-items: center;
+  padding: 14rpx 24rpx;
+  background: #4583fb;
+}
+
+.filter-box2 .drawer {
+  width: 54rpx;
+  height: 54rpx;
+}
+
+.filter-box2 .search-box .search {
+  height: 60rpx;
+  border-radius: 30rpx;
+  background-color: #3e75e1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20rpx 0 35rpx;
+  flex-grow: 1;
+  margin-left: 28rpx;
+}
+
+.filter-box2 .search-box .search input {
+  color: #fff;
+  font-size: 26rpx;
+  flex-grow: 1;
+}
+
+.filter-box2 .search-box .search input .input-placeholder {
+  color: #fcfafa;
+  opacity: 0.4;
+}
+
+.filter-box2 .search-box .search .del {
+  width: 40rpx;
+  height: 40rpx;
+  margin-left: 20rpx;
+  opacity: 0.7;
+}
+/* 搜索框 end */
+
+.card-box {
+  flex-grow: 1;
+}
+
+.card-box .card-list {
+  height: 0;
+}

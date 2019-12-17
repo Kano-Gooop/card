@@ -1,0 +1,33 @@
+<view class="page">
+  <!-- 主屏幕 -->
+  <view class="DrawerPage {{modalName == 'viewModal' ? 'show' : ''}}">
+    <!-- 筛选框 -->
+    <view class="filter-box2">
+      <!-- 搜索框 -->
+      <view class="search-box">
+        <image bindtap="showModal" src="/icons/drawer.png" class="drawer"></image>
+        <view class="search">
+          <input bindinput="bind_input" bindconfirm="search_card" data-name="search" value="{{search}}" placeholder="请输入卡牌名称或技能" maxlength="20"/>
+          <image bindtap="clear_search" src="/icons/delete.png" class="del" wx:if="{{search}}"></image>
+        </view>
+      </view>
+    </view>
+
+    <view class="card-box">
+<!--      <scroll-view class="card-list">-->
+<!--      </scroll-view>-->
+    </view>
+  </view>
+
+  <!-- 返回主屏幕 -->
+  <view class="DrawerClose {{modalName == 'viewModal' ? 'show' : ''}}" bindtap="hideModal">
+    <text class="cuIcon-pullright"></text>
+  </view>
+
+  <!-- 侧栏 -->
+  <scroll-view scroll-y class="DrawerWindow {{modalName == 'viewModal' ? 'show' : ''}}">
+    <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg">
+      左侧列表
+    </view>
+  </scroll-view>
+</view>

@@ -35,11 +35,11 @@ Page({
     },
     // 生成海报
     create_poster() {
-      let promise1 = new Promise((resolve, reject) => {
+      let promise1 = new Promise((resolve) => {
         wx.getImageInfo({
-          src: 'https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83eqSIJibzjcxlUuahhmKCQJMB0icG66ia922MR7Bf4YkD4AU0H6zEK8FIsbdrJfGCAhv5g1CL70R5t06g/132',
+          src: app.my_config.base_url + '/static/src/image/qrcode-bg.jpg',
           success: res => {
-            resolve(res);
+            resolve(res.path);
           }
         })
       });
@@ -47,8 +47,8 @@ Page({
       Promise.all([
         promise1
       ]).then(p_res => {
-        let header = p_res[0];
-
+        let qrcode_bg = p_res[0];
+        
         // 创建canvas
         var canvas = wx.createCanvasContext('poster-canvas');
 
@@ -58,19 +58,12 @@ Page({
         canvas.fill();
         canvas.draw();
 
-        // 绘制3Z
-        canvas.drawImage('/images/default-header.png', 150, 50, 200, 200);
+        // 绘制背景
+        canvas.drawImage(qrcode_bg, 0, 0, 500, 800);
         canvas.draw(true);
 
         // 绘制小程序码
-        canvas.drawImage('/images/qrcode.jpg', 150, 300, 200, 200);
-        canvas.draw(true);
-
-        // 绘制描述
-        canvas.setFontSize(24);
-        canvas.setFillStyle("#999999");
-        canvas.setTextAlign('center');
-        canvas.fillText('扫描小程序码', 250, 600, 400);
+        canvas.drawImage('/images/qrcode.jpg', 277, 563, 200, 200);
         canvas.draw(true);
 
         setTimeout(() => {

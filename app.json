@@ -7,6 +7,8 @@
     "pages/shop-detail/shop-detail",
     "pages/cart-order-create/cart-order-create",
     "pages/shop-car/shop-car",
+    "pages/cardset-edit/cardset-edit",
+    "pages/test/test",
     "pages/poster/poster"
   ],
   "window": {

@@ -1,3 +1,6 @@
+@import "colorui/main.wxss";
+@import "colorui/icon.wxss";
+
 .page {
   font-size: 24rpx;
   min-height: 100vh;

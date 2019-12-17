@@ -68,19 +68,6 @@
   font-size: 26rpx;
 }
 
-.share-box {
-  border-top: 7rpx solid #fcfafa;
-  padding: 40rpx 0;
-  background: linear-gradient(to bottom, skyblue, #4583fb, skyblue);
-}
-
-.share-box .text {
-  text-align: center;
-  color: #fff;
-  font-size: 36rpx;
-  letter-spacing: 2rpx;
-}
-
 .set-card-box {
   border-top: 7rpx solid #fcfafa;
   padding: 40rpx 24rpx;

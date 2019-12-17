@@ -18,8 +18,8 @@ App({
   },
   is_ios: '',
   my_config: {
-    base_url: 'https://caves.wcip.net', // 正式
-    api: 'https://caves.wcip.net/api/', // 正式
+    base_url: 'https://card.psn.asia',
+    api: 'https://card.psn.asia/api/',
     default_img: '/images/default.png',
     reg: {
       tel: /^1\d{10}$/,

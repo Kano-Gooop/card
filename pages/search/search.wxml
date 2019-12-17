@@ -23,23 +23,6 @@
       </view>
     </view>
 
-    <!-- 所属资源值 -->
-<!--    <view class="prop-box">-->
-<!--      <view class="title">所属资源值</view>-->
-<!--      <view class="p-list">-->
-<!--        <view class="prop all active">全部</view>-->
-<!--        <view class="prop">0</view>-->
-<!--        <view class="prop">1</view>-->
-<!--        <view class="prop">2</view>-->
-<!--        <view class="prop">3</view>-->
-<!--        <view class="prop">4</view>-->
-<!--        <view class="prop">5</view>-->
-<!--        <view class="prop">6</view>-->
-<!--        <view class="prop">7+</view>-->
-<!--        <view class="prop">X</view>-->
-<!--      </view>-->
-<!--    </view>-->
-
     <!-- 类别/阵营/能力/版本 -->
     <view class="prop-line">
       <view bindtap="pt_change" data-prop_type="{{1}}" class="prop {{prop_type == 1 ? 'active' : ''}}">资源值</view>
