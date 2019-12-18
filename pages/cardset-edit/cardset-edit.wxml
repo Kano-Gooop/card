@@ -7,15 +7,124 @@
       <view class="search-box">
         <image bindtap="showModal" src="/icons/drawer.png" class="drawer"></image>
         <view class="search">
-          <input bindinput="bind_input" bindconfirm="search_card" data-name="search" value="{{search}}" placeholder="请输入卡牌名称或技能" maxlength="20"/>
+          <input bindinput="bind_input" bindconfirm="search_card" data-name="search" value="{{search}}"
+                 placeholder="请输入卡牌名称或技能" maxlength="20"/>
           <image bindtap="clear_search" src="/icons/delete.png" class="del" wx:if="{{search}}"></image>
+        </view>
+      </view>
+
+      <!-- 类别/势力/能力/版本 -->
+      <view class="prop-line">
+        <view bindtap="pt_change" data-prop_type="{{1}}"
+              class="prop one-line-ellipsis {{prop_type == 1 ? 'active' : ''}}">属性
+        </view>
+        <view bindtap="pt_change" data-prop_type="{{2}}"
+              class="prop one-line-ellipsis {{prop_type == 2 ? 'active' : ''}}">费用值
+        </view>
+        <view bindtap="pt_change" data-prop_type="{{3}}"
+              class="prop one-line-ellipsis {{prop_type == 3 ? 'active' : ''}}">类别
+        </view>
+        <view bindtap="pt_change" data-prop_type="{{4}}"
+              class="prop one-line-ellipsis {{prop_type == 4 ? 'active' : ''}}">势力
+        </view>
+        <view bindtap="pt_change" data-prop_type="{{5}}"
+              class="prop one-line-ellipsis {{prop_type == 5 ? 'active' : ''}}">能力
+        </view>
+        <view bindtap="pt_change" data-prop_type="{{6}}"
+              class="prop one-line-ellipsis {{prop_type == 6 ? 'active' : ''}}">版本
+        </view>
+
+        <!-- 属性值弹框 -->
+        <view class="pop-list num" wx:if="{{prop_type == 1}}">
+          <view class="prop all active">全部</view>
+          <view class="option-box">
+            <view class="prop">金</view>
+            <view class="prop">木</view>
+            <view class="prop">水</view>
+            <view class="prop">火</view>
+            <view class="prop">土</view>
+            <view class="prop">无</view>
+          </view>
+        </view>
+
+        <!-- 费用值弹框 -->
+        <view class="pop-list num" wx:if="{{prop_type == 2}}">
+          <view class="prop all active">全部</view>
+          <view class="option-box">
+            <view class="prop">0</view>
+            <view class="prop">1</view>
+            <view class="prop">2</view>
+            <view class="prop">3</view>
+            <view class="prop">4</view>
+            <view class="prop">5</view>
+            <view class="prop">6</view>
+            <view class="prop not">7+</view>
+            <view class="prop">X</view>
+          </view>
+        </view>
+
+        <!-- 类别弹框 -->
+        <view class="pop-list" wx:if="{{prop_type == 3}}">
+          <view class="prop all active">全部</view>
+          <view class="option-box">
+            <view class="prop">单位</view>
+            <view class="prop">费用</view>
+            <view class="prop">军阵</view>
+            <view class="prop">战器</view>
+            <view class="prop">策略</view>
+          </view>
+        </view>
+
+        <!-- 势力弹框 -->
+        <view class="pop-list" wx:if="{{prop_type == 4}}">
+          <view class="prop all active">全部</view>
+          <view class="option-box">
+            <view class="prop">商</view>
+            <view class="prop">周</view>
+            <view class="prop">无</view>
+          </view>
+        </view>
+
+        <!-- 能力弹框 -->
+        <view class="pop-list" wx:if="{{prop_type == 5}}">
+          <view class="prop all active">全部</view>
+          <view class="option-box">
+            <view class="prop">破竹</view>
+            <view class="prop">冲锋</view>
+            <view class="prop">护卫</view>
+            <view class="prop">瞬发</view>
+            <view class="prop">远程</view>
+            <view class="prop">致命</view>
+            <view class="prop">佩戴</view>
+            <view class="prop">登场</view>
+            <view class="prop">阵亡</view>
+            <view class="prop">无</view>
+          </view>
+        </view>
+
+        <!-- 版本弹框 -->
+        <view class="pop-list" wx:if="{{prop_type == 6}}">
+          <view class="prop all active">全部</view>
+          <view class="option-box">
+            <view class="prop">帝国崛起第一章 武王伐纣</view>
+          </view>
         </view>
       </view>
     </view>
 
+    <!-- 选择属性遮罩 -->
+    <view bindtap="hide_pt" class="modal" wx:if="{{prop_type != 0}}"></view>
+
     <view class="card-box">
-<!--      <scroll-view class="card-list">-->
-<!--      </scroll-view>-->
+      <scroll-view scroll-y class="card-list-wrapper" style="height: {{cl_height}}px;">
+        <view class="card-list">
+          <navigator wx:for="{{temp_arr}}" class="card">
+            <image src="/images/t-card.png"></image>
+          </navigator>
+          <view class="card vh"></view>
+          <view class="card vh"></view>
+        </view>
+      </scroll-view>
     </view>
   </view>
 
@@ -25,9 +134,35 @@
   </view>
 
   <!-- 侧栏 -->
-  <scroll-view scroll-y class="DrawerWindow {{modalName == 'viewModal' ? 'show' : ''}}">
-    <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg">
-      左侧列表
+  <view scroll-y class="DrawerWindow {{modalName == 'viewModal' ? 'show' : ''}}">
+    <view class="top-box">
+      <view class="explain">
+        <image src="/images/explain-bg.jpg" class="bg"></image>
+        <view class="text">
+          <view>主牌与备牌区分别收集了您选中的卡牌</view>
+          <view>快来看看吧~</view>
+        </view>
+      </view>
+      <view class="tab-list">
+        <view class="tab active">主牌区</view>
+        <view class="tab">备牌区</view>
+      </view>
     </view>
-  </scroll-view>
+    <view class="card-list-wrapper" id="card-list2-wrapper">
+      <scroll-view scroll-y class="card-list2" style="height: {{cl2_height}}px;">
+        <view class="card" wx:for="{{[0, 1, 2, 3, 4, 5, 6]}}">
+          <view class="cost">2</view>
+          <view class="name one-line-ellipsis">善走御者 蜚廉</view>
+          <view class="add-sub">
+            <image src="/icons/minus.png" class="sub"></image>
+            <view class="num">14</view>
+            <image src="/icons/add.png" class="add"></image>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+    <view class="bottom-box">
+      <button class="edit-btn">创建套牌</button>
+    </view>
+  </view>
 </view>

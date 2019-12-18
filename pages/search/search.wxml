@@ -4,7 +4,8 @@
     <!-- 搜索框 -->
     <view class="search-box">
       <view class="search">
-        <input bindinput="bind_input" bindconfirm="search_card" data-name="search" value="{{search}}" placeholder="请输入卡牌名称或技能" maxlength="20"/>
+        <input bindinput="bind_input" bindconfirm="search_card" data-name="search" value="{{search}}"
+               placeholder="请输入卡牌名称或技能" maxlength="20"/>
         <image bindtap="clear_search" src="/icons/delete.png" class="del" wx:if="{{search}}"></image>
       </view>
     </view>
@@ -23,15 +24,15 @@
       </view>
     </view>
 
-    <!-- 类别/阵营/能力/版本 -->
+    <!-- 类别/势力/能力/版本 -->
     <view class="prop-line">
-      <view bindtap="pt_change" data-prop_type="{{1}}" class="prop {{prop_type == 1 ? 'active' : ''}}">资源值</view>
-      <view bindtap="pt_change" data-prop_type="{{2}}" class="prop {{prop_type == 2 ? 'active' : ''}}">类别</view>
-      <view bindtap="pt_change" data-prop_type="{{3}}" class="prop {{prop_type == 3 ? 'active' : ''}}">阵营</view>
-      <view bindtap="pt_change" data-prop_type="{{4}}" class="prop {{prop_type == 4 ? 'active' : ''}}">能力</view>
-      <view bindtap="pt_change" data-prop_type="{{5}}" class="prop {{prop_type == 5 ? 'active' : ''}}">版本</view>
+      <view bindtap="pt_change" data-prop_type="{{1}}" class="prop one-line-ellipsis {{prop_type == 1 ? 'active' : ''}}">费用值</view>
+      <view bindtap="pt_change" data-prop_type="{{2}}" class="prop one-line-ellipsis {{prop_type == 2 ? 'active' : ''}}">类别</view>
+      <view bindtap="pt_change" data-prop_type="{{3}}" class="prop one-line-ellipsis {{prop_type == 3 ? 'active' : ''}}">势力</view>
+      <view bindtap="pt_change" data-prop_type="{{4}}" class="prop one-line-ellipsis {{prop_type == 4 ? 'active' : ''}}">能力</view>
+      <view bindtap="pt_change" data-prop_type="{{5}}" class="prop one-line-ellipsis {{prop_type == 5 ? 'active' : ''}}">版本</view>
 
-      <!-- 资源值弹框 -->
+      <!-- 费用值弹框 -->
       <view class="pop-list num" wx:if="{{prop_type == 1}}">
         <view class="prop all active">全部</view>
         <view class="option-box">
@@ -52,14 +53,14 @@
         <view class="prop all active">全部</view>
         <view class="option-box">
           <view class="prop">单位</view>
-          <view class="prop">资源</view>
+          <view class="prop">费用</view>
           <view class="prop">军阵</view>
           <view class="prop">战器</view>
           <view class="prop">策略</view>
         </view>
       </view>
 
-      <!-- 阵营弹框 -->
+      <!-- 势力弹框 -->
       <view class="pop-list" wx:if="{{prop_type == 3}}">
         <view class="prop all active">全部</view>
         <view class="option-box">
@@ -103,7 +104,7 @@
   <view class="card-box">
     <view class="card-list">
       <navigator wx:for="{{[0, 1, 2, 3, 4, 5, 6]}}" class="card">
-        <image src="/images/t-card.png"></image>
+        <image src="/images/t-card.png" lazy-load></image>
       </navigator>
       <view class="card vh"></view>
       <view class="card vh"></view>

@@ -35,6 +35,7 @@ App({
   user_data: {
     token: '',
     uid: 0,
+    username: '',
     user_auth: 0, // 0.用户未授权 1.用户已授权
     avatar: ''
   },
@@ -184,5 +185,54 @@ App({
       arr[i] = null;
     }
     return arr;
-  }
+  },
+  // 小程序登录获取token
+  login(callback) {
+    this.get_code((code) => {
+      let post = {
+        code: code
+      };
+
+      this.ajax('login/login', post, (res) => {
+        callback(res);
+      });
+    })
+  },
+  get_code(callback) {
+    wx.login({
+      success(login) {
+        callback(login.code);
+      }
+    });
+  },
+  // 设置全局的 user_data
+  set_user_data() {
+    this.ajax('my/mydetail', null, res => {
+      this.avatar_format(res);
+
+      this.user_data.uid = res.id;
+      this.user_data.user_auth = res.user_auth;
+      this.user_data.username = res.username;
+      this.user_data.avatar = res.avatar;
+    });
+  },
+  redirect_or_switch_or_index(route) {
+    if (!route) {
+      wx.switchTab({
+        url: '/pages/index/index'
+      });
+    } else {
+      switch (route) {
+        case 'pages/index/index':
+        case 'pages/search/search':
+        case 'pages/shop/shop':
+        case 'pages/my/my':
+          wx.switchTab({ url: '/' + route });
+          break;
+        default:
+          wx.redirectTo({ url: '/' + route });
+          break;
+      }
+    }
+  },
 });

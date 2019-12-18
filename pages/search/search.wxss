@@ -56,6 +56,10 @@
   position: relative;
 }
 
+.filter-box .prop-line > .prop {
+  width: 0;
+}
+
 .filter-box .prop-line .prop {
   flex-grow: 1;
   text-align: center;
