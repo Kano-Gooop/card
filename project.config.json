@@ -85,6 +85,13 @@
 					"id": -1,
 					"name": "测试",
 					"pathName": "pages/test/test",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "商品详情页",
+					"pathName": "pages/shop-detail/shop-detail",
 					"scene": null
 				}
 			]

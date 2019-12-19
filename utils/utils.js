@@ -25,6 +25,20 @@ const date_format = (date, fmt = 'yyyy.MM.dd') => {
   }
 };
 
+// 对象转query字符串
+const obj2query = (obj) => {
+  let query = '';
+  for (let key in obj) {
+    query += key + '=' + obj[key] + '&';
+  }
+  if (!query) {
+    return '';
+  } else {
+    return '?' + query.substr(0, query.length - 1);
+  }
+};
+
 module.exports = {
-  date_format
+  date_format,
+  obj2query
 };

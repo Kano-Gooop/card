@@ -456,8 +456,6 @@
 /* 海报 start */
 
 .qrc {
-  width: 300rpx;
-  height: 300rpx;
   position: fixed;
   left: -10000rpx;
 }
@@ -465,8 +463,6 @@
 .poc {
   position: fixed;
   left: -10000rpx;
-  width: 457px;
-  height: 817px;
 }
 
 .mask-box {

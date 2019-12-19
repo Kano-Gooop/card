@@ -20,7 +20,7 @@ App({
   my_config: {
     base_url: 'https://card.psn.asia',
     api: 'https://card.psn.asia/api/',
-    default_img: '/images/default.png',
+    default_img: '/images/default-header.png',
     reg: {
       tel: /^1\d{10}$/,
       phone: /\d{3,4}-\d{7,8}/,
@@ -108,11 +108,11 @@ App({
           } else {
             switch (res.data.code) {
               case -3: // token失效
-              case -5: // token未传
+              case -6: // token未传
                 let current_pages = getCurrentPages();
                 let current_page = current_pages[current_pages.length - 1];
                 wx.redirectTo({
-                  url: '/pages/login/login?route=' + encodeURIComponent(current_page.route + this.obj2query(current_page.options))
+                  url: '/pages/login/login?route=' + encodeURIComponent(current_page.route + utils.obj2query(current_page.options))
                 });
                 break;
               case 49:
@@ -208,7 +208,7 @@ App({
   // 设置全局的 user_data
   set_user_data() {
     this.ajax('my/mydetail', null, res => {
-      this.avatar_format(res);
+      this.format_img(res, 'avatar');
 
       this.user_data.uid = res.id;
       this.user_data.user_auth = res.user_auth;
@@ -235,4 +235,33 @@ App({
       }
     }
   },
+  // 处理图像路径
+  format_img(obj, img_field = 'pic') {
+    if (obj instanceof Array) {
+      if (typeof obj[0] === 'string') {
+        for (let i = 0; i < obj.length; i++) {
+          obj[i] = this.empty_or(obj[i]);
+        }
+      } else {
+        for (let i = 0; i < obj.length; i++) {
+          obj[i][img_field] = this.empty_or(obj[i][img_field]);
+        }
+      }
+    } else if (typeof obj === 'object') {
+      obj[img_field] = this.empty_or(obj[img_field]);
+    } else {
+      obj = this.empty_or(obj);
+    }
+  },
+  empty_or(img) {
+    if (img) {
+      if (img.indexOf('https') === 0) {
+        return img;
+      } else {
+        return this.my_config.qiniu_base + '/' + img;
+      }
+    } else {
+      return this.my_config.default_img;
+    }
+  }
 });

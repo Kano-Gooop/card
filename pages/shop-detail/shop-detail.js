@@ -1,44 +1,27 @@
+import drawQrcode from "../../utils/weapp.qrcode.min";
+
 const app = getApp();
 var WxParse = require('../../wxParse/wxParse.js');
 
 Page({
   data: {
     id: 0,
-    goods: {
-      "id": 170,
-      "name": "创意文创产品北京天坛水晶建筑模型旅游纪念品家居装饰品摆件",
-      "detail": "<p style=\"margin-top: 0px; margin-bottom: 0px; padding: 0px; line-height: 1.5; clear: both;\"><img alt=\"undefined\" src=\"/ueditor/php/upload/image/20191023/1571803073368965.jpg\" max-width=\"990\" style=\"border: none; visibility: visible; vertical-align: bottom; max-width: 990px; zoom: 1;\"/><br/><img alt=\"undefined\" src=\"/ueditor/php/upload/image/20191023/1571803073312623.jpg\" max-width=\"990\" style=\"border: none; visibility: visible; vertical-align: bottom; max-width: 990px; zoom: 1;\"/><br/><img alt=\"undefined\" src=\"/ueditor/php/upload/image/20191023/1571803073243939.jpg\" max-width=\"990\" style=\"border: none; visibility: visible; vertical-align: bottom; max-width: 990px; zoom: 1;\"/><br/><img alt=\"undefined\" src=\"/ueditor/php/upload/image/20191023/1571803073316061.jpg\" max-width=\"990\" style=\"border: none; visibility: visible; vertical-align: bottom; max-width: 990px; zoom: 1;\"/><br/><img alt=\"undefined\" src=\"/ueditor/php/upload/image/20191023/1571803073636457.jpg\" max-width=\"990\" style=\"border: none; visibility: visible; vertical-align: bottom; max-width: 990px; zoom: 1;\"/><br/><img alt=\"undefined\" src=\"/ueditor/php/upload/image/20191023/1571803074523862.jpg\" max-width=\"990\" style=\"border: none; visibility: visible; vertical-align: bottom; max-width: 990px; zoom: 1;\"/><br/><img alt=\"undefined\" src=\"/ueditor/php/upload/image/20191023/1571803074595481.jpg\" max-width=\"990\" style=\"border: none; visibility: visible; vertical-align: bottom; max-width: 990px; zoom: 1;\"/><br/><img alt=\"undefined\" src=\"/ueditor/php/upload/image/20191023/1571803074691943.jpg\" max-width=\"990\" style=\"border: none; visibility: visible; vertical-align: bottom; max-width: 990px; zoom: 1;\"/><br/><img alt=\"undefined\" src=\"/ueditor/php/upload/image/20191023/1571803074976527.jpg\" max-width=\"990\" style=\"border: none; visibility: visible; vertical-align: bottom; max-width: 990px; zoom: 1;\"/><br/><img alt=\"详情_10\" src=\"/ueditor/php/upload/image/20191023/1571803074360191.jpg\" max-width=\"990\" style=\"border: none; visibility: visible; vertical-align: bottom; max-width: 990px; zoom: 1;\"/><br/>价格说明<br/></p><ul style=\"margin: 0px; padding: 0px;\" class=\" list-paddingleft-2\"><hr style=\"margin: 5px 0px 15px; padding: 0px; border-top: none; border-right: none; border-bottom: 2px solid rgb(221, 221, 221); border-left: none; border-image: initial; height: 1px;\"/><li><p>一般情况下：</p></li><li><p>划线价格：划线的价格可能是商品的销售指导价或该商品的曾经展示过的销售价等，并非原价，仅供参考。<br/>未划线价格：未划线的价格是商品在阿里巴巴中国站上的销售标价，具体的成交价格根据商品参加活动，或因用户使用优惠券等发生变化，最终以订单结算页价格为准。</p></li><li><p>活动预热状态下：</p></li><li><p>划线价格：划线的价格是商品在目前活动预热状态下的销售标价，并非原价，具体的成交价可能因用户使用优惠券等发生变化，最终以订单结算页价格为准。<br/>未划线价格：未划线的价格可能是商品即将参加活动的活动价，仅供参考，具体活动时的成交价可能因用户使用优惠券等发生变化，最终以活动是订单结算页价格为准。</p></li><li><p>伙拼折上折活动状态下：</p></li><li><p>该商品（部分规格除外）在伙拼折上折活动期间内，买家可享受伙拼折上折活动优惠价格（该价格较同时期伙拼日常活动价格更优惠）。</p></li></ul><p><span class=\"tips\" style=\"color: rgb(255, 96, 0);\">*注：前述说明仅当出现价格比较时有效。若商家单独对划线价格进行说明的，以商家的表述为准。</span></p><p><br/></p>",
-      "origin_price": "590.00",
-      "price": "590.00",
-      "pics": [
-        "upload/goods/157180300529381000771.jpg",
-        "upload/goods/157180302159654100799.jpg",
-        "upload/goods/157180303270663400421.jpg"
-      ],
-      "carriage": "10.00",
-      "stock": 972,
-      "sales": 28,
-      "use_attr": 0,
-      "attr": "默认",
-      "hot": 0,
-      "limit": 10,
-      "uid": 414,
-      "nickname": "上海鼎晶礼品有限公司",
-      "avatar": "upload/avatar/157137555866104800285.jpg",
-      "org": "上海鼎晶礼品有限公司",
-      "level": 1,
-      "attr_list": []
-    },
+    goods: {},
     rich_text: {},
     add_loading: false,  // 加入购物车loading
     attr_show: false,
     attr_active: false,
     attr_index: 0,  // 选中的参数索引，默认为第一个
     buy_type: 1, // 1.购买 2.购物车
-    amount: 0  // 购买数量
+    amount: 0,  // 购买数量
+
+    poster_show: false,  // 是否显示海报
+    poster: '',  // 海报图片
+    show_set_btn: false
   },
   onLoad(options) {
-    this.data.id = options.id;
+    // this.data.id = options.id;
+    this.data.id = 3;
 
     // 海报二维码
     drawQrcode({
@@ -46,7 +29,7 @@ Page({
       height: 150,
       correctLevel: 1,
       canvasId: 'qrcode',
-      text: 'http://caves.wcip.net/shop-detail?id=' + options.id
+      text:  app.my_config.base_url + '/shop-detail?id=' + options.id
     });
 
     this.goodsDetail();
@@ -59,11 +42,12 @@ Page({
     };
 
     app.ajax('shop/goodsDetail', post, (res) => {
-      // for (let i = 0; i < res.pics.length; i++) {
-      //   res.pics[i] = app.my_config.base_url + '/' + res.pics[i];
-      // }
       app.format_img(res.pics);
-      app.avatar_format(res);
+      app.format_img(res, 'avatar');
+
+
+      console.log(res, 'res');
+
       this.setData({ goods: res });
       let rich_text = res.detail;
       rich_text = rich_text.replace(/\/ueditor\/php\/upload\//g, app.my_config.base_url + '/ueditor/php/upload/');
@@ -250,6 +234,178 @@ Page({
     app.page_open(() => {
       wx.navigateTo({ url: '/pages/person-page/person-page?uid=' + this.data.goods.uid });
     });
+  },
+  // 生成海报
+  create_poster() {
+    if (this.data.poster) {
+      this.setData({ poster_show: true });
+    } else {
+      wx.showLoading({
+        title: '海报生成中...',
+        mask: true
+      });
+
+      // 获得商品图片
+      let promise1 = new Promise((resolve, reject) => {
+        wx.getImageInfo({
+          src: this.data.goods.pics[0],
+          success: res => {
+            resolve(res);
+          },
+          fail: () => {
+            app.toast('生成失败，请重试');
+          }
+        })
+      });
+
+      // 生成二维码图片
+      let promise2 = new Promise((resolve, reject) => {
+        wx.canvasToTempFilePath({
+          x: 0,
+          y: 0,
+          width: 150,
+          height: 150,
+          destWidth: 150,
+          destHeight: 150,
+          canvasId: 'qrcode',
+          success: res => {
+            resolve(res.tempFilePath);
+          },
+          fail: () => {
+            // 生成失败
+            app.toast('生成失败，请重试');
+          }
+        });
+      });
+
+      Promise.all([
+        promise1, promise2
+      ]).then(p_res => {
+        let goods_pic = p_res[0].path;
+        let qrcode = p_res[1];
+
+        // 创建canvas
+        var canvas = wx.createCanvasContext('poster-canvas');
+
+        // 绘制白色背景
+        canvas.setFillStyle('#ffffff');
+        canvas.rect(0, 0, 457, 817);
+        canvas.fill();
+        canvas.draw();
+
+        // 绘制商品图片
+        canvas.drawImage(goods_pic, 17, 17, 423, 423);
+        canvas.draw(true);
+
+        // 绘制商品名
+        canvas.setFontSize(24);
+        canvas.setFillStyle("#333333");
+        // canvas.setTextAlign('left');
+
+        let str = this.data.goods.name;
+        let str_index = 0;
+        let step = 18;
+        let rest = str.substr(str_index, step);
+        let str_count = 0;
+        while (rest) {
+          canvas.fillText(rest, 17, 481 + str_count * 40, 423);
+          str_index += step;
+          rest = str.substr(str_index, step);
+          str_count++;
+        }
+        canvas.draw(true);
+
+        // 绘制人民币符号
+        canvas.setFontSize(30);
+        canvas.setFillStyle("#ff4141");
+        canvas.fillText('¥', 17, 680, 20);
+        canvas.draw(true);
+
+        // 绘制价格
+        canvas.setFontSize(40);
+        canvas.setFillStyle("#ff4141");
+        canvas.fillText(this.data.goods.price, 40, 680, 200);
+        canvas.draw(true);
+
+        // 绘制二维码
+        canvas.drawImage(qrcode, 280, 600, 150, 150);
+        canvas.draw(true);
+
+        // 二维码描述
+        canvas.setFontSize(20);
+        canvas.setFillStyle("#999999");
+        canvas.setTextAlign('center');
+        canvas.fillText('扫描小程序码', 355, 780, 150);
+        canvas.draw(true);
+
+        setTimeout(() => {
+          wx.canvasToTempFilePath({
+            x: 0,
+            y: 0,
+            width: 457,
+            height: 817,
+            destWidth: 457,
+            destHeight: 817,
+            canvasId: 'poster-canvas',
+            success: res => {
+              this.setData({
+                poster: res.tempFilePath,
+                poster_show: true
+              });
+              wx.hideLoading()
+            },
+            fail: err => {
+              console.log(err, 'cuowu');
+              // 生成失败
+            }
+          })
+        }, 500);
+      });
+    }
+  },
+  // 关闭海报
+  hide_poser() {
+    this.setData({ poster_show: false });
+  },
+  // 保存海报
+  save_poster() {
+    wx.getSetting({
+      success: res => {
+        if (res.authSetting['scope.writePhotosAlbum']) {
+          wx.saveImageToPhotosAlbum({
+            filePath: this.data.poster,
+            success: () => {
+              app.modal('图片成功保存到相册了，快去分享朋友圈吧', () => {
+                this.setData({ poster_show: false });
+              });
+            },
+            fail: err => {
+              if (err.errMsg.indexOf('cancel') !== -1) {
+                app.toast('保存已取消');
+              } else {
+                app.toast('保存失败');
+              }
+            }
+          })
+        } else {
+          wx.authorize({
+            scope: 'scope.writePhotosAlbum',
+            success: () => {
+              this.save_poster();
+            },
+            fail: () => {
+              this.setData({
+                show_set_btn: true
+              });
+            }
+          });
+        }
+      }
+    });
+  },
+  // 关闭授权菜单按钮
+  hide_set_btn() {
+    this.setData({ show_set_btn: false })
   },
   // 分享
   onShareAppMessage() {

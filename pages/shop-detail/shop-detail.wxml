@@ -129,4 +129,24 @@
       <button bindtap="buy_btn" class="param-buy-btn">{{buy_type == 1 ? '立即购买' : '确定加入'}}</button>
     </view>
   </view>
+
+  <canvas canvas-id="qrcode" class="qrc" style="width: 300rpx; height: 300rpx;"></canvas>
+  <canvas canvas-id="poster-canvas" class="poc" style="width: 457rpx; height: 817rpx;"></canvas>
+
+  <view class="mask-box" wx:if="{{poster_show}}">
+    <view class="img-box">
+      <image src="{{poster}}" class="poster"></image>
+      <image bindtap="hide_poser" src="/icons/poster-x.png" class="cancel"></image>
+    </view>
+    <button catchtap="save_poster" class="save-btn">保存</button>
+  </view>
+
+  <view bindtap="hide_set_btn" class="setting-box" wx:if="{{show_set_btn}}">
+    <view class="os-box">
+      <view>
+        请在设置中打开保存图片到相册的权限
+      </view>
+      <button catchtap="hide_set_btn" open-type="openSetting" class="set_btn">打开设置</button>
+    </view>
+  </view>
 </view>
