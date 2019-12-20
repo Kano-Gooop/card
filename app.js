@@ -258,7 +258,7 @@ App({
       if (img.indexOf('https') === 0) {
         return img;
       } else {
-        return this.my_config.qiniu_base + '/' + img;
+        return this.my_config.base_url + '/' + img;
       }
     } else {
       return this.my_config.default_img;

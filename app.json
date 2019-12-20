@@ -10,6 +10,7 @@
     "pages/shop-car/shop-car",
     "pages/cardset-edit/cardset-edit",
     "pages/test/test",
+    "pages/login/login",
     "pages/poster/poster"
   ],
   "window": {

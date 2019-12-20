@@ -6,6 +6,7 @@
   min-height: 100vh;
   box-sizing: border-box;
   line-height: 1;
+  background: #fff;
 }
 
 button::after {
@@ -77,6 +78,10 @@ button::after {
 }
 
 /* 富文本 start */
+.page view {
+  overflow: visible;
+}
+
 .content-wrapper view {
   overflow: auto;
 }
@@ -88,14 +93,14 @@ button::after {
 /* 富文本 end */
 
 /* 超出省略 start */
-.one-line-ellipsis {
+.one-line-ellipsis, .page view.one-line-ellipsis {
   overflow: hidden;
   text-overflow: ellipsis;
   word-wrap: break-word;
   white-space: nowrap;
 }
 
-.two-line-ellipsis {
+.two-line-ellipsis, .page view.two-line-ellipsis {
   display: -webkit-box;
   overflow: hidden;
   text-overflow: ellipsis;

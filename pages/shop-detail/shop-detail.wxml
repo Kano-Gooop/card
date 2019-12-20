@@ -1,99 +1,86 @@
 <view class="page">
-  <swiper indicator-dots="{{true}}"
-          autoplay="{{true}}"
-          class="top-swiper"
-          wx:if="{{goods.pics.length > 1}}">
-    <swiper-item wx:for="{{goods.pics}}" wx:key="index">
-      <image src="{{item}}" mode="aspectFill"></image>
-    </swiper-item>
-  </swiper>
+  <!-- 顶部轮播/一张图的时候只显示图 -->
+  <view class="swiper-wrapper" wx:if="{{goods.pics.length > 1}}">
+    <swiper
+            autoplay="{{true}}"
+            class="top-swiper"
+            bindchange="swiper_change">
+      <swiper-item wx:for="{{goods.pics}}" wx:key="index">
+        <image src="{{item}}" mode="aspectFill"></image>
+      </swiper-item>
+    </swiper>
+
+    <view class="swiper-index">{{swiper_current + 1}}/{{goods.pics.length}}</view>
+  </view>
   <image src="{{goods.pics[0]}}" class="top-swiper" mode="aspectFit" wx:else></image>
+
+  <!-- 信息框 -->
   <view class="info-box">
     <view class="pt">
-      <view class="title">
-        <view class="goods-name">{{goods.name}}</view>
+      <view class="top-line">
+        <view class="price">{{goods.price}}</view>
         <button bindtap="create_poster" class="share">
           <image src="/icons/share.png"></image>
           <view class="text">分享</view>
         </button>
       </view>
-      <view class="price">
-        ¥{{goods.price}}
-<!--        <text class="origin-price" wx:if="{{goods.price != goods.origin_price}}">¥{{goods.origin_price}}</text>-->
-      </view>
+      <view class="title">{{goods.name}}</view>
     </view>
 
-    <view class="stock-carriage">
-      <view>运费：¥{{goods.carriage}}</view>
-      <view>售出：{{goods.sales}}</view>
-      <view>库存：{{goods.stock}}</view>
+    <view class="fs">
+      <view class="freight">运费：￥{{goods.carriage}}</view>
+      <view class="stock">剩余{{goods.stock}}件</view>
     </view>
 
-<!--    <view class="desc">-->
-<!--      <view class="title title-redtiao">商品描述</view>-->
-<!--      <view>-->
-<!--        {{goods.desc || '暂无描述'}}-->
-<!--      </view>-->
-<!--    </view>-->
+    <!-- 间隔条 -->
+    <view class="tiao"></view>
+  </view>
 
-    <view bindtap="to_person" class="store" wx:if="{{goods.uid}}">
-      <view class="title title-redtiao">店铺信息</view>
-      <view class="info">
-        <view class="zuo">
-          <image src="{{goods.avatar}}" class="avatar"></image>
-          <view class="org">{{goods.org}}</view>
-        </view>
-        <view class="jin">
-          <view class="text">查看主页</view>
-          <image src="/icons/you3.png"></image>
-        </view>
-      </view>
+  <!-- 商品详情 & 买家评价 -->
+  <view class="bottom-content">
+    <view class="tab-list">
+      <view class="tab {{tab_active == 0 ? 'active' : ''}}" bindtap="tab_change" data-tab="{{0}}">商品详情</view>
+      <view class="tab {{tab_active == 1 ? 'active' : ''}}" bindtap="tab_change" data-tab="{{1}}">买家评价</view>
     </view>
-
-    <view class="params">
-      <view class="title title-redtiao">规格参数</view>
-      <view class="params-wrapper">
-        <view class="line">
-          <view class="name">商品名称</view>
-          <view class="value">啥啥翡翠亮肤乳</view>
-        </view>
-        <view class="line">
-          <view class="name">容量</view>
-          <view class="value">100ml</view>
-        </view>
-        <view class="line">
-          <view class="name">版本</view>
-          <view class="value">清爽型 日本版</view>
-        </view>
-        <view class="line">
-          <view class="name">是否为特殊用途化妆品</view>
-          <view class="value">否</view>
-        </view>
-        <view class="line">
-          <view class="name">功效</view>
-          <view class="value">提亮肤色</view>
-        </view>
-      </view>
+    <view class="content-wrapper" wx:if="{{tab_active == 0}}">
+      <import src="../../wxParse/wxParse.wxml"/>
+      <template is="wxParse" data="{{wxParseData:rich_text.nodes}}"/>
     </view>
-    <view class="content">
-      <view class="title title-redtiao">商品详情</view>
-      <view class="content-wrapper">
-        <import src="../../wxParse/wxParse.wxml"/>
-        <template is="wxParse" data="{{wxParseData:rich_text.nodes}}"/>
+    <view class="comment-box" wx:else>
+      <view class="comment" wx:for="{{[0, 1, 2, 3, 4, 5]}}">
+        <view class="user-line">
+          <image src="/images/default-header.png" class="header"></image>
+          <view class="info">
+            <view class="nickname one-line-ellipsis">某某某</view>
+            <view class="pd">
+              <view class="param one-line-ellipsis">商品参数名称</view>
+              <view class="date">2019.11.10</view>
+            </view>
+          </view>
+        </view>
+        <view class="com-content">
+          这套卡牌跟我预想的一样好看，原画风格很炫酷，跟朋友玩了一局很有意思，有助于智力开发呢！推荐大家购买~
+        </view>
       </view>
     </view>
   </view>
 
   <view class="foot">
-    <view bindtap="to_shop_car" class="shop-car">
-      <icon class="iconfont icongouwuche"></icon>
-      <view>购物车</view>
+    <button open-type="contact" show-message-card="true" class="tab-btn contact">
+      <image src="/icons/custom-service.png" class="icon"></image>
+      <view class="text">客服</view>
+    </button>
+    <view bindtap="to_shop_car" class="tab-btn shop-car">
+      <image src="/icons/shopping-cart2.png" class="icon"></image>
+      <view class="text">购物车</view>
     </view>
-    <view bindtap="cartAdd" class="add btn">
-      加入购物车
-    </view>
-    <view bindtap="buy" class="buy btn">
-      立即购买
+    <view class="btn-set">
+      <view bindtap="cartAdd" class="btn add">
+        加入购物车
+      </view>
+      <view bindtap="buy" class="btn buy">
+        立即购买
+      </view>
     </view>
   </view>
 
@@ -131,11 +118,11 @@
   </view>
 
   <canvas canvas-id="qrcode" class="qrc" style="width: 300rpx; height: 300rpx;"></canvas>
-  <canvas canvas-id="poster-canvas" class="poc" style="width: 457rpx; height: 817rpx;"></canvas>
+  <canvas canvas-id="poster-canvas" class="poc" style="width: 914rpx; height: {{line_count * 80 + 1394}}rpx;"></canvas>
 
   <view class="mask-box" wx:if="{{poster_show}}">
     <view class="img-box">
-      <image src="{{poster}}" class="poster"></image>
+      <image src="{{poster}}" class="poster" style="height: {{line_count * 40 + 697}}rpx;"></image>
       <image bindtap="hide_poser" src="/icons/poster-x.png" class="cancel"></image>
     </view>
     <button catchtap="save_poster" class="save-btn">保存</button>

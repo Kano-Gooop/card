@@ -7,6 +7,8 @@ Page({
   data: {
     id: 0,
     goods: {},
+    swiper_current: 0,  // swiper的数字标示
+    tab_active: 1,  // 0.商品详情 1.买家评价
     rich_text: {},
     add_loading: false,  // 加入购物车loading
     attr_show: false,
@@ -17,11 +19,12 @@ Page({
 
     poster_show: false,  // 是否显示海报
     poster: '',  // 海报图片
-    show_set_btn: false
+    show_set_btn: false,
+    line_count: 0  // 标题行数
   },
   onLoad(options) {
     // this.data.id = options.id;
-    this.data.id = 3;
+    this.data.id = 2;
 
     // 海报二维码
     drawQrcode({
@@ -29,30 +32,34 @@ Page({
       height: 150,
       correctLevel: 1,
       canvasId: 'qrcode',
-      text:  app.my_config.base_url + '/shop-detail?id=' + options.id
+      text: app.my_config.base_url + '/shop-detail?id=' + options.id
     });
 
     this.goodsDetail();
   },
   // 商品详情
   goodsDetail() {
-    let post = {
-      id: this.data.id,
-      token: app.user_data.token
-    };
-
-    app.ajax('shop/goodsDetail', post, (res) => {
+    app.ajax('shop/goodsDetail', { id: this.data.id }, (res) => {
       app.format_img(res.pics);
       app.format_img(res, 'avatar');
 
+      this.setData({
+        goods: res,
+        line_count: Math.ceil(res.name.length / 18)
+      });
 
-      console.log(res, 'res');
-
-      this.setData({ goods: res });
       let rich_text = res.detail;
       rich_text = rich_text.replace(/\/ueditor\/php\/upload\//g, app.my_config.base_url + '/ueditor/php/upload/');
       WxParse.wxParse('rich_text', 'html', rich_text, this);
     });
+  },
+  // swiper滑动
+  swiper_change(e) {
+    this.setData({ swiper_current: e.detail.current });
+  },
+  // 切换tab
+  tab_change(e) {
+    this.setData({ tab_active: e.currentTarget.dataset.tab });
   },
   // 点击购买
   buy() {
@@ -132,7 +139,6 @@ Page({
 
           let data = this.data;
           let post = {
-            token: app.user_data.token,
             goods_id: data.id,
             num: data.amount
           };
@@ -236,7 +242,7 @@ Page({
     });
   },
   // 生成海报
-  create_poster() {
+  create_poster: function () {
     if (this.data.poster) {
       this.setData({ poster_show: true });
     } else {
@@ -289,7 +295,7 @@ Page({
 
         // 绘制白色背景
         canvas.setFillStyle('#ffffff');
-        canvas.rect(0, 0, 457, 817);
+        canvas.rect(0, 0, 457, 697 + 40 * this.data.line_count);
         canvas.fill();
         canvas.draw();
 
@@ -300,13 +306,13 @@ Page({
         // 绘制商品名
         canvas.setFontSize(24);
         canvas.setFillStyle("#333333");
-        // canvas.setTextAlign('left');
 
         let str = this.data.goods.name;
         let str_index = 0;
         let step = 18;
         let rest = str.substr(str_index, step);
         let str_count = 0;
+
         while (rest) {
           canvas.fillText(rest, 17, 481 + str_count * 40, 423);
           str_index += step;
@@ -318,24 +324,24 @@ Page({
         // 绘制人民币符号
         canvas.setFontSize(30);
         canvas.setFillStyle("#ff4141");
-        canvas.fillText('¥', 17, 680, 20);
+        canvas.fillText('¥', 17, 560 + 40 * this.data.line_count, 20);
         canvas.draw(true);
 
         // 绘制价格
         canvas.setFontSize(40);
         canvas.setFillStyle("#ff4141");
-        canvas.fillText(this.data.goods.price, 40, 680, 200);
+        canvas.fillText(this.data.goods.price, 40, 560 + 40 * this.data.line_count, 200);
         canvas.draw(true);
 
         // 绘制二维码
-        canvas.drawImage(qrcode, 280, 600, 150, 150);
+        canvas.drawImage(qrcode, 280, 480 + 40 * this.data.line_count, 150, 150);
         canvas.draw(true);
 
         // 二维码描述
         canvas.setFontSize(20);
         canvas.setFillStyle("#999999");
         canvas.setTextAlign('center');
-        canvas.fillText('扫描小程序码', 355, 780, 150);
+        canvas.fillText('扫描或长按二维码', 355, 665 + 40 * this.data.line_count, 150);
         canvas.draw(true);
 
         setTimeout(() => {
@@ -343,9 +349,9 @@ Page({
             x: 0,
             y: 0,
             width: 457,
-            height: 817,
+            height: 697 + 40 * this.data.line_count,
             destWidth: 457,
-            destHeight: 817,
+            destHeight: 697 + 40 * this.data.line_count,
             canvasId: 'poster-canvas',
             success: res => {
               this.setData({

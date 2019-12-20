@@ -4,6 +4,7 @@ Page({
   data: {
   },
   onLoad() {
+    1394
   },
   showModal(e) {
     this.setData({
