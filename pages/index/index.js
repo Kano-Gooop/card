@@ -3,7 +3,7 @@ const app = getApp();
 Page({
   data: {
     full_loading: false,
-    banner: ['/images/t-banner.png', '/images/t-banner.png', '/images/t-banner.png', '/images/t-banner.png'],
+    banner: ['/images/t-banner.jpg', '/images/t-banner.jpg', '/images/t-banner.jpg', '/images/t-banner.jpg'],
 
     nomore: true,
     nodata: false

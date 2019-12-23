@@ -156,7 +156,6 @@ Page({
       }
     }
   },
-
   /* 左滑删除 start */
   initEleWidth() {
     var delBtnWidth = this.getEleWidth(this.data.delBtnWidth);

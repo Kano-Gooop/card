@@ -1,0 +1,82 @@
+<view class="page">
+  <view class="pai">
+    <image src="/images/t-card-bg.jpg" class="bg"></image>
+    <view class="card-box">
+      <image src="/images/t-card2.jpg" class="card"></image>
+      <image bindtap="zoom" src="/icons/magnifier.png" class="zoom"></image>
+    </view>
+  </view>
+  <view class="info">
+    <view class="line-list">
+      <view class="line">
+        <view class="label">名称</view>
+        <view class="value">善走御者 蜚廉</view>
+      </view>
+      <view class="line">
+        <view class="label">类别</view>
+        <view class="value">无双单位</view>
+      </view>
+      <view class="line">
+        <view class="label">版本</view>
+        <view class="value">帝国崛起第一章武王伐纣</view>
+      </view>
+    </view>
+    <view class="tc-list">
+      <view class="tc">
+        <view class="label">势力</view>
+        <view class="value">商</view>
+      </view>
+      <view class="tc">
+        <view class="label">费用</view>
+        <view class="value">5</view>
+      </view>
+      <view class="tc">
+        <view class="label">属性</view>
+        <view class="value">火</view>
+      </view>
+      <view class="tc">
+        <view class="label">能力</view>
+        <view class="value">冲锋</view>
+      </view>
+    </view>
+  </view>
+  <view class="long-info">
+    <view class="long">
+      <view class="title">技能描述</view>
+      <view class="content">当“蜚廉”死去时，你可以从你的牌库中搜寻一张无双名
+        称为“恶来”的牌并展示之，将你的牌库洗牌后，将该牌
+        置于你的牌库顶。</view>
+    </view>
+    <view class="long">
+      <view class="title">文化科普</view>
+      <view class="content">蜚廉生恶来。恶来有力，蜚廉善走，父子俱以材力事殷
+        纣。
+        ——《史记》</view>
+    </view>
+    <view class="long">
+      <view class="title">Q&A</view>
+      <view class="content">蜚廉生恶来。恶来有力，蜚廉善走，父子俱以材力事殷
+        纣。
+        蜚廉生恶来。恶来有力，蜚廉善走，父子俱以材力事殷
+        纣。
+        蜚廉生恶来。恶来有力，蜚廉善走，父子俱以材力事殷
+        纣。
+        蜚廉生恶来。恶来有力，蜚廉善走，父子俱以材力事殷
+        纣。</view>
+    </view>
+  </view>
+  <view class="foot">
+    <view class="collect-box">
+      <image src="/icons/collect.png" class="col"></image>
+    </view>
+    <view class="pagination">
+      <view class="iw p-left disabled">
+        <image src="/icons/p-left.png"></image>
+      </view>
+      <view class="num">1 / 996</view>
+      <view class="iw  p-right">
+        <image src="/icons/p-right.png"></image>
+      </view>
+    </view>
+  </view>
+</view>

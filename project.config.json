@@ -92,6 +92,27 @@
 					"id": -1,
 					"name": "商品详情页",
 					"pathName": "pages/shop-detail/shop-detail",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "购物车",
+					"pathName": "pages/shop-car/shop-car",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "计血器",
+					"pathName": "pages/blood-gas/blood-gas",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "卡牌详情",
+					"pathName": "pages/card-detail/card-detail",
 					"scene": null
 				}
 			]

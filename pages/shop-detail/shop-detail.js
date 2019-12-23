@@ -24,7 +24,7 @@ Page({
   },
   onLoad(options) {
     // this.data.id = options.id;
-    this.data.id = 2;
+    this.data.id = 5;
 
     // 海报二维码
     drawQrcode({

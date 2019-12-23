@@ -18,12 +18,12 @@
   <view class="main">
     <!-- 金刚区 -->
     <view class="king-kong">
-      <view class="kk1">
+      <view class="kk kk1">
         <image src="/images/rules.png"></image>
       </view>
-      <view class="kk2">
+      <navigator url="/pages/blood-gas/blood-gas" class="kk kk2">
         <image src="/images/bloodgas.png"></image>
-      </view>
+      </navigator>
     </view>
 
     <!-- 文章公告 -->

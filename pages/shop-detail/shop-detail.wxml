@@ -12,7 +12,9 @@
 
     <view class="swiper-index">{{swiper_current + 1}}/{{goods.pics.length}}</view>
   </view>
-  <image src="{{goods.pics[0]}}" class="top-swiper" mode="aspectFit" wx:else></image>
+  <view class="swiper-wrapper" wx:else>
+    <image src="{{goods.pics[0]}}" class="top-swiper" mode="aspectFit"></image>
+  </view>
 
   <!-- 信息框 -->
   <view class="info-box">
@@ -92,9 +94,8 @@
       <view class="header">
         <image src="{{goods.pics[0]}}" class="cover" mode="aspectFill"></image>
         <view class="info">
-          <view class="price">¥{{goods.use_attr == 1 ? goods.attr_list[attr_index].price : goods.price}}</view>
-          <view class="choose-text" wx:if="{{goods.use_attr == 1}}">已选：{{goods.attr_list[attr_index].value}}</view>
-          <view class="stock" wx:if="{{goods.use_attr == 1}}">库存：{{goods.attr_list[attr_index].stock}}</view>
+          <view class="goods-name two-line-ellipsis">{{goods.name}} {{goods.attr_list[attr_index].value}}</view>
+          <view class="price">{{goods.use_attr == 1 ? goods.attr_list[attr_index].price : goods.price}}</view>
         </view>
       </view>
       <view class="param" wx:if="{{goods.use_attr == 1}}">
@@ -106,11 +107,14 @@
         </view>
       </view>
       <view class="amount-block">
-        <view class="label">购买数量</view>
-        <view class="amount-box">
-          <icon bindtap="sub" data-id="{{item.id}}" data-index="{{index}}" class="iconfont iconjian {{amount == 1 ? 'disabled' : ''}}"/>
-          <view class="amount">{{amount}}</view>
-          <icon bindtap="add" data-id="{{item.id}}" data-index="{{index}}" class="iconfont iconjia2 {{(amount == goods.limit || (goods.use_attr == 1 ? amount == goods.attr_list[attr_index].stock : amount == goods.stock)) ? 'disabled' : ''}}"/>
+        <view class="title">购买数量</view>
+        <view class="xia-box">
+          <view class="stock">剩余{{goods.use_attr == 1 ? goods.attr_list[attr_index].stock : goods.stock}}件</view>
+          <view class="add-sub">
+            <image bindtap="sub" src="/icons/minus.png" class="sub"></image>
+            <view class="num">{{amount}}</view>
+            <image bindtap="add" src="/icons/add.png" class="add"></image>
+          </view>
         </view>
       </view>
       <button bindtap="buy_btn" class="param-buy-btn">{{buy_type == 1 ? '立即购买' : '确定加入'}}</button>
