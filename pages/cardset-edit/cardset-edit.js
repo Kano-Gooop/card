@@ -3,8 +3,7 @@ const app = getApp();
 Page({
   data: {
     id: 0,
-    // modalName: null,  // null: 不显示侧边栏  viewModal: 显示侧边栏
-    modalName: 'viewModal',  // null: 不显示侧边栏  viewModal: 显示侧边栏
+    show_side: false,  // 是否显示侧边栏
     cl_height: 0,  // card-list-wrapper 的高度
     cl2_height: 0,
 
@@ -30,11 +29,11 @@ Page({
   },
   // 打开侧栏
   showModal() {
-    this.setData({ modalName: 'viewModal' });
+    this.setData({ show_side: true });
   },
   // 关闭侧栏
   hideModal() {
-    this.setData({ modalName: null });
+    this.setData({ show_side: false });
   },
   // 搜索卡牌
   search_card() {
@@ -61,5 +60,9 @@ Page({
   },
   onReachBottom() {
     console.log('上拉加载');
+  },
+  // 滚动到底部
+  more_card() {
+    console.log('滚动到底');
   }
 });

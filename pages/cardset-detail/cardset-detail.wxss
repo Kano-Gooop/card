@@ -1,0 +1,280 @@
+.page {
+  background: #fcfafa;
+  padding-top: 2rpx;
+  padding-bottom: 100rpx;
+}
+
+.set-info {
+  padding: 33rpx 24rpx 40rpx;
+  background: #fff;
+}
+
+.set-info .title {
+  line-height: 1.4;
+  font-size: 36rpx;
+  color: #333;
+  opacity: 0.8;
+}
+
+.set-info .nums {
+  margin-top: 32rpx;
+  display: flex;
+  font-size: 26rpx;
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.set-info .nums .zhu {
+}
+
+.set-info .nums .bei {
+  margin-left: 40rpx;
+}
+
+.zhu-box {
+}
+
+.zhu-box > .title {
+  height: 67rpx;
+  line-height: 67rpx;
+  padding: 0 24rpx;
+  background-image: linear-gradient(90deg, #4695fb 0%, #497cfc 100%);
+  font-size: 32rpx;
+  letter-spacing: 1rpx;
+  color: #fff;
+}
+
+.sub-pai-box {
+  padding: 32rpx 24rpx 0;
+}
+
+.sub-pai-box:last-child {
+  padding-bottom: 32rpx;
+}
+
+.sub-pai-box .title {
+  font-size: 24rpx;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.sub-pai-box .pai-list {
+  margin-top: 23rpx;
+}
+
+.bei-box > .title {
+  height: 67rpx;
+  line-height: 67rpx;
+  padding: 0 24rpx;
+  background-image: linear-gradient(90deg, #fa796a 0%, #fd4a78 100%);
+  font-size: 32rpx;
+  letter-spacing: 1rpx;
+  color: #fff;
+}
+
+.bei-box .pai-list {
+  padding: 40rpx 24rpx;
+}
+
+.pai:first-child {
+  margin-top: 0;
+}
+
+.pai {
+  margin-top: 24rpx;
+  display: flex;
+  align-items: center;
+  padding-bottom: 24rpx;
+  border-bottom: 2rpx solid rgba(0, 0, 0, 0.07);
+}
+
+.pai .cover {
+  width: 180rpx;
+  height: 120rpx;
+  flex-shrink: 0;
+}
+
+.pai .info {
+  flex-grow: 1;
+  margin-left: 24rpx;
+  padding: 4rpx 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-self: stretch;
+}
+
+.pai .info .top-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pai .info .top-line .title {
+  font-size: 26rpx;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.pai .info .top-line .icons {
+  display: flex;
+  align-items: center;
+}
+
+.pai .info .top-line .icons .resource {
+  width: 44rpx;
+  height: 44rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.pai .info .top-line .icons .resource .bg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.pai .info .top-line .icons .resource .text {
+  position: relative;
+  z-index: 1;
+  font-size: 24rpx;
+  color: #fffbf9;
+}
+
+.pai .info .top-line .icons .force {
+  margin-left: 16rpx;
+  width: 44rpx;
+  height: 44rpx;
+}
+
+.pai .info .card-type {
+  font-size: 24rpx;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.foot {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  background: #fff;
+  box-shadow: 0 1rpx 35rpx 0 rgba(237, 237, 237, 0.75);
+  height: 100rpx;
+}
+
+.foot .tab {
+  width: 0;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.foot .tab .icon {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.foot .tab .text {
+  margin-top: 10rpx;
+  font-size: 22rpx;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.tmodal {
+  padding: 60rpx 24rpx 55rpx;
+}
+
+.tmodal .close {
+  width: 60rpx;
+  height: 60rpx;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: -94rpx;
+}
+
+.tmodal .title {
+  text-align: center;
+  font-size: 36rpx;
+  color: #4888fb;
+  letter-spacing: 1rpx;
+}
+
+.tmodal .column-image {
+  margin-top: 52rpx;
+}
+
+.tmodal .column-image .kuai-list {
+  padding: 0 51rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.tmodal .column-image .kuai-list .kuai {
+  text-align: center;
+}
+
+.tmodal .column-image .kuai-list .kuai .num {
+  font-size: 26rpx;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.tmodal .column-image .kuai-list .kuai .gray {
+  margin-top: 13rpx;
+  width: 40rpx;
+  background: #ddd;
+}
+
+.tmodal .column-image .num-list {
+  border-radius: 1rpx;
+  border-top: 2rpx solid rgba(71, 148, 251, 0.4);
+  padding: 0 51rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.tmodal .column-image .num-list .num {
+  width: 40rpx;
+  margin-top: 7rpx;
+  text-align: center;
+  font-size: 26rpx;
+  color: #4888fb;
+  letter-spacing: 1rpx;
+}
+
+.cmodal {
+  width: 560rpx;
+  height: 291rpx;
+  box-sizing: border-box;
+  border-radius: 5rpx;
+  padding: 58rpx 50rpx 33rpx;
+}
+
+.cmodal .title {
+
+}
+
+.cmodal .form {
+}
+
+.cmodal .form input {
+}
+
+.cmodal .btn-box {
+}
+
+.cmodal .btn-box button {
+
+}
+
+.cmodal .btn-box .cancel {
+}
+
+.cmodal .btn-box .confirm {
+}

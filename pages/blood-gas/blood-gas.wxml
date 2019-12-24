@@ -1,3 +1,8 @@
+<!-- 返回 -->
+<view bindtap="back" class="back-box">
+  <image src="/icons/back.png"></image>
+</view>
+
 <!-- 计血器页面 -->
 <view class="page page-blood" wx:if="{{page == 1}}">
   <view class="two-people">

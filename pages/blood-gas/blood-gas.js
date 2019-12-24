@@ -16,6 +16,10 @@ Page({
   },
   onLoad() {
   },
+  // 返回
+  back() {
+    wx.navigateBack({ delta: 1 });
+  },
   // 血量改变
   blood_change(e) {
     let site = e.currentTarget.dataset.side;

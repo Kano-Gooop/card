@@ -237,6 +237,7 @@
   position: absolute;
   right: -23rpx;
   top: -23rpx;
+  z-index: 1;
 }
 
 .modal .close image {

@@ -1,5 +1,4 @@
 .page {
-  background: transparent;
 }
 
 .banner {
@@ -15,13 +14,14 @@
   height: 100%;
   left: 0;
   top: 0;
-  z-index: -1;
 }
 
 .banner .user-info {
   margin-left: 25rpx;
   display: flex;
   align-items: center;
+  position: relative;
+  z-index: 1;
 }
 
 .banner .user-info .header {
@@ -37,6 +37,21 @@
   margin-left: 25rpx;
 }
 
+.banner .user-info .auth {
+  width: 180rpx;
+  height: 60rpx;
+  padding: 0;
+  margin: 0 0 0 29rpx;
+  line-height: 60rpx;
+  background: #fff;
+  border-radius: 30rpx;
+  text-align: center;
+  font-size: 32rpx;
+  color: #2b8efd;
+  min-height: auto;
+  font-weight: normal;
+}
+
 .king-kong {
   border-top: 7rpx solid #fcfafa;
   display: flex;
@@ -46,14 +61,14 @@
 }
 
 .king-kong .menu {
-  width: 30%;
+  width: 23%;
   flex-grow: 1;
   box-sizing: border-box;
   text-align: center;
   margin-bottom: 45rpx;
 }
 
-.king-kong .menu:nth-last-child(-n + 3) {
+.king-kong .menu:nth-last-child(-n + 4) {
   margin-bottom: 0;
 }
 
@@ -130,15 +145,18 @@
 }
 
 .set-card-box .info-line .edit {
-  font-size: 24rpx;
-  background: #2b8efd;
-  padding: 0 25rpx;
   margin: 0;
-  line-height: 46rpx;
-  height: 46rpx;
-  border-radius: 4rpx;
-  width: auto;
+  padding: 0;
+  width: 90rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  font-size: 26rpx;
+  background: #4583fb;
+  border-radius: 25rpx;
   color: #fff;
+  text-align: center;
+  letter-spacing: 1rpx;
+  font-weight: normal;
 }
 
 .set-card-box .card-list {

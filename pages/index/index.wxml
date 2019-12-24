@@ -79,7 +79,9 @@
             <view class="title two-line-ellipsis">掌控的历史 初阵【081】征西将军 陈到 普卡 蜀银</view>
             <view class="xia">
               <view class="price">50.00</view>
-              <view class="rest">剩余561件</view>
+              <view class="gou-box">
+                <image src="/icons/jiagou.png" class="gou-cart"></image>
+              </view>
             </view>
           </view>
         </view>

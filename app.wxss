@@ -124,7 +124,7 @@ button::after {
   position: fixed;
   width: 100%;
   top: 0;
-  z-index: 1;
+  z-index: 2;
   background: #fcfafa;
   padding-bottom: 24rpx;
 }
@@ -209,7 +209,7 @@ button::after {
   margin-top: 17.5rpx;
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
 }
 
 .product-box .np-list .np .info .xia .price::before {
@@ -225,10 +225,13 @@ button::after {
   color: #ff3f3f;
 }
 
-.product-box .np-list .np .info .xia .rest {
-  font-size: 24rpx;
-  color: #3d3737;
-  opacity: 0.4;
+.product-box .np-list .np .info .xia .gou-box {
+  padding: 6rpx;
+}
+
+.product-box .np-list .np .info .xia .gou-box .gou-cart {
+  width: 44rpx;
+  height: 44rpx;
 }
 /* 商品列表 end */
 

@@ -113,6 +113,13 @@
 					"id": -1,
 					"name": "卡牌详情",
 					"pathName": "pages/card-detail/card-detail",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "套牌详情",
+					"pathName": "pages/cardset-detail/cardset-detail",
 					"scene": null
 				}
 			]

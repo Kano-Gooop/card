@@ -354,6 +354,7 @@
   margin-top: -35rpx;
   margin-left: 24rpx;
   border-radius: 4rpx;
+  flex-shrink: 0;
 }
 
 .param-modal .content .header .info {
@@ -380,6 +381,7 @@
   line-height: 42rpx;
   color: #3d3737;
   margin-top: 13rpx;
+  padding-right: 10rpx;
 }
 
 .param-modal .header .info .stock {
@@ -557,5 +559,4 @@
   margin-top: 32rpx;
   font-weight: normal;
 }
-
 /* 海报 end */

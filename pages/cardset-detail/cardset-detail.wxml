@@ -1,0 +1,139 @@
+<view class="page">
+  <view class="set-info">
+    <view class="title">套牌组建1</view>
+    <view class="nums">
+      <view class="zhu">主牌：9</view>
+      <view class="bei">备牌：15</view>
+    </view>
+  </view>
+
+  <view class="zhu-box">
+    <view class="title">主牌</view>
+
+    <view class="sub-pai-box">
+      <view class="title">单位（1）</view>
+      <view class="pai-list">
+        <view class="pai">
+          <image src="/images/t-set.png" class="cover"></image>
+          <view class="info">
+            <view class="top-line">
+              <view class="title">熊虎之力 恶来 * 2</view>
+              <view class="icons">
+                <view class="resource">
+                  <image src="/images/resource-bg.png" class="bg"></image>
+                  <view class="text">7</view>
+                </view>
+                <image src="/icons/t-shili1.png" class="force"></image>
+              </view>
+            </view>
+            <view class="card-type">无双单位</view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="sub-pai-box">
+      <view class="title">策略（7）</view>
+      <view class="pai-list">
+        <view class="pai" wx:for="{{[0, 1, 2, 3, 4, 5, 6]}}">
+          <image src="/images/t-set.png" class="cover"></image>
+          <view class="info">
+            <view class="top-line">
+              <view class="title">熊虎之力 恶来 * 2</view>
+              <view class="icons">
+                <view class="resource">
+                  <image src="/images/resource-bg.png" class="bg"></image>
+                  <view class="text">7</view>
+                </view>
+                <image src="/icons/t-shili1.png" class="force"></image>
+              </view>
+            </view>
+            <view class="card-type">无双单位</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="bei-box">
+    <view class="title">备牌</view>
+    <view class="pai-list">
+      <view class="pai" wx:for="{{[0, 1, 2]}}">
+        <image src="/images/t-set.png" class="cover"></image>
+        <view class="info">
+          <view class="top-line">
+            <view class="title">熊虎之力 恶来 * 2</view>
+            <view class="icons">
+              <view class="resource">
+                <image src="/images/resource-bg.png" class="bg"></image>
+                <view class="text">7</view>
+              </view>
+              <image src="/icons/t-shili1.png" class="force"></image>
+            </view>
+          </view>
+          <view class="card-type">无双单位</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="foot">
+    <view class="tab">
+      <image src="/icons/cd-tab1.png" class="icon"></image>
+      <view class="text">编辑套牌</view>
+    </view>
+    <view bindtap="show_tongji" class="tab">
+      <image src="/icons/cd-tab2.png" class="icon"></image>
+      <view class="text">统计套牌</view>
+    </view>
+    <view class="tab">
+      <image src="/icons/cd-tab3.png" class="icon"></image>
+      <view class="text">复制套牌</view>
+    </view>
+    <view class="tab">
+      <image src="/icons/cd-tab4.png" class="icon"></image>
+      <view class="text">分享套牌</view>
+    </view>
+  </view>
+
+  <view bindtap="hide_tongji" class="cu-modal bottom-modal {{show_tongji ? 'show' : ''}}">
+    <view catchtap class="cu-dialog tmodal">
+      <image bindtap="hide_tongji" src="/icons/tongji-x.png" class="close"></image>
+
+      <view class="title">所需资源统计图</view>
+
+      <view class="column-image">
+        <view class="kuai-list">
+          <view wx:for="{{card_num_list}}" wx:key="index" class="kuai">
+            <view class="num">{{item.num}}</view>
+            <view class="gray" style="height: {{item.height}}rpx;"></view>
+          </view>
+        </view>
+        <view class="num-list">
+          <view class="num">0</view>
+          <view class="num">1</view>
+          <view class="num">2</view>
+          <view class="num">3</view>
+          <view class="num">4</view>
+          <view class="num">5</view>
+          <view class="num">6</view>
+          <view class="num">7+</view>
+          <view class="num">X</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="cu-modal {{show_copy ? 'show' : ''}}">
+    <view class="cu-dialog cmodal">
+      <view class="title">请输入套牌名称</view>
+      <view class="form">
+        <input type="text" maxlength="20" />
+      </view>
+      <view class="btn-box">
+        <button class="cancel">取消</button>
+        <button class="confirm">确定</button>
+      </view>
+    </view>
+  </view>
+</view>

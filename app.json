@@ -13,6 +13,7 @@
     "pages/login/login",
     "pages/blood-gas/blood-gas",
     "pages/card-detail/card-detail",
+    "pages/cardset-detail/cardset-detail",
     "pages/poster/poster"
   ],
   "window": {
