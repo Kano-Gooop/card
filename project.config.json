@@ -120,6 +120,28 @@
 					"id": -1,
 					"name": "套牌详情",
 					"pathName": "pages/cardset-detail/cardset-detail",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "个人信息",
+					"pathName": "pages/user-info/user-info",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "关于我们",
+					"pathName": "pages/about/about",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "单个商品购买",
+					"pathName": "pages/order-create/order-create",
+					"query": "id=5&num=1&attr_id=1",
 					"scene": null
 				}
 			]

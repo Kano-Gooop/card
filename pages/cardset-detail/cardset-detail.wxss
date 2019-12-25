@@ -250,31 +250,71 @@
 
 .cmodal {
   width: 560rpx;
-  height: 291rpx;
   box-sizing: border-box;
-  border-radius: 5rpx;
+  border-radius: 8rpx;
   padding: 58rpx 50rpx 33rpx;
 }
 
 .cmodal .title {
-
+  text-align: center;
+  font-size: 36rpx;
 }
 
 .cmodal .form {
+  margin-top: 40rpx;
 }
 
 .cmodal .form input {
+  width: 100%;
+  height: 60rpx;
+  line-height: 56rpx;
+  box-sizing: border-box;
+  border: 2rpx solid #e6e6e6;
+  font-size: 26rpx;
 }
 
 .cmodal .btn-box {
+  display: flex;
 }
 
 .cmodal .btn-box button {
+  width: 0;
+  flex-grow: 1;
+  border-radius: 0;
+  padding: 32rpx 0 0 0;
+  margin: 0;
+  font-size: 36rpx;
+  min-height: auto;
+  font-weight: normal;
+  line-height: 1;
+  text-align: center;
+}
 
+.cmodal .btn-box button.button-hover {
+  background-color: transparent;
 }
 
 .cmodal .btn-box .cancel {
+  color: #333;
 }
 
 .cmodal .btn-box .confirm {
+  color: #4888fb;
+}
+
+.cmodal icon {
+  display: block;
+}
+
+.cmodal.succ {
+  padding: 55rpx 0 33rpx;
+}
+
+.cmodal.succ .title {
+  margin-top: 23rpx;
+}
+
+.cmodal.succ .btn-box {
+  border-top: 2rpx solid rgba(0, 0, 0, 0.03);
+  margin-top: 23rpx;
 }

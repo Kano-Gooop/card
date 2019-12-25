@@ -290,3 +290,90 @@ button::after {
   opacity: 0.8;
 }
 /* 打开授权菜单 end */
+
+/* 整页富文本 start */
+.rich-page {
+  padding: 40rpx 24rpx;
+  background: #fcfafa;
+}
+/* 整页富文本 end */
+
+/* 地址选择 start */
+.address-choose {
+  display: flex;
+  align-items: flex-start;
+  padding: 40rpx 24rpx 33.5rpx;
+  background: #fff;
+}
+
+.address-choose.no {
+  align-items: center;
+}
+
+.address-choose .no-default-add {
+  color: red;
+  flex-grow: 1;
+  margin-left: 19rpx;
+  font-size: 28rpx;
+}
+
+.address-choose .address-icon {
+  width: 44rpx;
+  height: 44rpx;
+  flex-shrink: 0;
+  position: relative;
+  top: -6rpx;
+}
+
+.address-choose.no .address-icon {
+  top: 0;
+}
+
+.address-choose .address-choose-icon {
+  margin-right: 20rpx;
+}
+
+.address-choose .address-choose-icon .iconfont {
+  font-size: 45rpx;
+}
+
+.address-choose .info {
+  color: #333;
+  margin-left: 19rpx;
+  line-height: 1;
+  flex-grow: 1;
+}
+
+.address-choose .info .top {
+  display: flex;
+  font-size: 28rpx;
+  justify-content: space-between;
+  color: #333;
+}
+
+.address-choose .info .top .nickname {
+}
+
+.address-choose .info .top .tel {
+}
+
+.address-choose .info .detail {
+  margin-top: 17.5rpx;
+  font-size: 26rpx;
+  line-height: 39rpx;
+  color: rgba(51, 51, 51, 0.6);
+}
+
+.address-choose .edit image {
+  width: 14rpx;
+  height: 24rpx;
+}
+
+.address-choose .right-arrow {
+  width: 18rpx;
+  height: 28rpx;
+  flex-shrink: 0;
+  margin-left: 68rpx;
+  align-self: center;
+}
+/* 地址选择 end */

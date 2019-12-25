@@ -3,7 +3,8 @@ const app = getApp();
 Page({
   data: {
     show_tongji: false,  // 是否显示资源你统计图modal
-    show_copy: true,  // 是否显示复制套牌modal
+    show_copy: false,  // 是否显示复制套牌modal
+    show_succ: true,  // 复制套牌成功
 
     // 卡牌统计列表
     card_num_list: [
@@ -63,12 +64,14 @@ Page({
       }
     });
 
-    // 计算每一份的高度
-    let single = 350 / max;
-    this.data.card_num_list.forEach((item) => {
-      item.height = item.num * single;
-    });
+    if (max > 0) {
+      // 计算每一份的高度
+      let single = 350 / max;
+      this.data.card_num_list.forEach((item) => {
+        item.height = item.num * single;
+      });
 
-    this.setData({card_num_list: this.data.card_num_list});
+      this.setData({card_num_list: this.data.card_num_list});
+    }
   }
 });

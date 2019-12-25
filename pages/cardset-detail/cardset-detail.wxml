@@ -96,6 +96,7 @@
     </view>
   </view>
 
+  <!-- 统计modal -->
   <view bindtap="hide_tongji" class="cu-modal bottom-modal {{show_tongji ? 'show' : ''}}">
     <view catchtap class="cu-dialog tmodal">
       <image bindtap="hide_tongji" src="/icons/tongji-x.png" class="close"></image>
@@ -124,12 +125,25 @@
     </view>
   </view>
 
+  <!-- 复制套牌modal -->
   <view class="cu-modal {{show_copy ? 'show' : ''}}">
     <view class="cu-dialog cmodal">
       <view class="title">请输入套牌名称</view>
       <view class="form">
         <input type="text" maxlength="20" />
       </view>
+      <view class="btn-box">
+        <button class="cancel">取消</button>
+        <button class="confirm">确定</button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 复制套牌成功modal -->
+  <view class="cu-modal {{show_succ ? 'show' : ''}}">
+    <view class="cu-dialog cmodal succ">
+      <icon type="success" color="#4981fb" size="66rpx" />
+      <view class="title">套牌创建成功</view>
       <view class="btn-box">
         <button class="cancel">取消</button>
         <button class="confirm">确定</button>

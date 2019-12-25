@@ -14,11 +14,12 @@
         <view class="info">
           <view class="title">
             <view class="text two-line-ellipsis">{{item.name}}</view>
-            <view class="attr">规格：{{item.attr}}</view>
+            <view class="attr">
+              <view class="text one-line-ellipsis">规格：{{item.attr}}</view>
+            </view>
           </view>
           <view class="price-box">
             <view class="price">
-              <view class="carriage">运费：¥{{item.carriage}}</view>
               <view class="pinner">{{item.total_price}}</view>
             </view>
             <view class="add-sub">

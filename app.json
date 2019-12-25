@@ -14,6 +14,11 @@
     "pages/blood-gas/blood-gas",
     "pages/card-detail/card-detail",
     "pages/cardset-detail/cardset-detail",
+    "pages/about/about",
+    "pages/user-info/user-info",
+    "pages/order-create/order-create",
+    "pages/my-address/my-address",
+    "pages/address-detail/address-detail",
     "pages/poster/poster"
   ],
   "window": {

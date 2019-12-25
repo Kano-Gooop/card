@@ -92,15 +92,22 @@
 }
 
 .car-box .car .info .title .attr {
-  /* margin-top: 16rpx; */
+  margin-top: 16rpx;
   font-size: 26rpx;
   color: rgba(0, 0, 0, 0.6);
+  line-height: 1;
+  display: flex;
+}
+
+.car-box .car .info .title .attr .text {
+  width: 0;
+  flex-grow: 1;
 }
 
 .car-box .car .info .price-box {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
 }
 
 .car-box .car .info .price-box .price {

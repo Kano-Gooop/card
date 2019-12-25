@@ -1,0 +1,68 @@
+<view class="page">
+  <view class="info-list">
+    <view class="info">
+      <view class="label">头像</view>
+      <view class="right">
+        <view class="value">
+          <image src="/images/t-cardset2.png" class="cover"></image>
+        </view>
+        <image src="/icons/icon_right_arrow.png" class="right-arrow"></image>
+      </view>
+    </view>
+    <view bindtap="show_input" data-input_index="{{0}}" class="info">
+      <view class="label">昵称</view>
+      <view class="right">
+        <view class="value">
+          <view class="text one-line-ellipsis">某某某</view>
+        </view>
+        <image src="/icons/icon_right_arrow.png" class="right-arrow"></image>
+      </view>
+    </view>
+    <view bindtap="show_input" data-input_index="{{1}}" class="info">
+      <view class="label">姓名</view>
+      <view class="right">
+        <view class="value">
+  <!--        <view class="placeholder">请填写</view>-->
+          <view class="text one-line-ellipsis">王八</view>
+        </view>
+        <image src="/icons/icon_right_arrow.png" class="right-arrow"></image>
+      </view>
+    </view>
+    <view class="info">
+      <view class="label">性别</view>
+      <view class="right">
+        <view class="value">
+          <picker bindchange="sex_choose" value="{{sex}}" range="{{sex_list}}" range-key="name">
+            <view class="placeholder" wx:if="{{sex == -1}}">请选择</view>
+            <view class="text" wx:else>{{sex_list[sex].name}}</view>
+          </picker>
+        </view>
+        <image src="/icons/icon_right_arrow.png" class="right-arrow"></image>
+      </view>
+    </view>
+    <view bindtap="show_input" data-input_index="{{2}}" class="info">
+      <view class="label">电话</view>
+      <view class="right">
+        <view class="value">
+          <!--        <view class="placeholder">请填写</view>-->
+          <view class="text">188****5864</view>
+        </view>
+        <image src="/icons/icon_right_arrow.png" class="right-arrow"></image>
+      </view>
+    </view>
+  </view>
+
+  <!-- 输入modal -->
+  <view bindtap="hide_input" class="cu-modal {{show_input ? 'show' : ''}}">
+    <view catchtap class="cu-dialog cmodal succ">
+      <view class="title">请输入{{input_list[input_index].title}}</view>
+      <view class="form">
+        <input type="{{input_list[input_index].type}}" maxlength="{{input_list[input_index].max}}" />
+      </view>
+      <view class="btn-box">
+        <button bindtap="hide_input" class="cancel">取消</button>
+        <button class="confirm">确定</button>
+      </view>
+    </view>
+  </view>
+</view>

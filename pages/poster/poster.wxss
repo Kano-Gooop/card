@@ -149,7 +149,7 @@
 }
 
 .modal {
-  position: absolute;
+  position: relative;
   left: 60rpx;
   right: 60rpx;
   top: 60rpx;
@@ -344,14 +344,13 @@
   margin: auto;
   top: 0;
   bottom: 0;
-  height: 900rpx;
+  /* height: 900rpx; */
 }
 
 .poster-modal .poster-img {
   width: 500rpx;
   height: 800rpx;
   display: block;
-  border-radius: 10rpx;
 }
 
 .poster-modal .save-btn {
@@ -360,13 +359,12 @@
   line-height: 76rpx;
   padding: 0;
   border: 0;
-  box-shadow: 0 1rpx 1rpx 0 rgba(253, 67, 70, 0.75);
   margin: 0;
-  border-radius: 4rpx;
-  background: #f94548;
+  border-radius: 0;
+	background-image: linear-gradient(90deg, #4796fb 0%, #497cfc 100%);
   font-size: 32rpx;
   letter-spacing: 1rpx;
   color: #e6e6e6;
-  margin-top: 32rpx;
+  margin-top: 36rpx;
   font-weight: normal;
 }
