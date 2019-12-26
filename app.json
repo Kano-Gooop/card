@@ -19,6 +19,10 @@
     "pages/order-create/order-create",
     "pages/my-address/my-address",
     "pages/address-detail/address-detail",
+    "pages/my-orders/my-orders",
+    "pages/order-detail/order-detail",
+    "pages/gg-list/gg-list",
+    "pages/gg-detail/gg-detail",
     "pages/poster/poster"
   ],
   "window": {

@@ -12,10 +12,10 @@
 
   <!-- 金刚区 -->
   <view class="king-kong">
-    <view class="menu">
+    <navigator url="/pages/my-orders/my-orders" class="menu">
       <image src="/icons/my_icon_myorder.png" class="icon"></image>
       <view class="text">我的订单</view>
-    </view>
+    </navigator>
     <view class="menu">
       <image src="/icons/my_icon_address.png" class="icon"></image>
       <view class="text">收货地址</view>

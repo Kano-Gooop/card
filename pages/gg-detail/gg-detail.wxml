@@ -1,0 +1,8 @@
+<view class="page rich-page">
+  <view class="title">《掌控的历史》产品形式变更公告</view>
+  <view class="date">发布时间：2019.11.10</view>
+  <view class="content-wrapper">
+    <import src="../../wxParse/wxParse.wxml"/>
+    <template is="wxParse" data="{{wxParseData:rich_text.nodes}}"/>
+  </view>
+</view>

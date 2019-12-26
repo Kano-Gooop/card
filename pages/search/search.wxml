@@ -97,7 +97,7 @@
   </view>
 
   <!-- 选择属性遮罩 -->
-  <view bindtap="hide_pt" class="modal" wx:if="{{prop_type != 0}}"></view>
+  <view bindtap="hide_pt" catchtouchmove class="modal" wx:if="{{prop_type != 0}}"></view>
 
   <!-- 卡牌列表 -->
   <view class="card-box">

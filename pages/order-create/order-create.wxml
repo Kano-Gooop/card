@@ -3,6 +3,7 @@
 </view>
 
 <view class="page">
+  <!-- 地址选择 -->
   <navigator url="/pages/my-address/my-address?type=1">
     <view class="address-choose" wx:if="{{tel}}">
       <image src="/icons/icon_address.png" class="address-icon"></image>
@@ -23,10 +24,12 @@
       <image src="/icons/icon_right_arrow2.png" class="right-arrow"></image>
     </view>
   </navigator>
+
+  <!-- 商品 -->
   <view class="pro-info">
     <view class="pro">
       <view class="pro-main">
-        <image src="{{goods.pics[0]}}"></image>
+        <image src="{{goods.pics[0]}}" mode="aspectFill"></image>
         <view class="info">
           <view class="title">
             <view class="text two-line-ellipsis">{{goods.name}}</view>
@@ -40,7 +43,6 @@
               <image src="/icons/cha.png" class="times"></image>
               <view class="num">{{num}}</view>
             </view>
-            <!--          <view class="carriage">运费：¥{{goods.carriage}}</view>-->
           </view>
         </view>
       </view>
@@ -51,7 +53,9 @@
       </view>
     </view>
   </view>
-  <view class="foot">
+
+  <!-- 底部 -->
+  <view class="order-foot">
     <view class="total">
       <view class="label">合计：</view>
       <view class="price">{{(goods.use_attr == 1 ? goods.attr_list[attr_index].price : goods.price) * num + goods.carriage}}</view>

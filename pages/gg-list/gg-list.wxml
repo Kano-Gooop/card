@@ -1,0 +1,16 @@
+<view class="page">
+  <view class="gg-box">
+    <view class="gg-list">
+      <navigator wx:for="{{[0, 1, 2, 3, 4, 5]}}" url="/pages/gg-detail/gg-detail" class="gg">
+        <view class="title one-line-ellipsis">《掌控的历史》产品形式变更公告</view>
+        <view class="date">2019.11.09</view>
+      </navigator>
+    </view>
+    <view class="nomore" wx:if="{{nomore}}">
+      已经没有更多了哦
+    </view>
+    <view class="nodata" wx:if="{{nodata}}">
+      暂无数据
+    </view>
+  </view>
+</view>

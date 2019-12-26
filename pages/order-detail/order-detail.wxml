@@ -1,0 +1,130 @@
+<view class="full-loading" wx:if="{{full_loading}}">
+  <view class="image"></view>
+</view>
+
+<view class="page">
+  <!-- 状态栏 -->
+  <view class="status">
+    <image src="/images/order-status-bg.jpg" class="bg"></image>
+
+    <view class="text-box">
+      <block wx:if="{{t_status == 0}}">
+        <view class="title">未支付</view>
+        <view class="desc">这份订单还未支付，赶快去支付吧~</view>
+      </block>
+      <block wx:if="{{t_status == 1}}">
+        <view class="title">配货中</view>
+        <view class="desc">您的订单正在配货中，请您耐心等待~</view>
+      </block>
+      <block wx:if="{{t_status == 2}}">
+        <view class="title">待收货</view>
+        <view class="desc">您的订单正在送往指定目的地，请注意签收~</view>
+      </block>
+      <block wx:if="{{t_status == 3 || t_status == 4}}">
+        <view class="title">已完成</view>
+        <view class="desc">本次订单已完成，期待再次为您服务~</view>
+      </block>
+    </view>
+  </view>
+
+  <!-- 商品 -->
+  <view class="pro-list">
+    <view class="pro" wx:for="{{[0, 1, 2]}}">
+      <view class="pro-main">
+        <image src="/images/t-goods.png" class="cover"></image>
+        <view class="info">
+          <view class="shang">
+            <view class="title two-line-ellipsis">掌控的历史 初阵【081】征西将军 陈到 普卡 蜀银 属性 类别 所属值</view>
+            <view class="attr one-line-ellipsis">商品参数名称1商品参数名称1</view>
+          </view>
+          <view class="xia">
+            <view class="price">50.00</view>
+            <view class="amount">
+              <image src="/icons/cha.png" class="times"></image>
+              <view class="num">1</view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="btn-box" wx:if="{{t_status == 3}}">
+        <button class="com-btn">评论</button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 商品金额、运费、总计 -->
+  <view class="multi-price">
+    <view class="price-box1">
+      <view class="label">商品金额</view>
+      <view class="price">50.00</view>
+    </view>
+    <view class="price-box1">
+      <view class="label">运费</view>
+      <view class="price">0.00</view>
+    </view>
+    <view class="price-box2">
+      <view class="label">总计</view>
+      <view class="price">50.00</view>
+    </view>
+  </view>
+
+  <view class="statistics">
+    <view class="line">
+      <view class="label">订单编号</view>
+      <view class="right">
+        <view class="value">1870245807485200</view>
+        <button class="copy">复制</button>
+      </view>
+    </view>
+    <view class="line">
+      <view class="label">下单时间</view>
+      <view class="right">
+        <view class="value">2019-11-10 15:36:10</view>
+      </view>
+    </view>
+    <view class="line" wx:if="{{t_status > 0}}">
+      <view class="label">支付时间</view>
+      <view class="right">
+        <view class="value">2019-11-10 15:40:26</view>
+      </view>
+    </view>
+    <view class="line" wx:if="{{t_status > 1}}">
+      <view class="label">配送方式</view>
+      <view class="right">
+        <view class="value">顺丰快递</view>
+      </view>
+    </view>
+    <view class="line" wx:if="{{t_status > 1}}">
+      <view class="label">物流编号</view>
+      <view class="right">
+        <view class="value">1870245807485200</view>
+        <button class="copy">复制</button>
+      </view>
+    </view>
+    <view class="line address">
+      <view class="label">详细地址</view>
+      <view class="right">
+        <view class="value">天津市 河西区 拉拉道 拉拉里 拉拉门 7楼502</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="foot-btn-box">
+    <block wx:if="{{t_status == 0}}">
+      <button catchtap="orderCancel" data-order="{{item}}">取消订单</button>
+      <button catchtap="orderSnPay" class="highlight" data-order="{{item}}">付款</button>
+    </block>
+
+    <block wx:elif="{{t_status == 1}}">
+      <button catchtap="refund_click" data-order="{{item}}">退款</button>
+    </block>
+
+    <block wx:elif="{{t_status > 1}}">
+      <button catchtap="to_logistics" data-id="{{item.id}}">查看物流</button>
+    </block>
+
+    <block wx:elif="{{t_status == 2}}">
+      <button catchtap="orderConfirm" data-order="{{item}}" class="highlight">收货</button>
+    </block>
+  </view>
+</view>

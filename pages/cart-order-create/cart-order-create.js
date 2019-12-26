@@ -2,6 +2,8 @@ const app = getApp();
 
 Page({
   data: {
+    full_loading: true,
+
     ids: [],
     cartList: [],
     carriage: 0,  // 运费
@@ -13,13 +15,15 @@ Page({
   },
   onLoad(options) {
     this.data.ids = decodeURIComponent(options.ids).split(',');
-    this.cartList();
+    this.cartList(() => {
+      this.setData({ full_loading: false });
+    });
 
     this.addressList();
   },
 
   // 我的购物车
-  cartList() {
+  cartList(complete) {
     let post = {
       token: app.user_data.token
     };
@@ -36,6 +40,10 @@ Page({
       this.setData({ cartList: cartList }, () => {
         this.price_compute();
       });
+    }, null, () => {
+      if (complete) {
+        complete();
+      }
     });
   },
   // 计算价格（运费，总计）
@@ -100,18 +108,19 @@ Page({
       } else if (!data.address.trim()) {
         app.toast('请填写收货地址');
       } else {
-        app.collectFormid(e.detail.formId);
+        // 先不用收集了
+        // app.collectFormid(e.detail.formId);
 
-        this.setData({purchase_loading: true});
+        this.setData({ purchase_loading: true });
 
         let post = {
           token: app.user_data.token,
           receiver: this.data.receiver,
           tel: this.data.tel,
           address: this.data.address,
-          cart_id: this.data.ids
+          cart_ids: this.data.ids
         };
-        
+
         app.ajax('shop/cartToPurchase', post, (pay_order_sn) => {
           this.orderSnPay(pay_order_sn, (res) => {
             // todo 底下这个不知道管不管用？因为下面直接就跳页了
@@ -137,7 +146,7 @@ Page({
             app.toast(err.message);
           }
         }, () => {
-          this.setData({purchase_loading: false});
+          this.setData({ purchase_loading: false });
         });
       }
     }

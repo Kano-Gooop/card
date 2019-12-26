@@ -98,7 +98,8 @@ Page({
       } else if (!data.address.trim()) {
         app.toast('请填写收货地址');
       } else {
-        app.collectFormid(e.detail.formId);
+        // 先不用收集了
+        // app.collectFormid(e.detail.formId);
 
         this.setData({ purchase_loading: true });
 

@@ -143,6 +143,41 @@
 					"pathName": "pages/order-create/order-create",
 					"query": "id=5&num=1&attr_id=1",
 					"scene": null
+				},
+				{
+					"id": 14,
+					"name": "多个商品购买",
+					"pathName": "pages/cart-order-create/cart-order-create",
+					"query": "ids=7,8",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的订单",
+					"pathName": "pages/my-orders/my-orders",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "文章公告",
+					"pathName": "pages/gg-list/gg-list",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "公告详情",
+					"pathName": "pages/gg-detail/gg-detail",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "订单详情",
+					"pathName": "pages/order-detail/order-detail",
+					"query": "id=8",
+					"scene": null
 				}
 			]
 		}
