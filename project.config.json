@@ -178,6 +178,13 @@
 					"pathName": "pages/order-detail/order-detail",
 					"query": "id=8",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "收货地址",
+					"pathName": "pages/my-address/my-address",
+					"query": "",
+					"scene": null
 				}
 			]
 		}

@@ -9,6 +9,7 @@ Page({
   onLoad: function (options) {
     if (options.type) {
       this.data.type = parseInt(options.type);
+      wx.setNavigationBarTitle({ title: '选择收货地址' });
     }
     this.addressList();
   },

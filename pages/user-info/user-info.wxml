@@ -53,7 +53,7 @@
   </view>
 
   <!-- 输入modal -->
-  <view bindtap="hide_input" class="cu-modal {{show_input ? 'show' : ''}}">
+  <view bindtap="hide_input" catchtouchmove class="cu-modal {{show_input ? 'show' : ''}}">
     <view catchtap class="cu-dialog cmodal succ">
       <view class="title">请输入{{input_list[input_index].title}}</view>
       <view class="form">

@@ -23,6 +23,7 @@
     "pages/order-detail/order-detail",
     "pages/gg-list/gg-list",
     "pages/gg-detail/gg-detail",
+    "pages/logistics/logistics",
     "pages/poster/poster"
   ],
   "window": {

@@ -16,10 +16,10 @@
       <image src="/icons/my_icon_myorder.png" class="icon"></image>
       <view class="text">我的订单</view>
     </navigator>
-    <view class="menu">
+    <navigator url="/pages/my-address/my-address" class="menu">
       <image src="/icons/my_icon_address.png" class="icon"></image>
       <view class="text">收货地址</view>
-    </view>
+    </navigator>
     <navigator url="/pages/user-info/user-info" class="menu">
       <image src="/icons/my_icon_info.png" class="icon"></image>
       <view class="text">个人信息</view>

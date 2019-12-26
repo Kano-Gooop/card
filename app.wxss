@@ -378,7 +378,7 @@ button::after {
 }
 /* 地址选择 end */
 
-/* 退款矿 start */
+/* 退款/评论框 start */
 .rmodal {
   width: 560rpx;
   box-sizing: border-box;
@@ -439,4 +439,4 @@ button::after {
 .rmodal .btn-box .confirm {
   color: #4888fb;
 }
-/* 退款矿 end */
+/* 退款/评论框 end */

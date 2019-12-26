@@ -2,11 +2,14 @@ const app = getApp();
 
 Page({
   data: {
-    t_status: 4,  // 0.未支付 1.配货中 2.待收货 3.已完成 4.已评论  临时状态，写页面用
+    t_status: 3,  // 0.未支付 1.待发货 2.待收货 3.已完成 4.已评论  临时状态，写页面用
 
     full_loading: true,
     id: 0,
-    order: {}
+    order: {},
+
+    show_comment: false,
+    comment: '',
   },
   onLoad(options) {
     this.data.id = options.id;
@@ -51,5 +54,16 @@ Page({
         app.toast('已复制到剪贴板');
       }
     })
+  },
+  bind_input(e) {
+    app.bind_input(e, this);
+  },
+  // 显示评论框
+  show_comment() {
+    this.setData({ show_comment: true });
+  },
+  // 隐藏评论框
+  hide_comment() {
+    this.setData({ show_comment: false });
   }
 });
