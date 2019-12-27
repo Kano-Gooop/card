@@ -42,7 +42,7 @@ App({
   mp_update() {
     const updateManager = wx.getUpdateManager();
     updateManager.onCheckForUpdate(function (res) {
-      console.log(res.hasUpdate); // 是否有更新
+      console.log(res.hasUpdate, '是否有更新'); // 是否有更新
     });
     updateManager.onUpdateReady(function () {
       wx.showModal({
@@ -115,20 +115,6 @@ App({
                   url: '/pages/login/login?route=' + encodeURIComponent(current_page.route + utils.obj2query(current_page.options))
                 });
                 break;
-              case 49:
-                this.toast(res.data.data);
-                break;
-              case 63:
-              case 64:
-                this.modal(res.data.message);
-                break;
-              case 87:  // 活动已删除
-              case 88:  // 创意已删除
-              case 89:  // 作品已删除
-                this.modal(res.data.message, () => {
-                  wx.navigateBack({ delta: 1 });
-                });
-                break;
               default:
                 if (res.data.message) {
                   this.toast(res.data.message);
@@ -194,6 +180,7 @@ App({
       };
 
       this.ajax('login/login', post, (res) => {
+        console.log(res.token);
         callback(res);
       });
     })
@@ -263,5 +250,37 @@ App({
     } else {
       return this.my_config.default_img;
     }
+  },
+  // 公共跳页方法
+  jump(e) {
+    let page = e.currentTarget.dataset.page;
+    if (page) {
+      switch (page) {
+        case 'index':
+        case 'search':
+        case 'shop':
+        case 'my':
+          wx.switchTab({
+            url: `/pages/${page}/${page}`
+          });
+          break;
+        default:
+          page = page.split('?');
+          if (page[1]) {
+            wx.navigateTo({
+              url: `/pages/${page[0]}/${page[0]}?${page[1]}`
+            });
+          } else {
+            wx.navigateTo({
+              url: `/pages/${page[0]}/${page[0]}`
+            });
+          }
+          break;
+      }
+    }
+  },
+  // 富文本处理方法
+  rich_handle(rich) {
+    return rich.replace(/\/ueditor\/php\/upload\//g, this.my_config.base_url + '/ueditor/php/upload/');
   }
 });

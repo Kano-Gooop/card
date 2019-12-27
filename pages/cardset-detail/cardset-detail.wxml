@@ -1,6 +1,9 @@
 <view class="page">
   <view class="set-info">
-    <view class="title">套牌组建1</view>
+    <view class="title">
+      <image src="/icons/cd-tab1.png" class="icon"></image>
+      <view class="text">套牌组建1</view>
+    </view>
     <view class="nums">
       <view class="zhu">主牌：9</view>
       <view class="bei">备牌：15</view>

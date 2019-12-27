@@ -4,7 +4,7 @@ Page({
   data: {
     show_tongji: false,  // 是否显示资源你统计图modal
     show_copy: false,  // 是否显示复制套牌modal
-    show_succ: true,  // 复制套牌成功
+    show_succ: false,  // 复制套牌成功
 
     // 卡牌统计列表
     card_num_list: [

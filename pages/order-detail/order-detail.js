@@ -2,9 +2,10 @@ const app = getApp();
 
 Page({
   data: {
-    t_status: 3,  // 0.未支付 1.待发货 2.待收货 3.已完成 4.已评论  临时状态，写页面用
-
     full_loading: true,
+    t_status: 3,  // 0.未支付 1.待发货 2.待收货 3.已完成 4.已评论  临时状态，写页面用
+    is_ios: false,
+
     id: 0,
     order: {},
 
@@ -16,6 +17,8 @@ Page({
     this.orderDetail(() => {
       this.setData({ full_loading: false });
     });
+
+    this.setData({ is_ios: app.is_ios });
   },
   orderDetail(complete) {
     app.ajax('my/orderDetail', { order_id: this.data.id }, (res) => {

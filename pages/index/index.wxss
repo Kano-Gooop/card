@@ -117,6 +117,8 @@
   margin-left: 9rpx;
   width: 18rpx;
   height: 24rpx;
+  position: relative;
+  top: -1rpx;
 }
 /* 蓝标题 end */
 
@@ -155,4 +157,8 @@
   font-size: 24rpx;
   color: #3d3737;
   opacity: 0.4;
+}
+
+.product-box .np-list {
+  padding-bottom: 24rpx;
 }

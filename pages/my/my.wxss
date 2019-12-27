@@ -212,3 +212,13 @@
 .set-card-box .card-list .card .info .counts .bei {
   margin-left: 20rpx;
 }
+
+.friendly-nodata {
+  margin-top: 0;
+  overflow: hidden !important;
+  padding-bottom: 50rpx;
+}
+
+.friendly-nodata .img {
+  margin-top: -178rpx;
+}

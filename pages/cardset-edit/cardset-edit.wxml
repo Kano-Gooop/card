@@ -5,7 +5,11 @@
     <view class="filter-box2">
       <!-- 搜索框 -->
       <view class="search-box">
-        <image bindtap="showModal" src="/icons/drawer.png" class="drawer"></image>
+        <view class="drawer-box">
+          <image bindtap="showModal" src="/icons/drawer.png" class="drawer"></image>
+          <view class="num" id="dot-num">12</view>
+          <view class="dot {{dot_active ? 'active' : ''}}" style="left: {{dot_left}}px; top: {{dot_top}}px;"></view>
+        </view>
         <view class="search">
           <input bindinput="bind_input" bindconfirm="search_card" data-name="search" value="{{search}}"
                  placeholder="请输入卡牌名称或技能" maxlength="20"/>
@@ -105,15 +109,20 @@
     <view class="card-box">
       <scroll-view bindscrolltolower="more_card" scroll-y class="card-list-wrapper" style="height: {{cl_height}}px;">
         <view class="card-list">
-          <navigator wx:for="{{temp_arr}}" class="card">
+          <navigator url="/pages/card-detail/card-detail" wx:for="{{temp_arr}}" class="card">
             <view class="btn-group">
-              <button class="zhu active">主</button>
-              <button class="bei active">备</button>
+              <button catchtap="get_position" data-index="{{index}}" data-type="{{1}}" id="card_zhu_{{index}}" class="zhu active">主</button>
+              <button catchtap="get_position" data-index="{{index}}" data-type="{{2}}" id="card_bei_{{index}}" class="bei active">备</button>
             </view>
             <image src="/images/t-card.png"></image>
           </navigator>
           <view class="card vh"></view>
           <view class="card vh"></view>
+        </view>
+
+        <view class="friendly-nodata" wx:if="{{nodata}}">
+          <image src="/images/nodata-search.png" class="img"></image>
+          <view class="title">无结果</view>
         </view>
       </scroll-view>
     </view>

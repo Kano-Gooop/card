@@ -95,7 +95,7 @@ page {
   background: #fcfafa;
   padding-bottom: 24rpx;
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 .filter-box2 .search-box {
@@ -105,9 +105,47 @@ page {
   background: #4583fb;
 }
 
-.filter-box2 .drawer {
+.filter-box2 .drawer-box {
   width: 54rpx;
   height: 54rpx;
+  position: relative;
+}
+
+.filter-box2 .drawer-box .drawer {
+  width: 100%;
+  height: 100%;
+  vert-align: bottom;
+}
+
+.filter-box2 .drawer-box .num {
+  position: absolute;
+  padding: 0 6rpx;
+  top: -8rpx;
+  right: -17rpx;
+  background: #ff4259;
+  border-radius: 12rpx;
+  font-size: 20rpx;
+  color: #fff;
+  height: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+}
+
+.filter-box2 .drawer-box .dot {
+  width: 24rpx;
+  height: 24rpx;
+  background: #ff4259;
+  position: fixed;
+  border-radius: 50%;
+  display: none;
+  transition: 0.4s left ease-out, 0.4s top ease-in;
+  z-index: 2;
+}
+
+.filter-box2 .drawer-box .dot.active {
+  display: block;
 }
 
 .filter-box2 .search-box .search {
@@ -224,6 +262,16 @@ page {
 .filter-box2 .prop-line .pop-list.line .prop {
   width: 100%;
 }
+
+.modal {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
 /* 搜索框 end */
 
 .card-box {
@@ -260,8 +308,8 @@ page {
   margin: 0;
   font-weight: normal;
   text-align: center;
-  height: 40rpx;
-  line-height: 40rpx;
+  height: 50rpx;
+  line-height: 50rpx;
   font-size: 26rpx;
   color: #fff;
   border-radius: 0;

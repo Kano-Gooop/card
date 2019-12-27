@@ -7,6 +7,9 @@ Page({
     search: '',
     prop_type: 0,
 
+    // shop_list: [0, 1, 2, 3],
+    shop_list: [],
+
     nomore: true,
     nodata: false
   },

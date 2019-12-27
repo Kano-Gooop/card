@@ -149,7 +149,7 @@
 }
 
 .modal {
-  position: relative;
+  position: absolute;
   left: 60rpx;
   right: 60rpx;
   top: 60rpx;

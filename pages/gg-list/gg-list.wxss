@@ -11,7 +11,7 @@
 }
 
 .gg-box .gg {
-  margin-top: 40rpx;
+  margin-top: 50rpx;
   display: flex;
   align-items: center;
   padding-bottom: 21rpx;

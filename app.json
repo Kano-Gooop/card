@@ -15,6 +15,7 @@
     "pages/card-detail/card-detail",
     "pages/cardset-detail/cardset-detail",
     "pages/about/about",
+    "pages/rule/rule",
     "pages/user-info/user-info",
     "pages/order-create/order-create",
     "pages/my-address/my-address",
@@ -31,7 +32,8 @@
     "navigationBarTextStyle": "black",
     "backgroundTextStyle": "dark",
     "backgroundColor": "#f8f8f8",
-    "navigationBarTitleText": "掌控的历史"
+    "navigationBarTitleText": "掌控的历史",
+    "enablePullDownRefresh": true
   },
   "tabBar": {
     "color": "#333333",

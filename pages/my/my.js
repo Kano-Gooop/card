@@ -2,8 +2,8 @@ const app = getApp();
 
 Page({
   data: {
-    nomore: true,
-    nodata: false,
+    nomore: false,
+    nodata: true,
 
     user_auth: 0,
 

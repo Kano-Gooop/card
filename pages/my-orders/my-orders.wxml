@@ -76,8 +76,9 @@
     已经到底了
   </view>
 
-  <view class="nodata" wx:if="{{nodata}}">
-    暂无订单
+  <view class="friendly-nodata" wx:if="{{nodata}}">
+    <image src="/images/nodata-order.png" class="img"></image>
+    <view class="title">暂无订单</view>
   </view>
 
   <!-- 退款modal -->

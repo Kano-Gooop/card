@@ -10,6 +10,18 @@
 }
 
 .set-info .title {
+  display: flex;
+  align-items: center;
+}
+
+.set-info .title .icon {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 15rpx;
+  flex-shrink: 0;
+}
+
+.set-info .title .text {
   line-height: 1.4;
   font-size: 36rpx;
   color: #333;
@@ -162,6 +174,7 @@
   background: #fff;
   box-shadow: 0 1rpx 35rpx 0 rgba(237, 237, 237, 0.75);
   height: 100rpx;
+  z-index: 1;
 }
 
 .foot .tab {

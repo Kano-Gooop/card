@@ -31,7 +31,7 @@
   <view class="pro-list">
     <view class="pro" wx:for="{{[0, 1, 2]}}">
       <view class="pro-main">
-        <image src="/images/t-goods.png" class="cover"></image>
+        <image src="/images/t-goods.jpg" class="cover"></image>
         <view class="info">
           <view class="shang">
             <view class="title two-line-ellipsis">掌控的历史 初阵【081】征西将军 陈到 普卡 蜀银 属性 类别 所属值</view>

@@ -1,7 +1,7 @@
 <view class="page">
   <!-- banner -->
   <view class="banner">
-    <image src="/images/my_img_bg.png" class="my-img-bg"></image>
+    <image src="/images/my_img_bg.jpg" class="my-img-bg"></image>
     <view class="user-info">
       <image src="/images/default-header.png" class="header"></image>
 
@@ -62,45 +62,46 @@
     </view>
 
     <view class="card-list">
-      <navigator class="card">
-        <image src="/images/t-cardset1.png" class="cover"></image>
-        <view class="info">
-          <view class="title one-line-ellipsis">套牌组建1</view>
-          <view class="counts">
-            <view class="zhu">主牌：10</view>
-            <view class="bei">备牌：15</view>
-          </view>
-        </view>
-      </navigator>
+<!--      <navigator class="card">-->
+<!--        <image src="/images/t-cardset1.png" class="cover"></image>-->
+<!--        <view class="info">-->
+<!--          <view class="title one-line-ellipsis">套牌组建1</view>-->
+<!--          <view class="counts">-->
+<!--            <view class="zhu">主牌：10</view>-->
+<!--            <view class="bei">备牌：15</view>-->
+<!--          </view>-->
+<!--        </view>-->
+<!--      </navigator>-->
 
-      <navigator class="card">
-        <image src="/images/t-cardset2.png" class="cover"></image>
-        <view class="info">
-          <view class="title one-line-ellipsis">套牌组建2</view>
-          <view class="counts">
-            <view class="zhu">主牌：10</view>
-            <view class="bei">备牌：15</view>
-          </view>
-        </view>
-      </navigator>
+<!--      <navigator class="card">-->
+<!--        <image src="/images/t-cardset2.png" class="cover"></image>-->
+<!--        <view class="info">-->
+<!--          <view class="title one-line-ellipsis">套牌组建2</view>-->
+<!--          <view class="counts">-->
+<!--            <view class="zhu">主牌：10</view>-->
+<!--            <view class="bei">备牌：15</view>-->
+<!--          </view>-->
+<!--        </view>-->
+<!--      </navigator>-->
 
-      <navigator class="card">
-        <image src="/images/t-cardset3.png" class="cover"></image>
-        <view class="info">
-          <view class="title one-line-ellipsis">套牌组建3</view>
-          <view class="counts">
-            <view class="zhu">主牌：10</view>
-            <view class="bei">备牌：15</view>
-          </view>
-        </view>
-      </navigator>
+<!--      <navigator class="card">-->
+<!--        <image src="/images/t-cardset3.png" class="cover"></image>-->
+<!--        <view class="info">-->
+<!--          <view class="title one-line-ellipsis">套牌组建3</view>-->
+<!--          <view class="counts">-->
+<!--            <view class="zhu">主牌：10</view>-->
+<!--            <view class="bei">备牌：15</view>-->
+<!--          </view>-->
+<!--        </view>-->
+<!--      </navigator>-->
     </view>
 
     <view class="nomore" wx:if="{{nomore}}">
       没有更多了
     </view>
-    <view class="nodata" wx:if="{{nodata}}">
-      暂无套牌
+    <view class="friendly-nodata" wx:if="{{nodata}}">
+      <image src="/images/nodata-cardset.png" class="img"></image>
+      <view class="title">暂无套牌</view>
     </view>
   </view>
 </view>

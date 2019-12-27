@@ -5,8 +5,8 @@ Page({
     search: '',
     prop_type: 0,
 
-    nomore: true,
-    nodata: false
+    nomore: false,
+    nodata: true
   },
   onLoad() {
   },

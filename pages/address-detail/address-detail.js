@@ -2,6 +2,8 @@ const app = getApp();
 
 Page({
   data: {
+    is_ios: false,
+
     id: 0,  // 新增为0
     username: '',  // 联系人
     tel: '',  // 手机号码
@@ -19,8 +21,13 @@ Page({
   onLoad(options) {
     if (options.id) {
       this.data.id = options.id;
+      wx.setNavigationBarTitle({ title: '修改收货地址' });
       this.addressDetail();
+    } else {
+      wx.setNavigationBarTitle({ title: '新增收货地址' });
     }
+
+    this.setData({ is_ios: app.is_ios });
   },
   // 添加收货地址
   addressAdd() {

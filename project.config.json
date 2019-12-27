@@ -166,10 +166,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 17,
 					"name": "公告详情",
 					"pathName": "pages/gg-detail/gg-detail",
-					"query": "",
+					"query": "id=3",
 					"scene": null
 				},
 				{
@@ -183,6 +183,13 @@
 					"id": -1,
 					"name": "收货地址",
 					"pathName": "pages/my-address/my-address",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "地址详情",
+					"pathName": "pages/address-detail/address-detail",
 					"query": "",
 					"scene": null
 				}

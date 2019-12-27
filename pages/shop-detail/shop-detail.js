@@ -8,7 +8,7 @@ Page({
     id: 0,
     goods: {},
     swiper_current: 0,  // swiper的数字标示
-    tab_active: 1,  // 0.商品详情 1.买家评价
+    tab_active: 0,  // 0.商品详情 1.买家评价
     rich_text: {},
     add_loading: false,  // 加入购物车loading
     attr_show: false,
@@ -23,8 +23,7 @@ Page({
     line_count: 0  // 标题行数
   },
   onLoad(options) {
-    // this.data.id = options.id;
-    this.data.id = 4;
+    this.data.id = options.id;
 
     // 海报二维码
     drawQrcode({

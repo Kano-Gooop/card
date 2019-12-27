@@ -102,17 +102,18 @@
   <!-- 卡牌列表 -->
   <view class="card-box">
     <view class="card-list">
-      <navigator wx:for="{{[0, 1, 2, 3, 4, 5, 6]}}" class="card">
-        <image src="/images/t-card.png" lazy-load></image>
-      </navigator>
-      <view class="card vh"></view>
-      <view class="card vh"></view>
+<!--      <navigator wx:for="{{[0, 1, 2, 3, 4, 5, 6]}}" class="card">-->
+<!--        <image src="/images/t-card.png" lazy-load></image>-->
+<!--      </navigator>-->
+<!--      <view class="card vh"></view>-->
+<!--      <view class="card vh"></view>-->
     </view>
     <view class="nomore" wx:if="{{nomore}}">
       已经没有更多了哦
     </view>
-    <view class="nodata" wx:if="{{nodata}}">
-      暂无数据
+    <view class="friendly-nodata" wx:if="{{nodata}}">
+      <image src="/images/nodata-search.png" class="img"></image>
+      <view class="title">无结果</view>
     </view>
   </view>
 </view>
