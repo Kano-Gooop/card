@@ -9,7 +9,7 @@
       </view>
     </view>
 
-    <!-- 分类/版本/形式 -->
+    <!-- 分类/版本 -->
     <view class="prop-line">
       <view bindtap="tab_change" data-prop_type="{{1}}"
             class="prop {{prop_type == 1 ? 'active' : ''}}">
@@ -22,33 +22,15 @@
         <view class="text one-line-ellipsis">版本</view>
         <image src="/icons/opt-down.png" class="arrow"></image>
       </view>
-      <view class="shu"></view>
-      <view bindtap="tab_change" data-prop_type="{{3}}"
-            class="prop {{prop_type == 3 ? 'active' : ''}}">
-        <view class="text one-line-ellipsis">形式</view>
-        <image src="/icons/opt-down.png" class="arrow"></image>
-      </view>
-      <view class="shu"></view>
 
       <!-- 分类弹框 -->
       <view class="pop-list" wx:if="{{prop_type == 1}}">
-        <view class="prop active">全部</view>
-        <view class="prop">卡牌</view>
-        <view class="prop">周边</view>
+        <view class="prop {{cate_ai == index ? 'active' : ''}}" wx:for="{{cate_list}}" wx:key="id">{{item.cate_name}}</view>
       </view>
 
       <!-- 版本弹框 -->
       <view class="pop-list" wx:if="{{prop_type == 2}}">
-        <view class="prop active">全部</view>
-        <view class="prop">帝国崛起第一章 武王伐纣</view>
-        <view class="prop">千古一帝第二章 秦王嬴政</view>
-      </view>
-
-      <!-- 形式弹框 -->
-      <view class="pop-list" wx:if="{{prop_type == 3}}">
-        <view class="prop active">全部</view>
-        <view class="prop">形式1</view>
-        <view class="prop">形式2</view>
+        <view class="prop {{version_ai == index ? 'active' : ''}}" wx:for="{{version_list}}" wx:key="id">{{item.version_name}}</view>
       </view>
     </view>
   </view>

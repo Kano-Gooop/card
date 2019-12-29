@@ -8,12 +8,33 @@ Page({
     prop_type: 0,
 
     // shop_list: [0, 1, 2, 3],
+    cate_ai: 0,  // cate active index
+    cate_list: [],
+    version_ai: 0,  // version active index
+    version_list: [],
+
     shop_list: [],
 
     nomore: true,
     nodata: false
   },
   onLoad() {
+    this.cateList();
+    this.versionList();
+  },
+  // 获取分类
+  cateList() {
+    app.ajax('shop/cateList', null, res => {
+      res.unshift({ id: 0, cate_name: '全部' });
+      this.setData({ cate_list: res });
+    });
+  },
+  // 获取版本
+  versionList() {
+    app.ajax('shop/versionList', null, res => {
+      res.unshift({ id: 0, version_name: '全部' });
+      this.setData({ version_list: res });
+    });
   },
   // 搜索商品
   search_shop() {
