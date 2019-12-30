@@ -2,7 +2,7 @@
   <view class="info-list">
     <view class="info">
       <view class="label">头像</view>
-      <view class="right">
+      <view bindtap="up_avatar" class="right">
         <view class="value">
           <image src="{{user.avatar}}" class="cover"></image>
         </view>
@@ -45,8 +45,8 @@
       <view class="label">电话</view>
       <view class="right">
         <view class="value">
-          <view class="placeholder" wx:if="{{user.tel}}">请填写电话</view>
-          <view class="text">188****5864</view>
+          <view class="text" wx:if="{{user.tel}}">{{user.secret_tel}}</view>
+          <view class="placeholder" wx:else>请填写电话</view>
         </view>
         <image src="/icons/icon_right_arrow.png" class="right-arrow"></image>
       </view>

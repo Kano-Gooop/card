@@ -330,5 +330,37 @@ App({
   // 富文本处理方法
   rich_handle(rich) {
     return rich.replace(/\/ueditor\/php\/upload\//g, this.my_config.base_url + '/ueditor/php/upload/');
+  },  // 选择图片并返回
+  choose_img(count, callback, maxsize = 524288, ext = ['jpg', 'jpeg', 'png', 'gif']) {
+    wx.chooseImage({
+      count: count,
+      sourceType: ['album', 'camera'],
+      success: res => {
+        let over_text;
+        if (maxsize < 1024) {
+          over_text = maxsize + 'B';
+        } else if (maxsize < 1048576) {
+          over_text = Math.floor(maxsize / 1024) + 'KB';
+        } else {
+          over_text = Math.floor(maxsize / 1048576) + 'M';
+        }
+
+        for (let i = 0; i < res.tempFiles.length; i++) {
+          if (res.tempFiles[i].size > maxsize) {
+            this.modal('选择的图片不能大于' + over_text);
+            return callback(false);
+          }
+
+          res.tempFiles[i].ext = res.tempFiles[i].path.substr(res.tempFiles[i].path.lastIndexOf('.') + 1);
+
+          if (ext.indexOf(res.tempFiles[i].ext) === -1) {
+            this.modal('请上传合法的文件格式');
+            return callback(false);
+          }
+        }
+
+        callback(res.tempFiles);
+      }
+    })
   }
 });

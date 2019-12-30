@@ -66,6 +66,14 @@ Page({
       });
     });
   },
+  // 上传头像
+  up_avatar() {
+    app.choose_img(1, pic_res => {
+      app.ajax('upload/uploadImage', {file: pic_res[0].path}, res => {
+        console.log(res);
+      });
+    });
+  },
   // 修改个人信息
   modMyInfo() {
   },

@@ -1,3 +1,7 @@
+<view class="full-loading" wx:if="{{full_loading}}">
+  <view class="image"></view>
+</view>
+
 <view class="page">
   <!-- 主屏幕 -->
   <view class="DrawerPage {{show_side ? 'show' : ''}}">
@@ -33,72 +37,37 @@
 
         <!-- 属性弹框 -->
         <view class="pop-list" wx:if="{{prop_type == 1}}">
-          <view class="prop">全部</view>
-          <view class="prop active">金<image src="/icons/cornermark.png" class="cornermark"></image></view>
-          <view class="prop">木</view>
-          <view class="prop">水</view>
-          <view class="prop">火</view>
-          <view class="prop">土</view>
-          <view class="prop">无</view>
-          <view class="prop vh"></view>
+          <view bindtap="choose_prop" data-index="{{index}}" data-type="{{1}}" class="prop {{item.active ? 'active' : ''}}" wx:for="{{card_attr}}" wx:key="id">{{item.attr_name}}<image src="/icons/cornermark.png" class="cornermark" wx:if="{{item.active && item.id != -2}}"></image></view>
+          <view class="prop vh" wx:for="{{card_attr_fp}}" wx:key="index"></view>
         </view>
 
         <!-- 费用弹框 -->
         <view class="pop-list" wx:if="{{prop_type == 2}}">
-          <view class="prop active">全部</view>
-          <view class="prop">0</view>
-          <view class="prop">1</view>
-          <view class="prop">2</view>
-          <view class="prop">3</view>
-          <view class="prop">4</view>
-          <view class="prop">5</view>
-          <view class="prop">6</view>
-          <view class="prop">7+</view>
-          <view class="prop">X</view>
-          <view class="prop vh"></view>
-          <view class="prop vh"></view>
+          <view bindtap="choose_prop" data-index="{{index}}" data-type="{{2}}" class="prop {{item.active ? 'active' : ''}}" wx:for="{{resource}}" wx:key="id">{{item.name}}<image src="/icons/cornermark.png" class="cornermark" wx:if="{{item.active && item.id != -2}}"></image></view>
+          <view class="prop vh" wx:for="{{resource_fp}}" wx:key="index"></view>
         </view>
 
         <!-- 类别弹框 -->
         <view class="pop-list" wx:if="{{prop_type == 3}}">
-          <view class="prop active">全部</view>
-          <view class="prop">单位</view>
-          <view class="prop">资源</view>
-          <view class="prop">军阵</view>
-          <view class="prop">战器</view>
-          <view class="prop">策略</view>
-          <view class="prop vh"></view>
-          <view class="prop vh"></view>
+          <view bindtap="choose_prop" data-index="{{index}}" data-type="{{3}}" class="prop {{item.active ? 'active' : ''}}" wx:for="{{card_type}}" wx:key="id">{{item.type_name}}<image src="/icons/cornermark.png" class="cornermark" wx:if="{{item.active && item.id != -2}}"></image></view>
+          <view class="prop vh" wx:for="{{card_type_fp}}" wx:key="index"></view>
         </view>
 
         <!-- 势力弹框 -->
         <view class="pop-list" wx:if="{{prop_type == 4}}">
-          <view class="prop active">全部</view>
-          <view class="prop">商</view>
-          <view class="prop">周</view>
-          <view class="prop">无</view>
+          <view bindtap="choose_prop" data-index="{{index}}" data-type="{{4}}" class="prop {{item.active ? 'active' : ''}}" wx:for="{{card_camp}}" wx:key="id">{{item.camp_name}}<image src="/icons/cornermark.png" class="cornermark" wx:if="{{item.active && item.id != -2}}"></image></view>
+          <view class="prop vh" wx:for="{{card_camp_fp}}" wx:key="index"></view>
         </view>
 
         <!-- 能力弹框 -->
         <view class="pop-list" wx:if="{{prop_type == 5}}">
-          <view class="prop active">全部</view>
-          <view class="prop">破竹</view>
-          <view class="prop">冲锋</view>
-          <view class="prop">护卫</view>
-          <view class="prop">瞬发</view>
-          <view class="prop">远程</view>
-          <view class="prop">致命</view>
-          <view class="prop">佩戴</view>
-          <view class="prop">登场</view>
-          <view class="prop">阵亡</view>
-          <view class="prop">无</view>
-          <view class="prop vh"></view>
+          <view bindtap="choose_prop" data-index="{{index}}" data-type="{{5}}" class="prop {{item.active ? 'active' : ''}}" wx:for="{{card_ability}}" wx:key="id">{{item.ability_name}}<image src="/icons/cornermark.png" class="cornermark" wx:if="{{item.active && item.id != -2}}"></image></view>
+          <view class="prop vh" wx:for="{{card_ability_fp}}" wx:key="index"></view>
         </view>
 
         <!-- 版本弹框 -->
         <view class="pop-list line" wx:if="{{prop_type == 6}}">
-          <view class="prop active">全部</view>
-          <view class="prop">帝国崛起第一章 武王伐纣</view>
+          <view bindtap="choose_prop" data-index="{{index}}" data-type="{{6}}" class="prop {{item.active ? 'active' : ''}}" wx:for="{{card_version}}" wx:key="id">{{item.version_name}}<image src="/icons/cornermark.png" class="cornermark" wx:if="{{item.active && item.id != -2}}"></image></view>
         </view>
       </view>
     </view>
@@ -109,15 +78,14 @@
     <view class="card-box">
       <scroll-view bindscrolltolower="more_card" scroll-y class="card-list-wrapper" style="height: {{cl_height}}px;">
         <view class="card-list">
-          <navigator url="/pages/card-detail/card-detail" wx:for="{{temp_arr}}" class="card">
+          <navigator bindtap="jump" data-id="{{item.id}}" wx:for="{{card_list}}" wx:key="id" class="card">
             <view class="btn-group">
-              <button catchtap="get_position" data-index="{{index}}" data-type="{{1}}" id="card_zhu_{{index}}" class="zhu active">主</button>
-              <button catchtap="get_position" data-index="{{index}}" data-type="{{2}}" id="card_bei_{{index}}" class="bei active">备</button>
+              <button catchtap="pai_btn_click" data-index="{{index}}" data-type="{{1}}" id="card_zhu_{{index}}" class="zhu {{item.zhu_active ? 'active' : ''}}">主</button>
+              <button catchtap="pai_btn_click" data-index="{{index}}" data-type="{{2}}" id="card_bei_{{index}}" class="bei {{item.bei_active ? 'active' : ''}}">备</button>
             </view>
-            <image src="/images/t-card.png"></image>
+            <image src="{{item.pic}}" lazy-load></image>
           </navigator>
-          <view class="card vh"></view>
-          <view class="card vh"></view>
+          <view class="card vh" wx:for="{{card_flex_pad}}" wx:key="index"></view>
         </view>
 
         <view class="friendly-nodata" wx:if="{{nodata}}">
@@ -150,7 +118,7 @@
     </view>
     <view class="card-list-wrapper" id="card-list2-wrapper">
       <scroll-view scroll-y class="card-list2" style="height: {{cl2_height}}px;">
-        <view class="card" wx:for="{{[0, 1, 2, 3, 4, 5, 6]}}">
+        <view class="card" wx:for="{{zhu_list}}">
           <view class="cost">2</view>
           <view class="name one-line-ellipsis">善走御者 蜚廉</view>
           <view class="add-sub">
