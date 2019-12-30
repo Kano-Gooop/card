@@ -5,7 +5,12 @@ Page({
   data: {
   },
   onLoad() {
-    // rich_text = rich_text.replace(/\/ueditor\/php\/upload\//g, app.my_config.base_url + '/ueditor/php/upload/');
-    WxParse.wxParse('rich_text', 'html', '<p>啦啦啦啦啦</p>', this);
+    this.aboutUs();
+  },
+  aboutUs() {
+    app.ajax('api/aboutUs', null, res => {
+      let rich_text = app.rich_handle(res.intro);
+      WxParse.wxParse('rich_text', 'html', rich_text, this);
+    });
   }
 });

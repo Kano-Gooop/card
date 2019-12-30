@@ -31,7 +31,7 @@
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTextStyle": "black",
     "backgroundTextStyle": "dark",
-    "backgroundColor": "#f8f8f8",
+    "backgroundColor": "#fcfafa",
     "navigationBarTitleText": "掌控的历史",
     "enablePullDownRefresh": true
   },

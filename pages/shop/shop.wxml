@@ -1,3 +1,7 @@
+<view class="full-loading" wx:if="{{full_loading}}">
+  <view class="image"></view>
+</view>
+
 <view class="page">
   <view class="filter-box">
     <!-- 搜索框 -->
@@ -13,24 +17,24 @@
     <view class="prop-line">
       <view bindtap="tab_change" data-prop_type="{{1}}"
             class="prop {{prop_type == 1 ? 'active' : ''}}">
-        <view class="text one-line-ellipsis">分类</view>
+        <view class="text one-line-ellipsis">{{cate_ai == 0 ? '分类' : cate_list[cate_ai].cate_name}}</view>
         <image src="/icons/opt-down.png" class="arrow"></image>
       </view>
       <view class="shu"></view>
       <view bindtap="tab_change" data-prop_type="{{2}}"
             class="prop {{prop_type == 2 ? 'active' : ''}}">
-        <view class="text one-line-ellipsis">版本</view>
+        <view class="text one-line-ellipsis">{{version_ai == 0 ? '版本' : version_list[version_ai].version_name}}</view>
         <image src="/icons/opt-down.png" class="arrow"></image>
       </view>
 
       <!-- 分类弹框 -->
       <view class="pop-list" wx:if="{{prop_type == 1}}">
-        <view class="prop {{cate_ai == index ? 'active' : ''}}" wx:for="{{cate_list}}" wx:key="id">{{item.cate_name}}</view>
+        <view bindtap="choose_prop" data-index="{{index}}" data-type="{{1}}" class="prop {{cate_ai == index ? 'active' : ''}}" wx:for="{{cate_list}}" wx:key="id">{{item.cate_name}}</view>
       </view>
 
       <!-- 版本弹框 -->
       <view class="pop-list" wx:if="{{prop_type == 2}}">
-        <view class="prop {{version_ai == index ? 'active' : ''}}" wx:for="{{version_list}}" wx:key="id">{{item.version_name}}</view>
+        <view bindtap="choose_prop" data-index="{{index}}" data-type="{{2}}" class="prop {{version_ai == index ? 'active' : ''}}" wx:for="{{version_list}}" wx:key="id">{{item.version_name}}</view>
       </view>
     </view>
   </view>
@@ -41,19 +45,19 @@
   <!-- 商品列表 -->
   <view class="product-box">
     <view class="np-list">
-      <navigator url="/pages/shop-detail/shop-detail" class="np" wx:for="{{shop_list}}">
-        <image src="/images/t-goods.jpg" class="cover"></image>
+      <navigator url="/pages/shop-detail/shop-detail?id={{item.id}}" class="np" wx:for="{{goods_list}}" wx:key="id">
+        <image src="{{item.cover}}" class="cover"></image>
         <view class="info">
-          <view class="title two-line-ellipsis">掌控的历史 初阵【081】征西将军 陈到 普卡 蜀银</view>
+          <view class="title two-line-ellipsis">{{item.name}}</view>
           <view class="xia">
-            <view class="price">50.00</view>
-            <view class="gou-box">
-              <image src="/icons/jiagou.png" class="gou-cart"></image>
-            </view>
+            <view class="price">{{item.price}}</view>
+<!--            <view class="gou-box">-->
+<!--              <image src="/icons/jiagou.png" class="gou-cart"></image>-->
+<!--            </view>-->
           </view>
         </view>
       </navigator>
-      <view class="np vh"></view>
+      <view class="np vh" wx:for="{{goods_flex_pad}}" wx:key="index"></view>
     </view>
 
     <view class="nomore" wx:if="{{nomore}}">

@@ -3,8 +3,7 @@ const app = getApp();
 Page({
   data: {
     full_loading: true,
-    route: '',
-    inviter_id: 0
+    route: ''
   },
   onLoad(options) {
     if (options.route) {
@@ -13,16 +12,13 @@ Page({
       this.data.route = this.q_format(options.q);
     }
 
-    wx.setStorageSync('inviter_id', options.scene || 0);
-
-    app.login((res) => {
+    app.login(res => {
       app.user_data.token = res.token;
-
       app.redirect_or_switch_or_index(this.data.route);
 
-      // 用户角色信息保存
-      // app.set_user_data();
-    });
+      // 设置一些公共信息
+      app.set_common();
+    }, options.scene || 0);
   },
   // 格式化通过二维码扫描进来的链接
   q_format(q) {

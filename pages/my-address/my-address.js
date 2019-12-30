@@ -2,11 +2,11 @@ const app = getApp();
 
 Page({
   data: {
-    type: 0,  // 0.我的地址 1.order-create选择地址 2.cart-order-create选择地址 4.support-options选择地址
+    type: 0,  // 0.我的地址 1.order-create选择地址 2.cart-order-create选择地址
     address_list: [],
     loading: false
   },
-  onLoad: function (options) {
+  onLoad(options) {
     if (options.type) {
       this.data.type = parseInt(options.type);
       wx.setNavigationBarTitle({ title: '选择收货地址' });
@@ -25,12 +25,6 @@ Page({
         case 2:
           choose_page = app.get_page('pages/cart-order-create/cart-order-create');
           break;
-        case 3:
-          choose_page = app.get_page('pages/recharge/recharge');
-          break;
-        case 4:
-          choose_page = app.get_page('pages/chou-order-create/chou-order-create');
-          break;
       }
       choose_page.choose_address(address.username, address.tel, address.provincename + ' ' + address.cityname + ' ' + address.countyname + ' ' + address.detail, () => {
         wx.navigateBack({ delta: 1 });
@@ -39,11 +33,7 @@ Page({
   },
   // 获取我的收货地址
   addressList(complete) {
-    let post = {
-      token: app.user_data.token
-    };
-
-    app.ajax('my/addressList', post, (res) => {
+    app.ajax('my/addressList', null, res => {
       this.setData({ address_list: res });
     }, null, () => {
       if (complete) {
@@ -57,41 +47,44 @@ Page({
   },
   // 选择微信地址
   choose_address() {
-    let that = this;
     wx.chooseAddress({
-      success(res) {
+      success: res => {
         wx.showLoading({
           title: '添加中',
           mask: true
         });
 
-        that.addressAdd(res.userName, res.telNumber, res.provinceName, res.cityName, res.countyName, res.detailInfo, res.postalCode, that.data.address_list.length === 0 ? 1 : 0, () => {
+        this.addressAdd(res.userName, res.telNumber, res.provinceName, res.cityName, res.countyName, res.detailInfo, this.data.address_list.length === 0 ? 1 : 0, () => {
+          app.modal('添加成功', () => {
+            this.addressList();
+          });
+        }, () => {
           wx.hideLoading();
-          app.toast('添加成功', 2000, 'success')
-          that.addressList();
         });
       },
-      fail(err) {
+      fail: err => {
         if (err.errMsg.indexOf('auth') !== -1) {
           wx.showModal({
             title: '提示',
             content: '请先授权获取您的通讯地址',
-            success(res) {
-              if (res.confirm) {
+            success: modal_res => {
+              if (modal_res.confirm) {
                 wx.openSetting({
-                  success(res) {
-                    if (res.authSetting['scope.address']) {
+                  success: os_res => {
+                    if (os_res.authSetting['scope.address']) {
                       wx.chooseAddress({
-                        success(res) {
+                        success: res => {
                           wx.showLoading({
                             title: '添加中',
                             mask: true
                           });
 
-                          that.addressAdd(res.userName, res.telNumber, res.provinceName, res.cityName, res.countyName, res.detailInfo, res.postalCode, that.data.address_list.length === 0 ? 1 : 0, () => {
+                          this.addressAdd(res.userName, res.telNumber, res.provinceName, res.cityName, res.countyName, res.detailInfo, this.data.address_list.length === 0 ? 1 : 0, () => {
+                            app.modal('添加成功', () => {
+                              this.addressList();
+                            });
+                          }, () => {
                             wx.hideLoading();
-                            app.toast('添加成功', 2000, 'success')
-                            that.addressList();
                           });
                         }
                       })
@@ -105,8 +98,23 @@ Page({
       }
     })
   },
+  // 设为默认收货地址
+  setDetaultAddress(e) {
+    if (!this.data.loading) {
+      let address = e.currentTarget.dataset.address;
+      if (address.default !== 1) {
+        this.data.loading = true;
+
+        app.ajax('my/setDetaultAddress', {id: address.id}, () => {
+          this.data.loading = false;
+          app.toast('设置完成');
+          this.addressList();
+        });
+      }
+    }
+  },
   // 添加收货地址
-  addressAdd(username, tel, provincename, cityname, countyname, detail, postalcode, is_default, complete) {
+  addressAdd(username, tel, provincename, cityname, countyname, detail, is_default, success, complete) {
     let post = {
       token: app.user_data.token,
       username: username,
@@ -115,11 +123,13 @@ Page({
       cityname: cityname,
       countyname: countyname,
       detail: detail,
-      postalcode: postalcode,
       default: is_default
     };
 
     app.ajax('my/addressAdd', post, () => {
+      if (success) {
+        success();
+      }
     }, null, () => {
       if (complete) {
         complete();
@@ -131,7 +141,7 @@ Page({
     if (!this.data.loading) {
       wx.showModal({
         title: '提示',
-        content: '确定删除？',
+        content: '删除收货地址？',
         success: res => {
           if (res.confirm) {
             this.data.loading = true;
@@ -142,6 +152,18 @@ Page({
             });
           }
         }
+      });
+    }
+  },
+  // 下拉刷新
+  onPullDownRefresh() {
+    if (!this.data.loading) {
+      this.data.loading = true;
+      wx.showNavigationBarLoading();
+      this.addressList(() => {
+        this.data.loading = false;
+        wx.hideNavigationBarLoading();
+        wx.stopPullDownRefresh();
       });
     }
   }

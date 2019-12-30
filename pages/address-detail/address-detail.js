@@ -11,16 +11,15 @@ Page({
     cityname: '',  // 市
     countyname: '',  // 区
     detail: '',  // 地址详情
-    postalcode: '',  // 邮编
     default: 0,  // 0.非默认 1.默认
-    
+
     citys: [],  // 默认选择的省市区，用于修改
 
     loading: false
   },
   onLoad(options) {
     if (options.id) {
-      this.data.id = options.id;
+      this.setData({ id: options.id });
       wx.setNavigationBarTitle({ title: '修改收货地址' });
       this.addressDetail();
     } else {
@@ -29,10 +28,54 @@ Page({
 
     this.setData({ is_ios: app.is_ios });
   },
+  // 选择微信地址
+  choose_address() {
+    wx.chooseAddress({
+      success: res => {
+        this.setData({
+          username: res.userName,
+          tel: res.telNumber,
+          provincename: res.provinceName,
+          cityname: res.cityName,
+          countyname: res.countyName,
+          detail: res.detailInfo
+        });
+      },
+      fail: err => {
+        if (err.errMsg.indexOf('auth') !== -1) {
+          wx.showModal({
+            title: '提示',
+            content: '请先授权获取您的通讯地址',
+            success: modal_res => {
+              if (modal_res.confirm) {
+                wx.openSetting({
+                  success: os_res => {
+                    if (os_res.authSetting['scope.address']) {
+                      wx.chooseAddress({
+                        success: res => {
+                          this.setData({
+                            username: res.userName,
+                            tel: res.telNumber,
+                            provincename: res.provinceName,
+                            cityname: res.cityName,
+                            countyname: res.countyName,
+                            detail: res.detailInfo
+                          });
+                        }
+                      })
+                    }
+                  }
+                })
+              }
+            }
+          });
+        }
+      }
+    })
+  },
   // 添加收货地址
-  addressAdd() {
+  addressEdit() {
     let data = this.data;
-    let that = this;
     if (!data.username.trim()) {
       app.toast('请填写联系人');
     } else if (!data.tel.trim()) {
@@ -43,35 +86,30 @@ Page({
       app.toast('请选择省市区');
     } else if (!data.detail.trim()) {
       app.toast('请填写详细地址');
-    } else if (!data.postalcode.trim()) {
-      app.toast('请填写邮政编码');
     } else {
       wx.showModal({
         title: '提示',
         content: '确定保存？',
-        success(res) {
-          if (res.confirm) {
+        success: modal_res => {
+          if (modal_res.confirm) {
             wx.showLoading({
               title: '保存中',
               mask: true
             });
 
             let post = {
-              token: app.user_data.token,
               username: data.username,
               tel: data.tel,
               provincename: data.provincename,
               cityname: data.cityname,
               countyname: data.countyname,
-              detail: data.detail,
-              postalcode: data.postalcode,
-              default: data.default
+              detail: data.detail
             };
 
             // 新增或是修改
             let method;
-            if (that.data.id) {
-              post.id = that.data.id;
+            if (this.data.id) {
+              post.id = this.data.id;
               method = 'my/addressMod';
             } else {
               method = 'my/addressAdd';
@@ -100,25 +138,15 @@ Page({
     this.setData({
       provincename: citys[0],
       cityname: citys[1],
-      countyname: citys[2],
-      postalcode: e.detail.postcode
+      countyname: citys[2]
     });
   },
-  // 是否设为默认收货地址
-  set_default() {
-    this.setData({ default: this.data.default === 0 ? 1 : 0 });
-  },
   bind_input(e) {
-    this.setData({ [e.currentTarget.dataset['name']]: e.detail.value || '' })
+    app.bind_input(e, this);
   },
   // 获取地址详情
   addressDetail() {
-    let post = {
-      token: app.user_data.token,
-      id: this.data.id
-    };
-
-    app.ajax('my/addressDetail', post, (res) => {
+    app.ajax('my/addressDetail', { id: this.data.id }, (res) => {
       this.setData({
         username: res.username,
         tel: res.tel,
@@ -126,7 +154,6 @@ Page({
         cityname: res.cityname,
         countyname: res.countyname,
         detail: res.detail,
-        postalcode: res.postalcode,
         default: res.default,
         citys: [res.provincename, res.cityname, res.countyname]
       });

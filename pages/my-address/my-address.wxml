@@ -1,23 +1,24 @@
 <view class="page">
   <!-- 获取微信收货地址 -->
-  <view class="get-wechat">
+  <view bindtap="choose_address" class="get-wechat">
     <image src="/icons/wechat.png" class="icon"></image>
     <view class="title">获取微信收货地址</view>
     <image src="/icons/icon_right_arrow2.png" class="right-arrow"></image>
   </view>
 
   <view class="address-list">
-    <view class="address">
-      <view class="shang">
+    <view class="address" wx:for="{{address_list}}" wx:key="id">
+      <view bindtap="choose" class="shang">
         <view class="top-line">
-          <view class="name one-line-ellipsis">收货人：某某某</view>
-          <view class="tel">18883222047</view>
+          <view class="name one-line-ellipsis">收货人：{{item.username}}</view>
+          <view class="tel">{{item.tel}}</view>
         </view>
-        <view class="detail">收货地址：天津市西青区高新区海泰绿色产业基地K1座</view>
+        <view class="detail">收货地址：{{item.provincename}} {{item.cityname}} {{item.countyname}} {{item.detail}}</view>
       </view>
       <view class="operation">
-        <view class="default">
-          <image src="/icons/address-choose.png" class="choose"></image>
+        <view bindtap="setDetaultAddress" data-address="{{item}}" class="default">
+          <image src="/icons/address-choose.png" class="choose" wx:if="{{item.default == 1}}"></image>
+          <image src="/icons/address-nochoose.png" class="choose" wx:else></image>
           <view class="text">设为默认地址</view>
         </view>
         <view class="right">
@@ -25,33 +26,7 @@
             <image src="/icons/icon_edit.png" class="icon"></image>
             <view class="text">编辑</view>
           </navigator>
-          <view class="op-item del">
-            <image src="/icons/icon_delete.png" class="icon"></image>
-            <view class="text">删除</view>
-          </view>
-        </view>
-      </view>
-    </view>
-
-    <view class="address">
-      <view class="shang">
-        <view class="top-line">
-          <view class="name">收货人：某某某</view>
-          <view class="tel">18883222047</view>
-        </view>
-        <view class="detail">收货地址：天津市西青区高新区海泰绿色产业基地K1座</view>
-      </view>
-      <view class="operation">
-        <view class="default">
-          <image src="/icons/address-nochoose.png" class="choose"></image>
-          <view class="text">设为默认地址</view>
-        </view>
-        <view class="right">
-          <navigator url="/pages/address-detail/address-detail?id={{item.id}}" class="op-item edit">
-            <image src="/icons/icon_edit.png" class="icon"></image>
-            <view class="text">编辑</view>
-          </navigator>
-          <view class="op-item  del">
+          <view bindtap="addressDel" data-id="{{item.id}}" class="op-item del">
             <image src="/icons/icon_delete.png" class="icon"></image>
             <view class="text">删除</view>
           </view>
@@ -61,31 +36,6 @@
   </view>
 
   <view class="btn-box">
-    <button class="new-btn">新增收货地址</button>
+    <button bindtap="to_addressAdd" class="new-btn">新增收货地址</button>
   </view>
 </view>
-
-<!--<view class="page">-->
-<!--  <view class="address-list">-->
-<!--    <view class="address" wx:for="{{address_list}}">-->
-<!--      <view bindtap="choose" data-address="{{item}}" class="info">-->
-<!--        <view class="top">-->
-<!--          <view class="nickname">{{item.username}}</view>-->
-<!--          <view class="tel">{{item.tel}}</view>-->
-<!--        </view>-->
-<!--        <view class="detail">-->
-<!--          <view class="default" wx:if="{{item.default == 1}}">[默认地址] </view>{{item.provincename}} {{item.cityname}} {{item.countyname}} {{item.detail}}-->
-<!--        </view>-->
-<!--      </view>-->
-<!--      <view class="edit">-->
-<!--        <navigator url="/pages/address-detail/address-detail?id={{item.id}}"><icon class="iconfont iconiconset0136"/></navigator>-->
-<!--        <view catchtap="addressDel" data-id="{{item.id}}" class="delete"><icon class="iconfont iconshanchu"/></view>-->
-<!--      </view>-->
-<!--    </view>-->
-<!--  </view>-->
-
-<!--  <view class="add-address">-->
-<!--    <button bindtap="to_addressAdd" class="hand">+ 手动添加</button>-->
-<!--    <button bindtap="choose_address" class="wx">+ 微信添加</button>-->
-<!--  </view>-->
-<!--</view>-->

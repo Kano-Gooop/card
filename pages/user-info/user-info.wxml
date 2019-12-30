@@ -4,7 +4,7 @@
       <view class="label">头像</view>
       <view class="right">
         <view class="value">
-          <image src="/images/t-cardset2.png" class="cover"></image>
+          <image src="{{user.avatar}}" class="cover"></image>
         </view>
         <image src="/icons/icon_right_arrow.png" class="right-arrow"></image>
       </view>
@@ -13,7 +13,8 @@
       <view class="label">昵称</view>
       <view class="right">
         <view class="value">
-          <view class="text one-line-ellipsis">某某某</view>
+          <view class="text one-line-ellipsis" wx:if="{{user.nickname}}">{{user.nickname}}</view>
+          <view class="placeholder" wx:else>请填写</view>
         </view>
         <image src="/icons/icon_right_arrow.png" class="right-arrow"></image>
       </view>
@@ -22,8 +23,8 @@
       <view class="label">姓名</view>
       <view class="right">
         <view class="value">
-  <!--        <view class="placeholder">请填写</view>-->
-          <view class="text one-line-ellipsis">王八</view>
+          <view class="text one-line-ellipsis" wx:if="{{user.username}}">{{user.username}}</view>
+          <view class="placeholder" wx:else>请填写姓名</view>
         </view>
         <image src="/icons/icon_right_arrow.png" class="right-arrow"></image>
       </view>
@@ -44,7 +45,7 @@
       <view class="label">电话</view>
       <view class="right">
         <view class="value">
-          <!--        <view class="placeholder">请填写</view>-->
+          <view class="placeholder" wx:if="{{user.tel}}">请填写电话</view>
           <view class="text">188****5864</view>
         </view>
         <image src="/icons/icon_right_arrow.png" class="right-arrow"></image>
@@ -57,7 +58,7 @@
     <view catchtap class="cu-dialog cmodal succ">
       <view class="title">请输入{{input_list[input_index].title}}</view>
       <view class="form">
-        <input type="{{input_list[input_index].type}}" maxlength="{{input_list[input_index].max}}" />
+        <input bindinput="bind_input" type="{{input_list[input_index].type}}" maxlength="{{input_list[input_index].max}}" />
       </view>
       <view class="btn-box">
         <button bindtap="hide_input" class="cancel">取消</button>

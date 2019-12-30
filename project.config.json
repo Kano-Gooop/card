@@ -110,10 +110,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 9,
 					"name": "卡牌详情",
 					"pathName": "pages/card-detail/card-detail",
-					"query": "",
+					"query": "id=2",
 					"scene": null
 				},
 				{

@@ -3,10 +3,10 @@
   <view class="banner">
     <image src="/images/my_img_bg.jpg" class="my-img-bg"></image>
     <view class="user-info">
-      <image src="/images/default-header.png" class="header"></image>
+      <image src="{{user.avatar}}" class="header"></image>
 
-      <button bindgetuserinfo="auth" open-type="getUserInfo" class="auth" wx:if="{{user_auth == 0}}">点击授权</button>
-      <view class="nickname" wx:else>某某某</view>
+      <button bindgetuserinfo="auth" open-type="getUserInfo" class="auth" wx:if="{{user.user_auth == 0}}">点击授权</button>
+      <view class="nickname" wx:else>{{user.nickname}}</view>
     </view>
   </view>
 

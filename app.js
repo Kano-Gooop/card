@@ -32,12 +32,18 @@ App({
     statusBarHeight: 0,
     topBarHeight: 0,
   },
+  common: {
+    card_bg: ''
+  },
   user_data: {
     token: '',
     uid: 0,
+    nickname: '',
     username: '',
+    sex: 0,  // 0.未知 1.男 2.女
     user_auth: 0, // 0.用户未授权 1.用户已授权
-    avatar: ''
+    avatar: '',
+    tel: ''
   },
   mp_update() {
     const updateManager = wx.getUpdateManager();
@@ -173,17 +179,18 @@ App({
     return arr;
   },
   // 小程序登录获取token
-  login(callback) {
-    this.get_code((code) => {
+  login(callback, inviter_id) {
+    this.get_code(code => {
       let post = {
-        code: code
+        code: code,
+        inviter_id
       };
 
       this.ajax('login/login', post, (res) => {
         console.log(res.token);
         callback(res);
       });
-    })
+    });
   },
   get_code(callback) {
     wx.login({
@@ -192,15 +199,56 @@ App({
       }
     });
   },
-  // 设置全局的 user_data
-  set_user_data() {
+  // 授权获取用户信息
+  userAuth(callback) {
+    wx.getUserInfo({
+      success: user => {
+        let post = {
+          iv: user.iv,
+          encryptedData: user.encryptedData
+        };
+        this.ajax('login/userAuth', post, () => {
+          callback(true);
+        }, () => {
+          callback(false);
+        });
+      }
+    });
+  },
+  // 设置一些公共信息
+  set_common() {
+    this.aboutUs();
+    this.mydetail();
+  },
+  aboutUs(complete) {
+    this.ajax('api/aboutUs', null, res => {
+      this.format_img(res, 'logo');
+      this.format_img(res, 'card_bg');
+      this.format_img(res, 'blood1');
+      this.format_img(res, 'blood2');
+
+      this.common.card_bg = res.card_bg;
+    }, null, () => {
+      if (complete) {
+        complete();
+      }
+    });
+  },
+  mydetail(complete) {
     this.ajax('my/mydetail', null, res => {
       this.format_img(res, 'avatar');
 
       this.user_data.uid = res.id;
-      this.user_data.user_auth = res.user_auth;
+      this.user_data.nickname = res.nickname;
       this.user_data.username = res.username;
+      this.user_data.sex = res.sex;
+      this.user_data.user_auth = res.user_auth;
       this.user_data.avatar = res.avatar;
+      this.user_data.tel = res.tel;
+    }, null, () => {
+      if (complete) {
+        complete();
+      }
     });
   },
   redirect_or_switch_or_index(route) {
