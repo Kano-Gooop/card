@@ -11,7 +11,7 @@
       <view class="search-box">
         <view class="drawer-box">
           <image bindtap="showModal" src="/icons/drawer.png" class="drawer"></image>
-          <view class="num" id="dot-num">12</view>
+          <view class="num {{dot_num > 0 ? 'active' : ''}}" id="dot-num">{{dot_num}}</view>
           <view class="dot {{dot_active ? 'active' : ''}}" style="left: {{dot_left}}px; top: {{dot_top}}px;"></view>
         </view>
         <view class="search">
@@ -112,25 +112,60 @@
         </view>
       </view>
       <view class="tab-list">
-        <view class="tab active">主牌区</view>
-        <view class="tab">备牌区</view>
+        <view bindtap="tab_change" data-tab="{{1}}" class="tab {{tab_active == 1 ? 'active' : ''}}">主牌区</view>
+        <view bindtap="tab_change" data-tab="{{2}}" class="tab {{tab_active == 2 ? 'active' : ''}}">备牌区</view>
       </view>
     </view>
-    <view class="card-list-wrapper" id="card-list2-wrapper">
+    <view class="card-list-wrapper ffffpp" id="card-list2-wrapper">
       <scroll-view scroll-y class="card-list2" style="height: {{cl2_height}}px;">
-        <view class="card" wx:for="{{zhu_list}}">
-          <view class="cost">2</view>
-          <view class="name one-line-ellipsis">善走御者 蜚廉</view>
+        <view class="card" wx:for="{{zhu_list}}" wx:key="index" wx:if="{{tab_active == 1}}">
+          <view class="cost">{{item.resource}}</view>
+          <view class="name one-line-ellipsis">{{item.card_name}}</view>
           <view class="add-sub">
-            <image src="/icons/minus.png" class="sub"></image>
-            <view class="num">14</view>
-            <image src="/icons/add.png" class="add"></image>
+            <image bindtap="card_num_change" data-index="{{index}}" data-type="{{1}}" data-num="{{-1}}" src="/icons/minus.png" class="sub"></image>
+            <view class="num">{{item.num}}</view>
+            <image bindtap="card_num_change" data-index="{{index}}" data-type="{{1}}" data-num="{{1}}" src="/icons/add.png" class="add"></image>
+          </view>
+        </view>
+        <view class="card" wx:for="{{bei_list}}" wx:key="index" wx:if="{{tab_active == 2}}">
+          <view class="cost">{{item.resource}}</view>
+          <view class="name one-line-ellipsis">{{item.card_name}}</view>
+          <view class="add-sub">
+            <image bindtap="card_num_change" data-index="{{index}}" data-type="{{2}}" data-num="{{-1}}" src="/icons/minus.png" class="sub"></image>
+            <view class="num">{{item.num}}</view>
+            <image bindtap="card_num_change" data-index="{{index}}" data-type="{{2}}" data-num="{{1}}" src="/icons/add.png" class="add"></image>
           </view>
         </view>
       </scroll-view>
     </view>
     <view class="bottom-box">
-      <button class="edit-btn">创建套牌</button>
+      <button bindtap="show_edit" class="edit-btn">{{id == 0 ? '创建' : '编辑'}}套牌</button>
+    </view>
+  </view>
+
+  <!-- 创建/编辑套牌modal -->
+  <view bindtap="hide_edit" catchtouchmove class="cu-modal {{show_edit ? 'show' : ''}}">
+    <view catchtap class="cu-dialog cmodal">
+      <view class="title">请输入套牌名称</view>
+      <view class="form">
+        <input bindinput="bind_input" data-name="dir_name" value="{{dir_name}}" type="text" maxlength="20" focus />
+      </view>
+      <view class="btn-box">
+        <button bindtap="hide_edit" class="cancel">取消</button>
+        <button bindtap="edit_combo" class="confirm">确定</button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 复制套牌成功modal -->
+  <view catchtouchmove class="cu-modal {{show_succ ? 'show' : ''}}">
+    <view class="cu-dialog cmodal succ">
+      <icon type="success" color="#4981fb" size="66rpx" />
+      <view class="title">套牌创建成功</view>
+      <view class="btn-box">
+        <button bindtap="back_home" class="cancel">返回主页</button>
+        <button bindtap="to_detail" class="confirm">进入详情</button>
+      </view>
     </view>
   </view>
 </view>

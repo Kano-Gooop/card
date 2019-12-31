@@ -39,7 +39,7 @@ App({
     token: '',
     uid: 0,
     nickname: '',
-    username: '',
+    realname: '',
     sex: 0,  // 0.未知 1.男 2.女
     user_auth: 0, // 0.用户未授权 1.用户已授权
     avatar: '',
@@ -239,12 +239,12 @@ App({
       this.format_img(res, 'avatar');
 
       this.user_data.uid = res.id;
-      this.user_data.nickname = res.nickname;
-      this.user_data.username = res.username;
+      this.user_data.nickname = res.nickname || '';
+      this.user_data.realname = res.realname || '';
       this.user_data.sex = res.sex;
       this.user_data.user_auth = res.user_auth;
       this.user_data.avatar = res.avatar;
-      this.user_data.tel = res.tel;
+      this.user_data.tel = res.tel || '';
     }, null, () => {
       if (complete) {
         complete();
@@ -285,8 +285,12 @@ App({
     } else if (typeof obj === 'object') {
       obj[img_field] = this.empty_or(obj[img_field]);
     } else {
-      obj = this.empty_or(obj);
+      return this.empty_or(obj);
     }
+  },
+  // 从图片路径中去除服务器路径
+  format_img_reverse(img) {
+    return img.replace(this.my_config.base_url + '/', '');
   },
   empty_or(img) {
     if (img) {

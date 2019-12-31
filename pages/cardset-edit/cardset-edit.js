@@ -85,17 +85,25 @@ Page({
     nodata: false,
     loading: false,
 
+    dot_num: 0,
     dot_left_origin: 0,
     dot_top_origin: 0,
     dot_left: 0,
     dot_top: 0,
     dot_active: false,
 
+    tab_active: 1,  // 1.主牌 2.备牌
     zhu_list: {},  // 主牌列表
-    bei_list: {}  // 备牌列表
+    bei_list: {},  // 备牌列表
+
+    dir_name: '',  // 套牌名称
+    show_edit: false,
+    show_succ: false,
+    new_id: 0  // 创建套牌成功，新套牌id
   },
   onLoad(options) {
     if (options.id) {
+      this.setData({ id: options.id });
       this.data.id = options.id;
       wx.setNavigationBarTitle({ title: '编辑套牌' });
     } else {
@@ -115,13 +123,13 @@ Page({
       this.setData({ cl_height: res.height });
     }).exec();
 
-    query.select('#card-list2-wrapper').boundingClientRect(res => {
-      this.setData({ cl2_height: res.height });
-    }).exec();
+    setTimeout(() => {
+      query.select('.ffffpp').boundingClientRect(res => {
+        console.log(res.height, 'cl2_height');
 
-    query.select('#card-list2-wrapper').boundingClientRect(res => {
-      this.setData({ cl2_height: res.height });
-    }).exec();
+        this.setData({ cl2_height: res.height });
+      }).exec();
+    }, 500);
 
     query.select('#dot-num').boundingClientRect(res => {
       this.setData({
@@ -385,41 +393,67 @@ Page({
       }
     }
   },
-  // 临时，获取卡牌位置
+  // 主牌/备牌点击
   pai_btn_click(e) {
     let index = e.currentTarget.dataset.index;
     let type = e.currentTarget.dataset.type;
 
     let data = this.data;
 
+    let active_field;
+    let pai_list;
+    let pai_list_field;
+    let pai_text;
 
     if (type === 1) {
-      if (!data.card_list[index].zhu_active) {
-        this._move_anime();
+      active_field = 'zhu_active';
+      pai_list = data.zhu_list;
+      pai_list_field = 'zhu_list';
+      pai_text = '主牌';
+    } else {
+      active_field = 'bei_active';
+      pai_list = data.bei_list;
+      pai_list_field = 'bei_list';
+      pai_text = '备牌';
+    }
 
-        // 处理一下资源牌的特殊值
-        let resource;
-        switch (data.card_list[index].resource) {
-          case -1:
-            resource = 'X';
-            break;
-          case -2:
-            resource = '';
-            break;
-          default:
-            resource = data.card_list[index].resource;
-            break;
-        }
+    if (!data.card_list[index][active_field]) {
+      this._move_anime(index, type);
 
-        data.zhu_list[data.card_list[index].id] = {
-          resource: resource,
-          card_name: data.card_list[index].card_name,
-          num: 1
-        };
-        this.setData({
-          zhu_list: data.zhu_list
-        })
+      // 处理一下资源牌的特殊值
+      let resource;
+      switch (data.card_list[index].resource) {
+        case -1:
+          resource = 'X';
+          break;
+        case -2:
+          resource = '';
+          break;
+        default:
+          resource = data.card_list[index].resource;
+          break;
       }
+
+      pai_list[data.card_list[index].id] = {
+        resource: resource,
+        card_name: data.card_list[index].card_name,
+        num: 1
+      };
+      this.setData({
+        [pai_list_field]: pai_list,
+        dot_num: this._count_dot_num(),
+        [`card_list[${index}].${active_field}`]: true
+      });
+    } else {
+      app.confirm('从套牌' + pai_text + '中删除此牌？', () => {
+        delete pai_list[data.card_list[index].id];
+
+        this.setData({
+          [pai_list_field]: pai_list,
+          dot_num: this._count_dot_num(),
+          [`card_list[${index}].${active_field}`]: false
+        });
+      });
     }
   },
   // 牌移动动画
@@ -443,5 +477,121 @@ Page({
         });
       });
     }).exec();
+  },
+  // 计算 主牌 + 备牌 张数
+  _count_dot_num() {
+    return Object.keys(this.data.zhu_list).length + Object.keys(this.data.bei_list).length;
+  },
+  // 切换主牌/备牌
+  tab_change(e) {
+    let tab = e.currentTarget.dataset.tab;
+    this.setData({ tab_active: tab });
+  },
+  // 卡牌加减
+  card_num_change(e) {
+    let type = e.currentTarget.dataset.type;
+    let num = e.currentTarget.dataset.num;
+    let index = e.currentTarget.dataset.index;
+
+    let data = this.data;
+
+    let active_field;
+    let pai_list;
+    let pai_list_field;
+    let pai_text;
+
+    if (type === 1) {
+      active_field = 'zhu_active';
+      pai_list = data.zhu_list;
+      pai_list_field = 'zhu_list';
+      pai_text = '主牌';
+    } else {
+      active_field = 'bei_active';
+      pai_list = data.bei_list;
+      pai_list_field = 'bei_list';
+      pai_text = '备牌';
+    }
+
+    // 卡牌现数量
+    let amount = pai_list[index].num;
+
+    // 卡牌小于1并减少时删除牌，卡牌等于99并增加时什么也不做
+    if (amount === 1 && num === -1) {
+      app.confirm('从套牌' + pai_text + '中删除此牌？', () => {
+        delete pai_list[index];
+
+        this.setData({
+          [pai_list_field]: pai_list,
+          dot_num: this._count_dot_num()
+        });
+
+        this._un_active(index, type);
+      });
+    } else if (!(amount === 99 && num === 1)) {
+      this.setData({ [pai_list_field + `.${index}.num`]: pai_list[index].num + num });
+    }
+  },
+  // 当卡牌从套牌删除时，对应的主牌/备案按钮变灰（如果此牌仍在卡牌列表中的话）
+  _un_active(id, type) {
+    for (let i = 0; i < this.data.card_list.length; i++) {
+      if (this.data.card_list[i].id === parseInt(id)) {
+        if (type === 1) {
+          this.setData({ [`card_list[${i}].zhu_active`]: false });
+        } else {
+          this.setData({ [`card_list[${i}].bei_active`]: false });
+        }
+        break;
+      }
+    }
+  },
+  // 显示创建/编辑套牌弹窗
+  show_edit() {
+    if (Object.keys(this.data.zhu_list).length === 0) {
+      app.modal('主牌不能为空');
+    } else {
+      this.setData({show_edit: true});
+    }
+  },
+  // 隐藏创建/编辑套牌弹窗
+  hide_edit() {
+    this.setData({ show_edit: false });
+  },
+  // 创建/编辑套牌
+  edit_combo() {
+    if (!this.data.dir_name.trim()) {
+      app.toast('套牌名不能为空');
+    } else {
+      let post = {
+        dir_name: this.data.dir_name,
+        combo: JSON.stringify(this._format_card_post())
+      };
+
+      app.ajax('my/createCardCombo', post, res => {
+        this.data.new_id = res;
+        this.setData({
+          show_edit: false,
+          show_succ: true
+        })
+      });
+    }
+  },
+  // 将卡牌整理成
+  _format_card_post() {
+    let combo = {};
+    for (let key in this.data.zhu_list) {
+      combo[`c_${key}_1`] = this.data.zhu_list[key].num;
+    }
+    for (let key in this.data.bei_list) {
+      combo[`c_${key}_2`] = this.data.bei_list[key].num;
+    }
+    return combo;
+  },
+  // 返回主页
+  back_home() {
+    wx.switchTab({ url: '/pages/my/my' });
+  },
+  // 进入详情
+  to_detail() {
+    wx.redirectTo({url: '/pages/cardset-detail/cardset-detail?id=' + this.data.new_id });
   }
 });

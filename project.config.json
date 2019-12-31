@@ -117,10 +117,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 10,
 					"name": "套牌详情",
 					"pathName": "pages/cardset-detail/cardset-detail",
-					"query": "",
+					"query": "id=2",
 					"scene": null
 				},
 				{

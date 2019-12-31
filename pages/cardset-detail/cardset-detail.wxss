@@ -265,7 +265,7 @@
   width: 560rpx;
   box-sizing: border-box;
   border-radius: 8rpx;
-  padding: 58rpx 50rpx 33rpx;
+  padding: 58rpx 50rpx 0;
 }
 
 .cmodal .title {
@@ -294,7 +294,7 @@
   width: 0;
   flex-grow: 1;
   border-radius: 0;
-  padding: 32rpx 0 0 0;
+  padding: 32rpx 0 33rpx;
   margin: 0;
   font-size: 36rpx;
   min-height: auto;
