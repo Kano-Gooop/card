@@ -2,56 +2,34 @@
   <view class="set-info">
     <view class="title">
       <image src="/icons/cd-tab1.png" class="icon"></image>
-      <view class="text">套牌组建1</view>
+      <view class="text">{{combo.dir_name}}</view>
     </view>
     <view class="nums">
-      <view class="zhu">主牌：9</view>
-      <view class="bei">备牌：15</view>
+      <view class="zhu">主牌：{{combo.main_num}}</view>
+      <view class="bei">备牌：{{combo.spare_num}}</view>
     </view>
   </view>
 
   <view class="zhu-box">
     <view class="title">主牌</view>
 
-    <view class="sub-pai-box">
-      <view class="title">单位（1）</view>
+    <view class="sub-pai-box" wx:for="{{main}}" wx:key="id">
+      <view class="title">{{item.type_name}}（{{item.list.length}}）</view>
       <view class="pai-list">
-        <view class="pai">
-          <image src="/images/t-set.png" class="cover"></image>
+        <view class="pai" wx:for="{{item.list}}" wx:for-item="card" wx:key="id">
+          <image src="{{card.cover}}" class="cover"></image>
           <view class="info">
             <view class="top-line">
-              <view class="title">熊虎之力 恶来 * 2</view>
+              <view class="title">{{card.card_name}} * {{card.num}}</view>
               <view class="icons">
-                <view class="resource">
+                <view class="resource" wx:if="{{card.resource != -2}}">
                   <image src="/images/resource-bg.png" class="bg"></image>
-                  <view class="text">7</view>
+                  <view class="text">{{card.resource}}</view>
                 </view>
-                <image src="/icons/t-shili1.png" class="force"></image>
+                <image src="{{card.camp_icon}}" class="force"></image>
               </view>
             </view>
-            <view class="card-type">无双单位</view>
-          </view>
-        </view>
-      </view>
-    </view>
-
-    <view class="sub-pai-box">
-      <view class="title">策略（7）</view>
-      <view class="pai-list">
-        <view class="pai" wx:for="{{[0, 1, 2, 3, 4, 5, 6]}}">
-          <image src="/images/t-set.png" class="cover"></image>
-          <view class="info">
-            <view class="top-line">
-              <view class="title">熊虎之力 恶来 * 2</view>
-              <view class="icons">
-                <view class="resource">
-                  <image src="/images/resource-bg.png" class="bg"></image>
-                  <view class="text">7</view>
-                </view>
-                <image src="/icons/t-shili1.png" class="force"></image>
-              </view>
-            </view>
-            <view class="card-type">无双单位</view>
+            <view class="card-type">{{card.wushuang == 1 ? '无双' : ''}}{{card.type}}</view>
           </view>
         </view>
       </view>
@@ -61,20 +39,20 @@
   <view class="bei-box">
     <view class="title">备牌</view>
     <view class="pai-list">
-      <view class="pai" wx:for="{{[0, 1, 2]}}">
-        <image src="/images/t-set.png" class="cover"></image>
+      <view class="pai" wx:for="{{spare}}" wx:key="id">
+        <image src="{{item.cover}}" class="cover"></image>
         <view class="info">
           <view class="top-line">
-            <view class="title">熊虎之力 恶来 * 2</view>
+            <view class="title">{{item.card_name}} * {{item.num}}</view>
             <view class="icons">
-              <view class="resource">
+              <view class="resource" wx:if="{{item.resource != -2}}">
                 <image src="/images/resource-bg.png" class="bg"></image>
-                <view class="text">7</view>
+                <view class="text">{{item.resource}}</view>
               </view>
-              <image src="/icons/t-shili1.png" class="force"></image>
+              <image src="{{item.camp_icon}}" class="force"></image>
             </view>
           </view>
-          <view class="card-type">无双单位</view>
+          <view class="card-type">{{item.wushuang == 1 ? '无双' : ''}}{{item.type}}</view>
         </view>
       </view>
     </view>

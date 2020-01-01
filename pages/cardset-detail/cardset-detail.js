@@ -3,7 +3,12 @@ const app = getApp();
 Page({
   data: {
     id: 0,
-    combo: {},
+    combo: {},  // 套牌详情
+    main: [],  // 主牌列表
+    spare: [],  // 备牌列表
+
+    camp_list: [],  // 势力列表（获取势力小图标）
+    type_list: [],  // 卡牌类型列表
 
     show_tongji: false,  // 是否显示资源你统计图modal
     show_copy: false,  // 是否显示复制套牌modal
@@ -51,40 +56,18 @@ Page({
   },
   onLoad(options) {
     this.data.id = options.id;
-    this.myComboDetail();
+    this.cardParams(() => {
+      this.myComboDetail();
+    });
 
     this.column_compute();
   },
   // 卡牌筛选条件（势力的小图标）
   cardParams(complete) {
     app.ajax('api/cardParams', null, res => {
-      for (let key in res) {
-        if (key !== 'resource') {
-          for (let i = 0; i < res[key].length; i++) {
-            res[key][i].active = false;
-          }
-        }
-      }
-
-      res.card_attr.unshift({ id: -2, attr_name: '全部', active: true });
-      res.card_type.unshift({ id: -2, type_name: '全部', active: true });
-      res.card_camp.unshift({ id: -2, camp_name: '全部', active: true });
-      res.card_ability.unshift({ id: -2, ability_name: '全部', active: true });
-      res.card_version.unshift({ id: -2, version_name: '全部', active: true });
-
-      this.setData({
-        card_attr: res.card_attr,
-        card_type: res.card_type,
-        card_camp: res.card_camp,
-        card_ability: res.card_ability,
-        card_version: res.card_version,
-
-        card_attr_fp: app.null_arr(res.card_attr.length, 4),
-        resource_fp: app.null_arr(this.data.resource.length, 4),
-        card_type_fp: app.null_arr(res.card_type.length, 4),
-        card_camp_fp: app.null_arr(res.card_camp.length, 4),
-        card_ability_fp: app.null_arr(res.card_ability.length, 4),
-      });
+      app.format_img(res.card_camp, 'icon');
+      this.data.camp_list = res.card_camp;
+      this.data.type_list = res.card_type;
     }, null, () => {
       if (complete) {
         complete();
@@ -97,25 +80,56 @@ Page({
       app.format_img(res, 'cover');
       app.format_img(res.list, 'cover');
 
-      this.setData({combo: res});
+      let [main, spare] = this.format_list(res.list);
 
-      this.format_list(res.list);
+      this.setData({
+        combo: res,
+        main: main,
+        spare: spare
+      });
     });
   },
-  // 格式化卡牌列表，将其按主牌（主牌再按类型分类）、备牌分类
+  // 格式化卡牌列表，将其按主牌（主牌再按类型分类）、备牌分类，将势力小图标放入卡牌对象中
   format_list(list) {
-    let main = [];
+    let main = this.data.type_list;
     let spare = [];
 
+    for (let i = 0; i < main.length; i++) {
+      main[i].list = [];
+    }
+
     for (let i = 0; i < list.length; i++) {
+      this.insert_camp(list[i]);
+
+      if (list[i].resource === '资源-事件') {
+        list[i].resource = -2;
+      }
+
       if (list[i].combo_key.split('_')[2] === '1') {
-        main.push(list[i]);
+        for (let j = 0; j < main.length; j++) {
+          if (list[i].type_id === main[j].id) {
+            main[j].list.push(list[i]);
+            break;
+          }
+        }
       } else {
         spare.push(list[i]);
       }
     }
 
-    console.log(main, spare);
+    main = main.filter((value) => {
+      return value.list.length > 0;
+    });
+
+    return [main, spare];
+  },
+  insert_camp(card) {
+    for (let i = 0; i < this.data.camp_list.length; i++) {
+      if (card.camp_id === this.data.camp_list[i].id) {
+        card.camp_icon = this.data.camp_list[i].icon;
+        break;
+      }
+    }
   },
   show_tongji() {
     this.setData({ show_tongji: true });
