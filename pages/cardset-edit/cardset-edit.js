@@ -104,17 +104,24 @@ Page({
   onLoad(options) {
     if (options.id) {
       this.setData({ id: options.id });
-      this.data.id = options.id;
       wx.setNavigationBarTitle({ title: '编辑套牌' });
+      this.myComboDetail(() => {
+        this.setData({ dot_num: this._count_dot_num() });
+
+        this.cardParams(() => {
+          this.cardList(() => {
+            this.setData({ full_loading: false });
+          });
+        });
+      });
     } else {
       wx.setNavigationBarTitle({ title: '创建套牌' });
-    }
-
-    this.cardParams(() => {
-      this.cardList(() => {
-        this.setData({ full_loading: false });
+      this.cardParams(() => {
+        this.cardList(() => {
+          this.setData({ full_loading: false });
+        });
       });
-    });
+    }
   },
   onReady() {
     const query = wx.createSelectorQuery();
@@ -139,6 +146,46 @@ Page({
         dot_top: 0
       });
     }).exec();
+  },
+  // 套牌详情
+  myComboDetail(complete) {
+    app.ajax('my/myComboDetail', { dir_id: this.data.id }, res => {
+      let zhu_list = {};
+      let bei_list = {};
+      let combo_key;
+
+      for (let i = 0; i < res.list.length; i++) {
+        if (res.list[i].resource === '资源-事件') {
+          res.list[i].resource = '';
+        }
+
+        combo_key = res.list[i].combo_key.split('_');
+
+        if (combo_key[2] === '1') {
+          zhu_list[combo_key[1]] = {
+            resource: res.list[i].resource,
+            card_name: res.list[i].card_name,
+            num: res.list[i].num
+          };
+        } else {
+          bei_list[combo_key[1]] = {
+            resource: res.list[i].resource,
+            card_name: res.list[i].card_name,
+            num: res.list[i].num
+          };
+        }
+      }
+
+      this.setData({
+        dir_name: res.dir_name,
+        zhu_list,
+        bei_list
+      })
+    }, null, () => {
+      if (complete) {
+        complete();
+      }
+    });
   },
   // 卡牌筛选条件
   cardParams(complete) {
@@ -549,7 +596,7 @@ Page({
     if (Object.keys(this.data.zhu_list).length === 0) {
       app.modal('主牌不能为空');
     } else {
-      this.setData({show_edit: true});
+      this.setData({ show_edit: true });
     }
   },
   // 隐藏创建/编辑套牌弹窗
@@ -566,7 +613,15 @@ Page({
         combo: JSON.stringify(this._format_card_post())
       };
 
-      app.ajax('my/createCardCombo', post, res => {
+      let cmd;
+      if (this.data.id === 0) {
+        cmd = 'my/createCardCombo';
+      } else {
+        cmd = 'my/cardComboModify';
+        post.dir_id = this.data.id;
+      }
+
+      app.ajax(cmd, post, res => {
         this.data.new_id = res;
         this.setData({
           show_edit: false,
@@ -592,6 +647,6 @@ Page({
   },
   // 进入详情
   to_detail() {
-    wx.redirectTo({url: '/pages/cardset-detail/cardset-detail?id=' + this.data.new_id });
+    wx.redirectTo({ url: '/pages/cardset-detail/cardset-detail?id=' + this.data.new_id });
   }
 });

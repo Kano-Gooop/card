@@ -8,19 +8,19 @@
     <image src="/images/order-status-bg.jpg" class="bg"></image>
 
     <view class="text-box">
-      <block wx:if="{{t_status == 0}}">
+      <block wx:if="{{order.status == 0}}">
         <view class="title">待付款</view>
         <view class="desc">这份订单还未支付，赶快去支付吧~</view>
       </block>
-      <block wx:if="{{t_status == 1}}">
+      <block wx:if="{{order.status == 1}}">
         <view class="title">待发货</view>
         <view class="desc">您的订单正在配货中，请您耐心等待~</view>
       </block>
-      <block wx:if="{{t_status == 2}}">
+      <block wx:if="{{order.status == 2}}">
         <view class="title">待收货</view>
         <view class="desc">您的订单正在送往指定目的地，请注意签收~</view>
       </block>
-      <block wx:if="{{t_status == 3 || t_status == 4}}">
+      <block wx:if="{{order.status == 3}}">
         <view class="title">已完成</view>
         <view class="desc">本次订单已完成，期待再次为您服务~</view>
       </block>
@@ -29,27 +29,27 @@
 
   <!-- 商品 -->
   <view class="pro-list">
-    <view class="pro" wx:for="{{[0, 1, 2]}}">
+    <view class="pro" wx:for="{{order.child}}" wx:key="order_detail_id">
       <view class="pro-main">
-        <image src="/images/t-goods.jpg" class="cover"></image>
+        <image src="{{item.cover}}" class="cover"></image>
         <view class="info">
           <view class="shang">
-            <view class="title two-line-ellipsis">掌控的历史 初阵【081】征西将军 陈到 普卡 蜀银 属性 类别 所属值</view>
-            <view class="attr one-line-ellipsis">商品参数名称1商品参数名称1</view>
+            <view class="title two-line-ellipsis">{{item.goods_name}}</view>
+            <view class="attr one-line-ellipsis">{{item.attr}}</view>
           </view>
           <view class="xia">
-            <view class="price">50.00</view>
+            <view class="price">{{item.unit_price}}</view>
             <view class="amount">
               <image src="/icons/cha.png" class="times"></image>
-              <view class="num">1</view>
+              <view class="num">{{item.num}}</view>
             </view>
           </view>
         </view>
       </view>
-      <view class="btn-box" wx:if="{{t_status == 3}}">
-        <button bindtap="show_comment" class="com-btn">评论</button>
+      <view class="btn-box" wx:if="{{order.status == 3 && item.evaluate == 0}}">
+        <button bindtap="show_comment" data-active_odi="{{item.order_detail_id}}" class="com-btn">评论</button>
       </view>
-      <view class="comment" wx:if="{{t_status == 4}}">很满意的一次购物，原画设计美观，卡牌质量很棒，推荐 大家购买！</view>
+      <view class="comment" wx:if="{{order.status == 3 && item.evaluate == 1}}">{{item.comment}}</view>
     </view>
   </view>
 
@@ -57,15 +57,15 @@
   <view class="multi-price">
     <view class="price-box1">
       <view class="label">商品金额</view>
-      <view class="price">50.00</view>
+      <view class="price">{{order.total_price - order.carriage}}</view>
     </view>
     <view class="price-box1">
       <view class="label">运费</view>
-      <view class="price">0.00</view>
+      <view class="price">{{order.carriage}}</view>
     </view>
     <view class="price-box2">
       <view class="label">总计</view>
-      <view class="price">50.00</view>
+      <view class="price">{{order.total_price}}</view>
     </view>
   </view>
 
@@ -73,39 +73,39 @@
     <view class="line">
       <view class="label">订单编号</view>
       <view class="right">
-        <view class="value">1870245807485200</view>
-        <button class="copy">复制</button>
+        <view class="value">{{order.pay_order_sn}}</view>
+        <button bindtap="copy" data-text="{{order.pay_order_sn}}" class="copy">复制</button>
       </view>
     </view>
     <view class="line">
       <view class="label">下单时间</view>
       <view class="right">
-        <view class="value">2019-11-10 15:36:10</view>
+        <view class="value">{{order.create_time}}</view>
       </view>
     </view>
-    <view class="line" wx:if="{{t_status > 0}}">
+    <view class="line" wx:if="{{order.status > 0}}">
       <view class="label">支付时间</view>
       <view class="right">
-        <view class="value">2019-11-10 15:40:26</view>
+        <view class="value">{{order.pay_time}}</view>
       </view>
     </view>
-    <view class="line" wx:if="{{t_status > 1}}">
+    <view class="line" wx:if="{{order.tracking_name}}">
       <view class="label">配送方式</view>
       <view class="right">
-        <view class="value">顺丰快递</view>
+        <view class="value">{{order.tracking_name}}</view>
       </view>
     </view>
-    <view class="line" wx:if="{{t_status > 1}}">
+    <view class="line" wx:if="{{order.tracking_num}}">
       <view class="label">物流编号</view>
       <view class="right">
-        <view class="value">1870245807485200</view>
-        <button class="copy">复制</button>
+        <view class="value">{{order.tracking_num}}</view>
+        <button bindtap="copy" data-text="{{order.tracking_num}}" class="copy">复制</button>
       </view>
     </view>
     <view class="line address">
       <view class="label">详细地址</view>
       <view class="right">
-        <view class="value">天津市 河西区 拉拉道 拉拉里 拉拉门 7楼502</view>
+        <view class="value">{{order.address}}</view>
       </view>
     </view>
   </view>
@@ -139,7 +139,7 @@
       </view>
       <view class="btn-box">
         <button bindtap="hide_comment" class="cancel">取消</button>
-        <button bindtap="refundApply" class="confirm">确定</button>
+        <button bindtap="orderEvaluate" class="confirm">确定</button>
       </view>
     </view>
   </view>

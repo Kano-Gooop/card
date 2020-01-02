@@ -25,6 +25,8 @@
     "pages/gg-list/gg-list",
     "pages/gg-detail/gg-detail",
     "pages/logistics/logistics",
+    "pages/my-collect/my-collect",
+    "pages/refund-list/refund-list",
     "pages/poster/poster"
   ],
   "window": {

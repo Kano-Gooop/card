@@ -320,7 +320,7 @@
 }
 
 .cmodal.succ {
-  padding: 55rpx 0 33rpx;
+  padding: 55rpx 0 0;
 }
 
 .cmodal.succ .title {

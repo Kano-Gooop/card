@@ -4,6 +4,8 @@ Page({
   data: {
     full_loading: true,
 
+    show_cart: false,  // 是否显示购物车
+
     // 筛选条件
     search: '',
     prop_type: 0,
@@ -27,6 +29,7 @@ Page({
 
     this.cateList();
     this.versionList();
+    this.cartList();
   },
   // 获取分类
   cateList(complete) {
@@ -163,6 +166,8 @@ Page({
         this.data.loading = false;
         wx.hideNavigationBarLoading();
         wx.stopPullDownRefresh();
+
+        this.cartList();
       });
     }
   },
@@ -181,5 +186,11 @@ Page({
   },
   bind_input(e) {
     app.bind_input(e, this);
-  }
+  },
+  // 购物车列表（用来判断是否显示购物车icon）
+  cartList() {
+    app.ajax('shop/cartList', null, res => {
+      this.setData({ show_cart: res.length > 0 });
+    });
+  },
 });

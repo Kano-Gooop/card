@@ -38,6 +38,16 @@
   box-shadow: 0 1rpx 76rpx 0 rgba(241, 238, 238, 0.75);
 }
 
+.invite-box .rule {
+  border: 2rpx solid #2586ff;
+  padding: 15rpx;
+  line-height: 1.4;
+  font-size: 26rpx;
+  color: #2586ff;
+  margin-bottom: 33rpx;
+  opacity: 0.8;
+}
+
 .invite-box .title {
   font-size: 30rpx;
   color: #4583fb;
@@ -129,6 +139,20 @@
   color: #fff;
   background: #2586ff;
   min-height: auto;
+}
+
+.invite-list .total {
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-end;
+  font-size: 24rpx;
+}
+
+.invite-list .total .label {
+}
+
+.invite-list .total .price {
+  color: red;
 }
 
 .modal-wrapper {
@@ -291,8 +315,8 @@
 }
 
 .iinvite-box .iinvite:last-child {
-  border-bottom: 0;
-  padding-bottom: 0;
+  /* border-bottom: 0; */
+  /* padding-bottom: 0; */
 }
 
 .iinvite-box .iinvite > view:first-child {
@@ -326,6 +350,20 @@
   color: red;
 }
 
+.iinvite-box .total {
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-end;
+  font-size: 24rpx;
+}
+
+.iinvite-box .total .label {
+}
+
+.iinvite-box .total .price-total {
+  color: red;
+}
+
 .canvas {
   position: fixed;
   left: -10000rpx;
@@ -344,7 +382,7 @@
   margin: auto;
   top: 0;
   bottom: 0;
-  /* height: 900rpx; */
+  position: relative;
 }
 
 .poster-modal .poster-img {

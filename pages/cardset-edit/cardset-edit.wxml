@@ -139,7 +139,7 @@
       </scroll-view>
     </view>
     <view class="bottom-box">
-      <button bindtap="show_edit" class="edit-btn">{{id == 0 ? '创建' : '编辑'}}套牌</button>
+      <button bindtap="show_edit" class="edit-btn">{{id == 0 ? '创建' : '保存'}}套牌</button>
     </view>
   </view>
 
@@ -161,7 +161,7 @@
   <view catchtouchmove class="cu-modal {{show_succ ? 'show' : ''}}">
     <view class="cu-dialog cmodal succ">
       <icon type="success" color="#4981fb" size="66rpx" />
-      <view class="title">套牌创建成功</view>
+      <view class="title">套牌{{id == 0 ? '创建' : '修改'}}成功</view>
       <view class="btn-box">
         <button bindtap="back_home" class="cancel">返回主页</button>
         <button bindtap="to_detail" class="confirm">进入详情</button>

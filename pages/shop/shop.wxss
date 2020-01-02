@@ -3,6 +3,18 @@
   padding-top: 196rpx;
 }
 
+.cart-icon {
+  position: fixed;
+  right: 24rpx;
+  top: 238rpx;
+  z-index: 1;
+}
+
+.cart-icon image {
+  width: 120rpx;
+  height: 120rpx;
+}
+
 .filter-box .prop-line {
   display: flex;
   background: #fff;

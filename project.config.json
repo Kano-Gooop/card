@@ -75,10 +75,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "创建/编辑套牌",
+					"id": 4,
+					"name": "套牌创建/编辑",
 					"pathName": "pages/cardset-edit/cardset-edit",
-					"query": "",
+					"query": "id=2",
 					"scene": null
 				},
 				{
@@ -89,10 +89,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 6,
 					"name": "商品详情页",
 					"pathName": "pages/shop-detail/shop-detail",
-					"query": "",
+					"query": "id=3",
 					"scene": null
 				},
 				{
@@ -173,10 +173,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 18,
 					"name": "订单详情",
 					"pathName": "pages/order-detail/order-detail",
-					"query": "id=8",
+					"query": "id=13",
 					"scene": null
 				},
 				{
@@ -190,6 +190,20 @@
 					"id": -1,
 					"name": "地址详情",
 					"pathName": "pages/address-detail/address-detail",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的收藏",
+					"pathName": "pages/my-collect/my-collect",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "售后服务",
+					"pathName": "pages/refund-list/refund-list",
 					"query": "",
 					"scene": null
 				}

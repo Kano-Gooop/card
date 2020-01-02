@@ -288,10 +288,6 @@ App({
       return this.empty_or(obj);
     }
   },
-  // 从图片路径中去除服务器路径
-  format_img_reverse(img) {
-    return img.replace(this.my_config.base_url + '/', '');
-  },
   empty_or(img) {
     if (img) {
       if (img.indexOf('https') === 0) {
@@ -301,6 +297,28 @@ App({
       }
     } else {
       return this.my_config.default_img;
+    }
+  },
+  // 从图片路径中去除服务器路径
+  format_img_reverse(img) {
+    return img.replace(this.my_config.base_url + '/', '');
+  },
+  // 时间格式化
+  format_time(obj, field, fmt) {
+    if (obj instanceof Array) {
+      for (let i = 0; i < obj.length; i++) {
+        if (fmt) {
+          obj[i][field] = utils.date_format(obj[i][field], fmt);
+        } else {
+          obj[i][field] = utils.date_format(obj[i][field]);
+        }
+      }
+    } else {
+      if (fmt) {
+        obj[field] = utils.date_format(obj[field], fmt);
+      } else {
+        obj[field] = utils.date_format(obj[field]);
+      }
     }
   },
   // 公共跳页方法

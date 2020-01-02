@@ -145,24 +145,19 @@ Page({
   },
   // 确认收货
   orderConfirm(e) {
-    let that = this;
     wx.showModal({
       title: '提示',
       content: '确认收货？',
-      success(res) {
+      success: res => {
         if (res.confirm) {
           wx.showLoading({
-            title: '加载中',
+            title: '确认收货...',
             mask: true
           });
           let order = e.currentTarget.dataset.order;
-          let post = {
-            token: app.user_data.token,
-            pay_order_sn: order.pay_order_sn
-          };
-          app.ajax('my/orderConfirm', post, () => {
+          app.ajax('my/orderConfirm', { order_id: order.id }, () => {
             wx.navigateTo({ url: '/pages/order-detail/order-detail?id=' + order.id });
-            that.refresh();
+            this.refresh();
           }, null, () => {
             wx.hideLoading();
           });

@@ -109,5 +109,14 @@ Page({
         complete();
       }
     });
+  },
+  // 删除套牌
+  cardComboDel(e) {
+    let id = e.currentTarget.dataset.id;
+    app.confirm('确认删除套牌？', () => {
+      app.ajax('my/cardComboDel', {dir_id: id}, () => {
+        this.myComboDir();
+      });
+    });
   }
 });

@@ -3,6 +3,11 @@
 </view>
 
 <view class="page">
+  <!-- 购物车 -->
+  <navigator url="/pages/shop-car/shop-car" class="cart-icon" wx:if="{{show_cart}}">
+    <image src="/icons/shopping-cart.png"></image>
+  </navigator>
+
   <view class="filter-box">
     <!-- 搜索框 -->
     <view class="search-box">

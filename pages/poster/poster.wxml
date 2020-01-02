@@ -1,3 +1,7 @@
+<view class="full-loading" wx:if="{{full_loading}}">
+  <view class="image"></view>
+</view>
+
 <view class="page">
   <view class="poster">
     <image src="/images/default-header.png" class="cover"></image>
@@ -5,7 +9,8 @@
   </view>
 
   <view class="invite-box">
-    <view class="title">邀请列表(15)</view>
+    <view class="rule">{{rule}}</view>
+    <view class="title">邀请列表({{invite_list.length}})</view>
     <view class="invite-list">
       <view class="invite hd">
         <view class="hd-box">头像</view>
@@ -14,48 +19,21 @@
         <view class="price one-line-ellipsis">消费</view>
         <view class="detail">详情</view>
       </view>
-      <view class="invite">
+      <view class="invite" wx:for="{{invite_list}}" wx:key="uid">
         <view class="hd-box">
-          <image src="/images/t-cardset1.png" class="header"></image>
+          <image src="{{item.avatar}}" class="header"></image>
         </view>
-        <view class="nickname one-line-ellipsis">环形山</view>
-        <view class="date">2019-12-12</view>
-        <view class="price one-line-ellipsis">¥35.23</view>
+        <view class="nickname one-line-ellipsis">{{item.nickname}}</view>
+        <view class="date">{{item.create_time}}</view>
+        <view class="price one-line-ellipsis">￥{{item.spend}}</view>
         <view class="detail">
-          <button bindtap="show_modal" size="mini">查看</button>
+          <button bindtap="show_modal" data-index="{{index}}" size="mini">查看</button>
         </view>
       </view>
       <view class="invite">
-        <view class="hd-box">
-          <image src="/images/t-cardset1.png" class="header"></image>
-        </view>
-        <view class="nickname one-line-ellipsis">环形山</view>
-        <view class="date">2019-12-12</view>
-        <view class="price one-line-ellipsis">¥35.23</view>
-        <view class="detail">
-          <button size="mini">查看</button>
-        </view>
-      </view>
-      <view class="invite">
-        <view class="hd-box">
-          <image src="/images/t-cardset1.png" class="header"></image>
-        </view>
-        <view class="nickname one-line-ellipsis">环形山</view>
-        <view class="date">2019-12-12</view>
-        <view class="price one-line-ellipsis">¥35.23</view>
-        <view class="detail">
-          <button size="mini">查看</button>
-        </view>
-      </view>
-      <view class="invite">
-        <view class="hd-box">
-          <image src="/images/t-cardset1.png" class="header"></image>
-        </view>
-        <view class="nickname one-line-ellipsis">环形山</view>
-        <view class="date">2019-12-12</view>
-        <view class="price one-line-ellipsis">¥35.23</view>
-        <view class="detail">
-          <button size="mini">查看</button>
+        <view class="total">
+          <view class="label">总计：</view>
+          <view class="price">￥{{total}}</view>
         </view>
       </view>
     </view>
@@ -69,24 +47,24 @@
 
       <view class="content">
         <view class="invitee">
-          <image src="/images/t-cardset1.png" class="header"></image>
+          <image src="{{person.avatar}}" class="header"></image>
           <view class="info">
             <view class="info-item">
               <view class="label">昵称</view>
-              <view class="value nickname">环形山</view>
+              <view class="value nickname">{{person.nickname}}</view>
             </view>
             <view class="info-item">
               <view class="label">注册时间</view>
-              <view class="value date">2019-12-12</view>
+              <view class="value date">{{person.create_time}}</view>
             </view>
             <view class="info-item">
               <view class="label">消费</view>
-              <view class="value price">￥35.23</view>
+              <view class="value price">￥{{person.spend}}</view>
             </view>
           </view>
         </view>
 
-        <view class="ta-title">TA的邀请(8)</view>
+        <view class="ta-title">TA的邀请({{sub_invite_list.length}})</view>
 
         <view class="iinvite-box">
           <view class="iinvite hd">
@@ -97,15 +75,21 @@
           </view>
           <view class="il-wrapper">
             <scroll-view scroll-y class="iinvite-list" style="height: {{il_height}}px;">
-              <view class="iinvite" wx:for="{{temp_arr}}">
+              <view class="iinvite" wx:for="{{sub_invite_list}}" wx:key="uid">
                 <view class="hd-box">
-                  <image src="/images/t-cardset1.png" class="header"></image>
+                  <image src="{{item.avatar}}" class="header"></image>
                 </view>
-                <view class="nickname">环形山</view>
-                <view class="date">2019-12-12</view>
-                <view class="price">¥35.23</view>
+                <view class="nickname">{{item.nickname}}</view>
+                <view class="date">{{item.create_time}}</view>
+                <view class="price">￥{{item.spend}}</view>
               </view>
             </scroll-view>
+          </view>
+          <view class="iinvite">
+            <view class="total">
+              <view class="label">总计：</view>
+              <view class="price-total">￥{{sub_total}}</view>
+            </view>
           </view>
         </view>
       </view>

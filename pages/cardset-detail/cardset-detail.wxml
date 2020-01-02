@@ -1,6 +1,6 @@
 <view class="page">
   <view class="set-info">
-    <view class="title">
+    <view bindtap="show_cd_modal" class="title">
       <image src="/icons/cd-tab1.png" class="icon"></image>
       <view class="text">{{combo.dir_name}}</view>
     </view>
@@ -59,15 +59,15 @@
   </view>
 
   <view class="foot">
-    <view class="tab">
+    <navigator url="/pages/cardset-edit/cardset-edit?id={{id}}" open-type="redirect" class="tab">
       <image src="/icons/cd-tab1.png" class="icon"></image>
       <view class="text">编辑套牌</view>
-    </view>
+    </navigator>
     <view bindtap="show_tongji" class="tab">
       <image src="/icons/cd-tab2.png" class="icon"></image>
       <view class="text">统计套牌</view>
     </view>
-    <view class="tab">
+    <view bindtap="show_copy_modal" class="tab">
       <image src="/icons/cd-tab3.png" class="icon"></image>
       <view class="text">复制套牌</view>
     </view>
@@ -106,28 +106,42 @@
     </view>
   </view>
 
-  <!-- 复制套牌modal -->
-  <view catchtouchmove class="cu-modal {{show_copy ? 'show' : ''}}">
-    <view class="cu-dialog cmodal">
-      <view class="title">请输入套牌名称</view>
+  <!-- 修改套牌名称 -->
+  <view bindtap="hide_cd_modal" catchtouchmove class="cu-modal {{show_cd_modal ? 'show' : ''}}">
+    <view catchtap class="cu-dialog cmodal">
+      <view class="title">修改套牌名称</view>
       <view class="form">
-        <input type="text" maxlength="20" />
+        <input bindinput="bind_input" data-name="dir_name" value="{{dir_name}}" type="text" maxlength="20" bindconfirm="dirnameModify" />
       </view>
       <view class="btn-box">
-        <button class="cancel">取消</button>
-        <button class="confirm">确定</button>
+        <button bindtap="hide_cd_modal" class="cancel">取消</button>
+        <button bindtap="dirnameModify" class="confirm">确定</button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 复制套牌modal -->
+  <view bindtap="hide_copy_modal" catchtouchmove class="cu-modal {{show_copy ? 'show' : ''}}">
+    <view catchtap class="cu-dialog cmodal">
+      <view class="title">请输入套牌名称</view>
+      <view class="form">
+        <input bindinput="bind_input" data-name="copy_dir_name" value="{{copy_dir_name}}" type="text" maxlength="20" bindconfirm="cardComboCopy" />
+      </view>
+      <view class="btn-box">
+        <button bindtap="hide_copy_modal" class="cancel">取消</button>
+        <button bindtap="cardComboCopy" class="confirm">确定</button>
       </view>
     </view>
   </view>
 
   <!-- 复制套牌成功modal -->
   <view catchtouchmove class="cu-modal {{show_succ ? 'show' : ''}}">
-    <view class="cu-dialog cmodal succ">
+    <view catchtap class="cu-dialog cmodal succ">
       <icon type="success" color="#4981fb" size="66rpx" />
-      <view class="title">套牌创建成功</view>
+      <view class="title">套牌复制成功</view>
       <view class="btn-box">
-        <button class="cancel">取消</button>
-        <button class="confirm">确定</button>
+        <button bindtap="hide_succ_modal" class="cancel">返回</button>
+        <button bindtap="to_copy_set" class="confirm">进入详情</button>
       </view>
     </view>
   </view>
