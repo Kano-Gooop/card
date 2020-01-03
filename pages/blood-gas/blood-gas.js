@@ -12,9 +12,16 @@ Page({
     roll1: 0,
     roll2: 0,
     roll_no: 0,  // 第一次点的roll点是哪个
-    when_roll: false
+    when_roll: false,
+
+    blood1_bg: '',
+    blood2_bg: ''
   },
   onLoad() {
+    this.setData({
+      blood1_bg: app.common.blood1,
+      blood2_bg: app.common.blood2
+    })
   },
   // 返回
   back() {

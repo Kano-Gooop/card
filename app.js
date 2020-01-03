@@ -33,7 +33,9 @@ App({
     topBarHeight: 0,
   },
   common: {
-    card_bg: ''
+    card_bg: '',  // 卡牌模糊背景
+    blood1: '',  // 计血器背景1
+    blood2: ''  // 计血器背景2
   },
   user_data: {
     token: '',
@@ -229,6 +231,8 @@ App({
       this.format_img(res, 'blood2');
 
       this.common.card_bg = res.card_bg;
+      this.common.blood1 = res.blood1;
+      this.common.blood2 = res.blood2;
     }, null, () => {
       if (complete) {
         complete();

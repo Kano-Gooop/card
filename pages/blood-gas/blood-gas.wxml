@@ -7,7 +7,7 @@
 <view class="page page-blood" wx:if="{{page == 1}}">
   <view class="two-people">
     <view class="people left">
-      <image src="/images/t-hongfang.jpg" class="bg" mode="aspectFill"></image>
+      <image src="{{blood1_bg}}" class="bg" mode="aspectFill"></image>
 
       <view class="blood">{{blood1}}</view>
       <view class="round-box">
@@ -21,7 +21,7 @@
     </view>
     <view class="vline"></view>
     <view class="people right">
-      <image src="/images/t-lanfang.jpg" class="bg" mode="aspectFill"></image>
+      <image src="{{blood2_bg}}" class="bg" mode="aspectFill"></image>
 
       <view class="blood">{{blood2}}</view>
       <view class="round-box">
@@ -87,12 +87,12 @@
 <view class="page page-dice" wx:else>
   <view class="two-people">
     <view class="people left">
-      <image src="/images/t-hongfang.jpg" class="bg" mode="aspectFill"></image>
+      <image src="{{blood1_bg}}" class="bg" mode="aspectFill"></image>
       <view class="blood">{{roll1}}</view>
     </view>
     <view class="vline"></view>
     <view class="people right">
-      <image src="/images/t-lanfang.jpg" class="bg" mode="aspectFill"></image>
+      <image src="{{blood2_bg}}" class="bg" mode="aspectFill"></image>
       <view class="blood">{{roll2}}</view>
     </view>
   </view>
