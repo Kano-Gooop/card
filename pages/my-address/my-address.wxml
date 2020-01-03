@@ -8,7 +8,7 @@
 
   <view class="address-list">
     <view class="address" wx:for="{{address_list}}" wx:key="id">
-      <view bindtap="choose" class="shang">
+      <view bindtap="choose" data-address="{{item}}" class="shang">
         <view class="top-line">
           <view class="name one-line-ellipsis">收货人：{{item.username}}</view>
           <view class="tel">{{item.tel}}</view>

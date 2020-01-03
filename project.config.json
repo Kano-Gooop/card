@@ -92,7 +92,7 @@
 					"id": 6,
 					"name": "商品详情页",
 					"pathName": "pages/shop-detail/shop-detail",
-					"query": "id=3",
+					"query": "id=6",
 					"scene": null
 				},
 				{
@@ -205,6 +205,13 @@
 					"name": "售后服务",
 					"pathName": "pages/refund-list/refund-list",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "物流信息",
+					"pathName": "pages/logistics/logistics",
+					"query": "id=13",
 					"scene": null
 				}
 			]

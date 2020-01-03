@@ -26,10 +26,13 @@ Page({
     comment_list: [],  // 评论列表
     nomore: false,
     nodata: false,
-    loading: false
+    loading: false,
+
+    user_auth: 0
   },
   onLoad(options) {
     this.data.id = options.id;
+    this.setData({ user_auth: app.user_data.user_auth });
 
     // 海报二维码
     drawQrcode({
@@ -167,7 +170,7 @@ Page({
             }
 
             this.setData(set_data);
-            app.toast('已加入购物车~');
+            app.toast('已加入购物车~', 2000, 'success');
 
             let shop_page = app.get_page('pages/shop/shop');
             if (shop_page) {
@@ -489,6 +492,27 @@ Page({
           this.data.loading = false;
         });
       }
+    }
+  },
+  // 授权
+  auth(e) {
+    if (e.detail.userInfo) {
+      wx.showLoading({
+        title: '授权中',
+        mask: true
+      });
+
+      app.userAuth(res => {
+        wx.hideLoading();
+
+        if (res) {
+          app.mydetail(() => {
+            this.setData({ user_auth: 1 });
+          });
+        } else {
+          app.toast('授权失败，请重新授权');
+        }
+      });
     }
   }
 });

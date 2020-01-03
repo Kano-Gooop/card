@@ -647,6 +647,10 @@ Page({
   },
   // 进入详情
   to_detail() {
-    wx.redirectTo({ url: '/pages/cardset-detail/cardset-detail?id=' + this.data.new_id });
+    if (this.data.id === 0) {
+      wx.redirectTo({ url: '/pages/cardset-detail/cardset-detail?id=' + this.data.new_id });
+    } else {
+      wx.redirectTo({ url: '/pages/cardset-detail/cardset-detail?id=' + this.data.id });
+    }
   }
 });

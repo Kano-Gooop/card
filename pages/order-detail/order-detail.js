@@ -12,6 +12,11 @@ Page({
     active_odi: 0,  // 当前评论商品的 order_detail_id，用于商品评价
     show_comment: false,
     comment: '',
+
+    // 退款
+    refund_show: false,
+    reason: '',
+    refund_id: 0
   },
   onLoad(options) {
     this.data.id = options.id;
@@ -41,6 +46,28 @@ Page({
   copy(e) {
     wx.setClipboardData({ data: e.currentTarget.dataset.text })
   },
+  // 支付
+  orderSnPay() {
+    app.ajax('pay/orderSnPay', { pay_order_sn: this.data.order.pay_order_sn }, res => {
+      wx.requestPayment({
+        timeStamp: res.timeStamp,
+        nonceStr: res.nonceStr,
+        package: res.package,
+        signType: 'MD5',
+        paySign: res.paySign,
+        success: () => {
+          this.orderDetail();
+        },
+        fail: err => {
+          if (err.errMsg.indexOf('fail cancel')) {
+            app.toast('取消支付')
+          } else {
+            app.toast('支付失败')
+          }
+        }
+      })
+    });
+  },
   // 确认收货
   orderConfirm() {
     wx.showModal({
@@ -60,6 +87,62 @@ Page({
         }
       }
     });
+  },
+  // 取消订单
+  orderCancel() {
+    wx.showModal({
+      title: '提示',
+      content: '取消订单？',
+      success: res => {
+        if (res.confirm) {
+          wx.showLoading({
+            title: '加载中',
+            mask: true
+          });
+          app.ajax('my/orderCancel', { order_id: this.data.id }, () => {
+            app.modal('订单已取消', () => {
+              let page = app.get_page('pages/my-orders/my-orders');
+              page.reset();
+              page.orderList(() => {
+                wx.navigateBack({ delta: 1 });
+              });
+            });
+          }, null, () => {
+            wx.hideLoading();
+          });
+        }
+      }
+    });
+  },
+  // 点击退款按钮
+  refund_click() {
+    this.setData({ refund_show: true });
+  },
+  // 隐藏退款框
+  hide_refund() {
+    this.setData({ refund_show: false });
+  },
+  // 申请退款
+  refundApply() {
+    if (!this.data.reason.trim()) {
+      app.toast('请填写退款理由');
+    } else {
+      wx.showLoading({
+        title: '加载中',
+        mask: true
+      });
+      let post = {
+        order_id: this.data.id,
+        reason: this.data.reason
+      };
+      app.ajax('my/refundApply', post, () => {
+        wx.redirectTo({ url: '/pages/refund-list/refund-list' });
+      }, err => {
+        app.modal(err.message);
+      }, () => {
+        wx.hideLoading();
+      });
+    }
   },
   bind_input(e) {
     app.bind_input(e, this);

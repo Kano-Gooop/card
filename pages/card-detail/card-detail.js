@@ -68,6 +68,11 @@ Page({
       this.data.loading = true;
       app.ajax('api/cardCollect', { card_id: this.data.id }, res => {
         this.setData({ ['card.collect']: res });
+        if (res) {
+          app.toast('收藏成功');
+        } else {
+          app.toast('已取消收藏');
+        }
       }, null, () => {
         this.data.loading = false;
       });

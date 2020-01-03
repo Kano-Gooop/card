@@ -30,7 +30,7 @@
   <!-- 商品 -->
   <view class="pro-list">
     <view class="pro" wx:for="{{order.child}}" wx:key="order_detail_id">
-      <view class="pro-main">
+      <navigator url="/pages/shop-detail/shop-detail?id={{item.goods_id}}" class="pro-main">
         <image src="{{item.cover}}" class="cover"></image>
         <view class="info">
           <view class="shang">
@@ -45,7 +45,7 @@
             </view>
           </view>
         </view>
-      </view>
+      </navigator>
       <view class="btn-box" wx:if="{{order.status == 3 && item.evaluate == 0}}">
         <button bindtap="show_comment" data-active_odi="{{item.order_detail_id}}" class="com-btn">评论</button>
       </view>
@@ -111,20 +111,20 @@
   </view>
 
   <view class="foot-btn-box">
-    <block wx:if="{{t_status == 0}}">
+    <block wx:if="{{order.status == 0}}">
       <button catchtap="orderCancel" data-order="{{item}}">取消订单</button>
       <button catchtap="orderSnPay" class="highlight" data-order="{{item}}">付款</button>
     </block>
 
-    <block wx:if="{{t_status == 1}}">
+    <block wx:if="{{order.status == 1}}">
       <button catchtap="refund_click" data-order="{{item}}">退款</button>
     </block>
 
-    <block wx:if="{{t_status > 1}}">
+    <block wx:if="{{order.status == 2 || order.status == 3}}">
       <button catchtap="to_logistics" data-id="{{item.id}}">查看物流</button>
     </block>
 
-    <block wx:if="{{t_status == 2}}">
+    <block wx:if="{{order.status == 2}}">
       <button catchtap="orderConfirm" data-order="{{item}}" class="highlight">确认收货</button>
     </block>
   </view>
@@ -140,6 +140,21 @@
       <view class="btn-box">
         <button bindtap="hide_comment" class="cancel">取消</button>
         <button bindtap="orderEvaluate" class="confirm">确定</button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 退款modal -->
+  <view bindtap="hide_refund" catchtouchmove class="cu-modal {{refund_show ? 'show' : ''}}" wx:if="{{refund_show}}">
+    <view catchtap class="cu-dialog rmodal">
+      <view class="title">退款理由</view>
+      <view class="form">
+        <textarea fixed bindinput="bind_input" data-name="reason" value="{{reason}}" auto-height maxlength="100" cursor-spacing="50" placeholder="备注内容..." class="{{is_ios ? 'text-plat-ios' : 'text-plat'}}" />
+        <view class="count">{{reason.length}} / 100</view>
+      </view>
+      <view class="btn-box">
+        <button bindtap="hide_refund" class="cancel">取消</button>
+        <button bindtap="refundApply" class="confirm">确定</button>
       </view>
     </view>
   </view>

@@ -11,29 +11,31 @@
     </view>
   </view>
   <view class="br"></view>
-  <block wx:for="{{kd_trace.Traces}}" wx:key="index" wx:if="{{kd_trace.State != 0}}">
-    <view class="trace">
-      <view class="zuo">
-        <view class="icon {{0 == index ? 'in' : 'no_in'}}"></view>
-        <view class="on"></view>
-        <view class="last" wx:if="{{kd_trace.Traces.length - 1 == index}}"></view>
+  <view class="trace-box">
+    <block wx:for="{{kd_trace.Traces}}" wx:key="index" wx:if="{{kd_trace.State != 0}}">
+      <view class="trace">
+        <view class="zuo">
+          <view class="icon {{0 == index ? 'in' : 'no_in'}}"></view>
+          <view class="on"></view>
+          <view class="last" wx:if="{{kd_trace.Traces.length - 1 == index}}"></view>
+        </view>
+        <view class="logistics_centent page_clu">
+          <text>{{item.AcceptStation}}</text>
+          <text class="time">{{item.AcceptTime}}</text>
+        </view>
       </view>
-      <view class="logistics_centent page_clu">
-        <text>{{item.AcceptStation}}</text>
-        <text class="time">{{item.AcceptTime}}</text>
+    </block>
+    <block wx:if="{{kd_trace.State == 0}}">
+      <view class="trace">
+        <view class="zuo">
+          <view class="icon no_in"></view>
+          <view class="on"></view>
+          <view class="last"></view>
+        </view>
+        <view class="logistics_centent page_clu">
+          <text>{{kd_trace.Reason}}</text>
+        </view>
       </view>
-    </view>
-  </block>
-  <block wx:if="{{kd_trace.State == 0}}">
-    <view class="trace">
-      <view class="zuo">
-        <view class="icon no_in"></view>
-        <view class="on"></view>
-        <view class="last"></view>
-      </view>
-      <view class="logistics_centent page_clu">
-        <text>{{kd_trace.Reason}}</text>
-      </view>
-    </view>
-  </block>
+    </block>
+  </view>
 </view>

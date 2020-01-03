@@ -16,6 +16,7 @@
   width: 150rpx;
   border-radius: 15rpx;
   flex-shrink: 0;
+  transform: rotateY(180deg);
 }
 
 .logistics {
@@ -44,6 +45,10 @@
   padding: 0 30rpx;
 }
 
+.trace:first-child .logistics_centent {
+  margin-top: 20rpx;
+}
+
 .trace:last-child .logistics_centent {
   margin-bottom: 10rpx;
 }
@@ -63,11 +68,12 @@
   font-size: 26rpx;
   color: #666;
   margin-left: 28rpx;
-  margin-bottom: 30rpx;
+  margin-bottom: 35rpx;
 }
 
 .logistics_centent text {
   display: block;
+  line-height: 1.4;
 }
 
 .logistics_centent .time {
@@ -98,7 +104,7 @@
 }
 
 .in {
-  border: 2rpx solid red;
+  border: 2rpx solid #3c77f3;
   animation: my_animation 2s infinite;
 }
 

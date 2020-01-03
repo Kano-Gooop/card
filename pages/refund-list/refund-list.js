@@ -69,6 +69,7 @@ Page({
           });
         }
       } else {
+        let sum;
         for (let i = 0; i < res.length; i++) {
           app.format_img(res[i].child, 'cover');
           switch (res[i].refund_apply) {
@@ -79,6 +80,13 @@ Page({
               res[i].refund_text = '已退款';
               break;
           }
+
+          sum = 0;
+          for (let j = 0; j < res[i].child.length; j++) {
+            sum += res[i].child[j].num;
+          }
+
+          res[i].sum = sum;
         }
         this.setData({ refund_list: this.data.refund_list.concat(res) });
       }

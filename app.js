@@ -41,9 +41,10 @@ App({
     nickname: '',
     realname: '',
     sex: 0,  // 0.未知 1.男 2.女
-    user_auth: 0, // 0.用户未授权 1.用户已授权
+    user_auth: 0,  // 0.用户未授权 1.用户已授权
     avatar: '',
-    tel: ''
+    tel: '',
+    share_auth: 0  // 是否有查看分享的权限
   },
   mp_update() {
     const updateManager = wx.getUpdateManager();
@@ -245,6 +246,7 @@ App({
       this.user_data.user_auth = res.user_auth;
       this.user_data.avatar = res.avatar;
       this.user_data.tel = res.tel || '';
+      this.user_data.share_auth = res.share_auth;
     }, null, () => {
       if (complete) {
         complete();
@@ -384,5 +386,40 @@ App({
         callback(res.tempFiles);
       }
     })
+  },
+  // 返回处理过的分享路径
+  share_path(other_options = null) {
+    let current_pages = getCurrentPages();
+    let current_page = current_pages[current_pages.length - 1];
+    let options = this.deepClone(current_page.options);
+    if (other_options) {
+      Object.assign(options, other_options);
+    }
+
+    return '/pages/auth/auth?route=' + encodeURIComponent(current_page.route + utils.obj2query(options));
+  },
+  // 深克隆
+  deepClone(target) {
+    let result;
+    if (typeof target === 'object') {
+      if (Array.isArray(target)) {
+        result = [];
+        for (let i in target) {
+          result.push(deepClone(target[i]))
+        }
+      } else if (target === null) {
+        result = null;
+      } else if (target.constructor === RegExp) {
+        result = target;
+      } else {
+        result = {};
+        for (let i in target) {
+          result[i] = this.deepClone(target[i]);
+        }
+      }
+    } else {
+      result = target;
+    }
+    return result;
   }
 });

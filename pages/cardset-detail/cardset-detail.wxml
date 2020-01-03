@@ -1,3 +1,7 @@
+<view class="full-loading" wx:if="{{full_loading}}">
+  <view class="image"></view>
+</view>
+
 <view class="page">
   <view class="set-info">
     <view bindtap="show_cd_modal" class="title">
@@ -16,7 +20,7 @@
     <view class="sub-pai-box" wx:for="{{main}}" wx:key="id">
       <view class="title">{{item.type_name}}（{{item.list.length}}）</view>
       <view class="pai-list">
-        <view class="pai" wx:for="{{item.list}}" wx:for-item="card" wx:key="id">
+        <navigator url="/pages/card-detail/card-detail?id={{item.id}}" class="pai" wx:for="{{item.list}}" wx:for-item="card" wx:key="id">
           <image src="{{card.cover}}" class="cover"></image>
           <view class="info">
             <view class="top-line">
@@ -31,7 +35,7 @@
             </view>
             <view class="card-type">{{card.wushuang == 1 ? '无双' : ''}}{{card.type}}</view>
           </view>
-        </view>
+        </navigator>
       </view>
     </view>
   </view>
@@ -39,7 +43,7 @@
   <view class="bei-box">
     <view class="title">备牌</view>
     <view class="pai-list">
-      <view class="pai" wx:for="{{spare}}" wx:key="id">
+      <navigator url="/pages/card-detail/card-detail?id={{item.id}}" class="pai" wx:for="{{spare}}" wx:key="id">
         <image src="{{item.cover}}" class="cover"></image>
         <view class="info">
           <view class="top-line">
@@ -54,11 +58,11 @@
           </view>
           <view class="card-type">{{item.wushuang == 1 ? '无双' : ''}}{{item.type}}</view>
         </view>
-      </view>
+      </navigator>
     </view>
   </view>
 
-  <view class="foot">
+  <view class="foot" wx:if="{{form_share != 1}}">
     <navigator url="/pages/cardset-edit/cardset-edit?id={{id}}" open-type="redirect" class="tab">
       <image src="/icons/cd-tab1.png" class="icon"></image>
       <view class="text">编辑套牌</view>
@@ -71,10 +75,10 @@
       <image src="/icons/cd-tab3.png" class="icon"></image>
       <view class="text">复制套牌</view>
     </view>
-    <view class="tab">
+    <button open-type="share" class="tab">
       <image src="/icons/cd-tab4.png" class="icon"></image>
       <view class="text">分享套牌</view>
-    </view>
+    </button>
   </view>
 
   <!-- 统计modal -->

@@ -63,19 +63,19 @@
       <block wx:if="{{input_index == 0}}">
         <view class="title">请输入昵称</view>
         <view class="form">
-          <input bindconfirm="confirm" bindinput="bind_input" data-name="input_value" type="text" value="{{input_value}}" maxlength="{{20}}" focus />
+          <input bindconfirm="confirm" bindinput="bind_input" data-name="input_value" type="text" value="{{input_value}}" maxlength="{{20}}" />
         </view>
       </block>
       <block wx:if="{{input_index == 1}}">
         <view class="title">请输入姓名</view>
         <view class="form">
-          <input bindconfirm="confirm" bindinput="bind_input" data-name="input_value" type="text" value="{{input_value}}" maxlength="{{20}}" focus />
+          <input bindconfirm="confirm" bindinput="bind_input" data-name="input_value" type="text" value="{{input_value}}" maxlength="{{20}}" />
         </view>
       </block>
       <block wx:if="{{input_index == 2}}">
         <view class="title">请输入电话</view>
         <view class="form">
-          <input bindconfirm="confirm" bindinput="bind_input" data-name="input_value" type="number" value="{{input_value}}" maxlength="{{11}}" focus />
+          <input bindconfirm="confirm" bindinput="bind_input" data-name="input_value" type="number" value="{{input_value}}" maxlength="{{11}}" />
         </view>
       </block>
       <view class="btn-box">

@@ -39,6 +39,8 @@
 
 .form-item .right {
   flex-grow: 1;
+  display: flex;
+  align-items: center;
 }
 
 .form-item .right input {
@@ -53,6 +55,14 @@
 }
 
 .form-item .right picker {
+  flex-grow: 1;
+}
+
+.form-item .right .right-arrow {
+  width: 18rpx;
+  height: 28rpx;
+  margin-left: 24rpx;
+  flex-shrink: 0;
 }
 
 picker .region {

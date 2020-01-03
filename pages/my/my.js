@@ -10,7 +10,8 @@ Page({
       nickname: '',
       username: '',
       sex: 0,
-      avatar: ''
+      avatar: '',
+      share_auth: 0
     },
     combo_list: [],
     cardset_list: [1, 2],
@@ -65,7 +66,8 @@ Page({
           username: app.user_data.username || '',
           sex: app.user_data.sex,
           avatar: app.user_data.avatar,
-          tel: app.user_data.tel || ''
+          tel: app.user_data.tel || '',
+          share_auth: app.user_data.share_auth
         }
       });
 

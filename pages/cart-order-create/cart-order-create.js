@@ -52,8 +52,8 @@ Page({
 
     let carriage = 0, total = 0;
     for (let i = 0; i < cartList.length; i++) {
-      carriage += Number(cartList[i].carriage);
-      total += Number(cartList[i].total_price) + Number(cartList[i].carriage);
+      carriage += Number(cartList[i].carriage) * cartList[i].num;
+      total += Number(cartList[i].total_price) + Number(cartList[i].carriage) * cartList[i].num;
     }
 
     this.setData({

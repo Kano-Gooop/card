@@ -38,7 +38,8 @@ Page({
           provincename: res.provinceName,
           cityname: res.cityName,
           countyname: res.countyName,
-          detail: res.detailInfo
+          detail: res.detailInfo,
+          citys: [res.provinceName, res.cityName, res.countyName]
         });
       },
       fail: err => {
@@ -59,7 +60,8 @@ Page({
                             provincename: res.provinceName,
                             cityname: res.cityName,
                             countyname: res.countyName,
-                            detail: res.detailInfo
+                            detail: res.detailInfo,
+                            citys: [res.provinceName, res.cityName, res.countyName]
                           });
                         }
                       })

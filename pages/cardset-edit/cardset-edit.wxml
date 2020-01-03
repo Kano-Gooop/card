@@ -148,7 +148,7 @@
     <view catchtap class="cu-dialog cmodal">
       <view class="title">请输入套牌名称</view>
       <view class="form">
-        <input bindinput="bind_input" data-name="dir_name" value="{{dir_name}}" type="text" maxlength="20" focus />
+        <input bindinput="bind_input" data-name="dir_name" value="{{dir_name}}" type="text" maxlength="20" />
       </view>
       <view class="btn-box">
         <button bindtap="hide_edit" class="cancel">取消</button>

@@ -24,7 +24,7 @@
       <image src="/icons/my_icon_info.png" class="icon"></image>
       <view class="text">个人信息</view>
     </navigator>
-    <navigator url="/pages/poster/poster" class="menu">
+    <navigator url="/pages/poster/poster" class="menu" wx:if="{{user.share_auth == 1}}">
       <image src="/icons/my_icon_friend.png" class="icon"></image>
       <view class="text">邀请好友</view>
     </navigator>
@@ -44,6 +44,7 @@
       <image src="/icons/my_icon_aboutus.png" class="icon"></image>
       <view class="text">关于我们</view>
     </navigator>
+    <view class="menu vh" wx:if="{{user.share_auth == 0}}"></view>
   </view>
 
   <!-- 我的套牌 -->

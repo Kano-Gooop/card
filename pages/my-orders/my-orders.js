@@ -12,6 +12,7 @@ Page({
     nodata: false,
     loading: false,
 
+    // 退款
     refund_show: false,
     reason: '',
     refund_id: 0
@@ -31,13 +32,7 @@ Page({
     if (!this.data.loading) {
       this.data.loading = true;
 
-      this.setData({
-        nomore: false,
-        nodata: false
-      });
-
-      this.data.page = 1;
-      this.data.order_list = [];
+      this.reset();
 
       wx.showLoading({
         title: '加载中',
@@ -77,6 +72,7 @@ Page({
           });
         }
       } else {
+        let sum;
         for (let i = 0; i < res.length; i++) {
           app.format_img(res[i].child, 'cover');
           switch (res[i].status) {
@@ -93,6 +89,13 @@ Page({
               res[i].status_text = '已完成';
               break;
           }
+
+          sum = 0;
+          for (let j = 0; j < res[i].child.length; j++) {
+            sum += res[i].child[j].num;
+          }
+          
+          res[i].sum = sum;
         }
         this.setData({ order_list: this.data.order_list.concat(res) });
       }
@@ -109,10 +112,7 @@ Page({
     if (!this.data.loading) {
       this.data.loading = true;
 
-      this.data.nomore = false;
-      this.data.nodata = false;
-      this.data.page = 1;
-      this.data.order_list = [];
+      this.reset();
 
       wx.showNavigationBarLoading();
       this.orderList(() => {
@@ -137,11 +137,17 @@ Page({
   },
   // 订单状态改变后刷新，区别于下拉刷新
   refresh() {
-    this.data.nomore = false;
-    this.data.nodata = false;
+    this.reset();
+    this.orderList();
+  },
+  // 重置订单数据
+  reset() {
     this.data.page = 1;
     this.data.order_list = [];
-    this.orderList();
+    this.setData({
+      nomore: false,
+      nodata: false
+    });
   },
   // 确认收货
   orderConfirm(e) {
@@ -256,8 +262,6 @@ Page({
   // 去物流页
   to_logistics(e) {
     let order_id = e.currentTarget.dataset.id;
-    app.page_open(() => {
-      wx.navigateTo({ url: '/pages/logistics/logistics?id=' + order_id });
-    });
+    wx.navigateTo({ url: '/pages/logistics/logistics?id=' + order_id });
   }
 });

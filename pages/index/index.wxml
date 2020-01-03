@@ -37,7 +37,7 @@
       </view>
       <view class="gg-list">
         <navigator url="/pages/gg-detail/gg-detail?id={{item.id}}" class="gg" wx:for="{{article_list}}" wx:key="id">
-          <view class="title">{{item.title}}</view>
+          <view class="title one-line-ellipsis">{{item.title}}</view>
           <view class="time">{{item.create_time}}</view>
         </navigator>
       </view>

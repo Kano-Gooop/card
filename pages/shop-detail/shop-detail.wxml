@@ -21,7 +21,11 @@
     <view class="pt">
       <view class="top-line">
         <view class="price">{{goods.price}}</view>
-        <button bindtap="create_poster" class="share">
+        <button bindgetuserinfo="auth" open-type="getUserInfo" class="share" wx:if="{{user_auth == 0}}">
+          <image src="/icons/share.png"></image>
+          <view class="text">分享</view>
+        </button>
+        <button bindtap="create_poster" class="share" wx:else>
           <image src="/icons/share.png"></image>
           <view class="text">分享</view>
         </button>
@@ -55,7 +59,7 @@
           <view class="info">
             <view class="nickname one-line-ellipsis">{{item.nickname}}</view>
             <view class="pd">
-              <view class="param one-line-ellipsis">商品参数名称</view>
+              <view class="param one-line-ellipsis">{{item.attr}}</view>
               <view class="date">{{item.create_time}}</view>
             </view>
           </view>
@@ -81,10 +85,17 @@
       <view class="text">购物车</view>
     </view>
     <view class="btn-set">
-      <view bindtap="cartAdd" class="btn add">
+      <button bindgetuserinfo="auth" open-type="getUserInfo" class="btn add" wx:if="{{user_auth == 0}}">
+        加入购物车
+      </button>
+      <view bindtap="cartAdd" class="btn add" wx:else>
         加入购物车
       </view>
-      <view bindtap="buy" class="btn buy">
+
+      <button bindgetuserinfo="auth" open-type="getUserInfo" class="btn buy" wx:if="{{user_auth == 0}}">
+        立即购买
+      </button>
+      <view bindtap="buy" class="btn buy" wx:else>
         立即购买
       </view>
     </view>
@@ -125,8 +136,8 @@
     </view>
   </view>
 
-  <canvas canvas-id="qrcode" class="qrc" style="width: 300rpx; height: 300rpx;"></canvas>
-  <canvas canvas-id="poster-canvas" class="poc" style="width: 914rpx; height: {{line_count * 80 + 1394}}rpx;"></canvas>
+  <canvas canvas-id="qrcode" class="qrc" style="width: 300px; height: 300px;"></canvas>
+  <canvas canvas-id="poster-canvas" class="poc" style="width: 914px; height: {{line_count * 80 + 1394}}px;"></canvas>
 
   <view class="mask-box" wx:if="{{poster_show}}">
     <view class="img-box">

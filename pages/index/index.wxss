@@ -151,12 +151,16 @@
   font-size: 26rpx;
   color: #3d3737;
   opacity: 0.9;
+  width: 0;
+  flex-grow: 1;
 }
 
 .gong-gao .gg-list .gg .time {
   font-size: 24rpx;
   color: #3d3737;
   opacity: 0.4;
+  margin-left: 24rpx;
+  flex-shrink: 0;
 }
 
 .product-box .np-list {

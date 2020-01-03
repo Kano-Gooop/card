@@ -2,6 +2,9 @@ const app = getApp();
 
 Page({
   data: {
+    full_loading: true,
+
+    form_share: 0,  // 是否通过分享进入
     id: 0,
     combo: {},  // 套牌详情
     main: [],  // 主牌列表
@@ -61,9 +64,18 @@ Page({
     ]
   },
   onLoad(options) {
-    this.setData({ id: options.id });
+    if (options.form_share) {
+      this.setData({
+        id: options.id,
+        form_share: options.form_share
+      });
+    } else {
+      this.setData({id: options.id });
+    }
     this.cardParams(() => {
-      this.myComboDetail();
+      this.myComboDetail(() => {
+        this.setData({ full_loading: false });
+      });
     });
   },
   // 卡牌筛选条件（势力的小图标）
@@ -256,4 +268,13 @@ Page({
       });
     }
   },
+  // 分享
+  onShareAppMessage() {
+    console.log(app.share_path({form_share: 1}));
+    wx.showShareMenu();
+    return {
+      title: '我的套牌',
+      path: app.share_path({form_share: 1})
+    };
+  }
 });

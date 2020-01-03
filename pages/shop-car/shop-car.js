@@ -18,7 +18,7 @@ Page({
   },
   onShow() {
     this.cartList(() => {
-      this.setData({full_loading: false});
+      this.setData({ full_loading: false });
     });
   },
   // 我的购物车
@@ -44,7 +44,7 @@ Page({
   // 选择要结算的商品
   check(e) {
     let index = e.currentTarget.dataset.index;
-    this.setData({['cartList[' + index + '].checked']: !this.data.cartList[index].checked});
+    this.setData({ ['cartList[' + index + '].checked']: !this.data.cartList[index].checked });
     this.price_compute();
     this.check_check_all();
   },
@@ -57,7 +57,7 @@ Page({
         break;
       }
     }
-    this.setData({check_all: check_all});
+    this.setData({ check_all: check_all });
   },
   // 点击check_all按钮
   check_all_click() {
@@ -78,8 +78,8 @@ Page({
     let carriage = 0, total = 0;
     for (let i = 0; i < cartList.length; i++) {
       if (cartList[i].checked) {
-        carriage += Number(cartList[i].carriage);
-        total += Number(cartList[i].total_price) + Number(cartList[i].carriage);
+        carriage += Number(cartList[i].carriage) * cartList[i].num;
+        total += Number(cartList[i].total_price) + Number(cartList[i].carriage) * cartList[i].num;
       }
     }
 
@@ -111,12 +111,7 @@ Page({
       if (this.data.cartList[index].num < this.data.cartList[index].limit) {
         this.data.amount_change_loading = true;
 
-        let post = {
-          token: app.user_data.token,
-          cart_id: id
-        };
-
-        app.ajax('shop/cartInc', post, (res) => {
+        app.ajax('shop/cartInc', { cart_id: id }, (res) => {
           this.setData({
             ['cartList[' + index + '].num']: res.num,
             ['cartList[' + index + '].total_price']: res.total_price
@@ -178,7 +173,7 @@ Page({
       var txtStyle = "";
       if (disX === 0 || disX < 0) {//如果移动距离小于等于0，说明向右滑动，文本层位置不变
         txtStyle = "left:0px";
-      } else if(disX > 0){//移动距离大于0，文本层left值等于手指移动距离
+      } else if (disX > 0) {//移动距离大于0，文本层left值等于手指移动距离
         txtStyle = "left:-" + disX + "px";
         if (disX >= delBtnWidth) {
           //控制手指移动距离最大值为删除按钮的宽度
