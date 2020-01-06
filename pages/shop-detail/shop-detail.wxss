@@ -261,6 +261,7 @@
 
 .foot .tab-btn.contact {
   flex-grow: 1;
+  min-height: auto;
 }
 
 .foot .tab-btn.shop-car {
