@@ -20,7 +20,7 @@
     <view class="sub-pai-box" wx:for="{{main}}" wx:key="id">
       <view class="title">{{item.type_name}}（{{item.list.length}}）</view>
       <view class="pai-list">
-        <navigator url="/pages/card-detail/card-detail?id={{item.id}}" class="pai" wx:for="{{item.list}}" wx:for-item="card" wx:key="id">
+        <navigator url="/pages/card-detail/card-detail?id={{card.card_id}}" class="pai" wx:for="{{item.list}}" wx:for-item="card" wx:key="id">
           <image src="{{card.cover}}" class="cover"></image>
           <view class="info">
             <view class="top-line">
@@ -43,7 +43,7 @@
   <view class="bei-box">
     <view class="title">备牌</view>
     <view class="pai-list">
-      <navigator url="/pages/card-detail/card-detail?id={{item.id}}" class="pai" wx:for="{{spare}}" wx:key="id">
+      <navigator url="/pages/card-detail/card-detail?id={{item.card_id}}" class="pai" wx:for="{{spare}}" wx:key="id">
         <image src="{{item.cover}}" class="cover"></image>
         <view class="info">
           <view class="top-line">
