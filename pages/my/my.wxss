@@ -182,8 +182,8 @@
 
 .set-card-box .card-list .card .cover {
   flex-shrink: 0;
-  width: 160rpx;
-  height: 160rpx;
+  width: 180rpx;
+  height: 120rpx;
 }
 
 .set-card-box .card-list .card .info {

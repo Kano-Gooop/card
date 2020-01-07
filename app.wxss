@@ -101,6 +101,10 @@ button::after {
   overflow: visible;
 }
 
+.content-wrapper {
+  text-align: justify;
+}
+
 .content-wrapper view {
   overflow: auto;
 }

@@ -56,6 +56,7 @@
 
 .form-item .right picker {
   flex-grow: 1;
+  width: 0;
 }
 
 .form-item .right .right-arrow {
@@ -66,14 +67,19 @@
 }
 
 picker .region {
+  display: flex;
+  align-items: center;
 }
 
 picker .region .text {
+  font-size: 28rpx;
+  flex-grow: 1;
 }
 
 picker .region .placeholder {
   color: rgba(51, 51, 51, 0.6);
   font-size: 28rpx;
+  flex-grow: 1;
 }
 
 .form-item .right textarea {

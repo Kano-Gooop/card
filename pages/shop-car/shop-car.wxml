@@ -10,7 +10,7 @@
           <icon type="success" color="#4981fb" wx:if="{{item.checked}}" />
           <view class="no-check" wx:if="{{!item.checked}}"></view>
         </view>
-        <image src="{{item.cover}}" mode="aspectFill" class="cover"></image>
+        <image bindtap="to_goods" data-id="{{item.goods_id}}" src="{{item.cover}}" mode="aspectFill" class="cover"></image>
         <view class="info">
           <view class="title">
             <view class="text two-line-ellipsis">{{item.name}}</view>

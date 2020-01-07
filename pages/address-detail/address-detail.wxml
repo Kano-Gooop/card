@@ -27,11 +27,11 @@
                 mode="region"
                 bindchange="citys_change">
           <view class="region">
-            <view class="text" wx:if="{{provincename}}">{{provincename}} {{cityname}} {{countyname}}</view>
+            <view class="text one-line-ellipsis" wx:if="{{provincename}}">{{provincename}} {{cityname}} {{countyname}}</view>
             <view class="placeholder" wx:else>选择省/市/区</view>
+            <image src="/icons/icon_right_arrow2.png" class="right-arrow"></image>
           </view>
         </picker>
-        <image src="/icons/icon_right_arrow2.png" class="right-arrow"></image>
       </view>
     </view>
     <view class="form-item add-detail">

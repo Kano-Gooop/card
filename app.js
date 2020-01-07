@@ -190,7 +190,6 @@ App({
       };
 
       this.ajax('login/login', post, (res) => {
-        console.log(res.token);
         callback(res);
       });
     });

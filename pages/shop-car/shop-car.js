@@ -237,6 +237,10 @@ Page({
     } catch (e) {
       return false;
     }
-  }
+  },
   /* 左滑删除 end */
+  to_goods(e){
+    let id = e.currentTarget.dataset.id;
+    wx.navigateTo({ url: '/pages/shop-detail/shop-detail?id=' + id });
+  }
 });
