@@ -21,7 +21,7 @@
     <view class="title">主牌</view>
 
     <view class="sub-pai-box" wx:for="{{main}}" wx:key="id">
-      <view class="title">{{item.type_name}}（{{item.list.length}}）</view>
+      <view class="title">{{item.type_name}}（{{item.num}}）</view>
       <view class="pai-list">
         <navigator url="/pages/card-detail/card-detail?id={{card.card_id}}" class="pai" wx:for="{{item.list}}" wx:for-item="card" wx:key="id">
           <image src="{{card.cover}}" class="cover"></image>

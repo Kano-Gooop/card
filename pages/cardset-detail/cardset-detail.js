@@ -118,6 +118,7 @@ Page({
 
     for (let i = 0; i < main.length; i++) {
       main[i].list = [];
+      main[i].num = 0;
     }
 
     for (let i = 0; i < list.length; i++) {
@@ -141,6 +142,7 @@ Page({
         for (let j = 0; j < main.length; j++) {
           if (list[i].type_id === main[j].id) {
             main[j].list.push(list[i]);
+            main[j].num += list[i].num;
             break;
           }
         }

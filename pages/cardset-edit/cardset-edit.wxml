@@ -15,8 +15,8 @@
           <view class="dot {{dot_active ? 'active' : ''}}" style="left: {{dot_left}}px; top: {{dot_top}}px;"></view>
         </view>
         <view class="search">
-          <input bindinput="bind_input" bindconfirm="search_card" data-name="search" value="{{search}}"
-                 placeholder="请输入卡牌名称或技能" maxlength="20"/>
+          <input bindinput="bind_input" bindconfirm="search_card" data-name="search" value="{{search}}" maxlength="20" bindfocus="search_focus" focus="{{search_focus}}" />
+          <text class="place-holder" wx:if="{{!search_focus && !search}}">请输入卡牌名称或技能</text>
           <image bindtap="clear_search" src="/icons/delete.png" class="del" wx:if="{{search}}"></image>
         </view>
       </view>

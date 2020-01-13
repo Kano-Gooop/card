@@ -44,7 +44,15 @@
       <image src="/icons/my_icon_aboutus.png" class="icon"></image>
       <view class="text">关于我们</view>
     </navigator>
-    <view class="menu vh" wx:if="{{user.share_auth == 0}}"></view>
+    <navigator url="/pages/shop-car/shop-car" class="menu">
+      <image src="/icons/shopping-cart.png" class="icon"></image>
+      <view class="text">购物车</view>
+    </navigator>
+    <block wx:if="{{user.share_auth == 1}}">
+      <view class="menu vh"></view>
+      <view class="menu vh"></view>
+      <view class="menu vh"></view>
+    </block>
   </view>
 
   <!-- 我的套牌 -->

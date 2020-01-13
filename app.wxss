@@ -106,7 +106,7 @@ button::after {
 }
 
 .content-wrapper view {
-  overflow: auto;
+  /* overflow: auto; */
 }
 
 .content-wrapper image {
@@ -167,18 +167,31 @@ button::after {
   justify-content: space-between;
   align-items: center;
   padding: 0 20rpx 0 35rpx;
+  position: relative;
 }
 
 .filter-box .search-box .search input {
   color: #fff;
   font-size: 26rpx;
   flex-grow: 1;
+  position: relative;
+  z-index: 1;
 }
 
-.filter-box .search-box .search input .input-placeholder {
+.filter-box .search-box .place-holder {
+  position: absolute;
+  height: 60rpx;
+  line-height: 60rpx;
+  left: 35rpx;
   color: #fcfafa;
   opacity: 0.4;
+  font-size: 26rpx;
 }
+
+/*.filter-box .search-box .search input .input-placeholder {*/
+/*  color: #fcfafa;*/
+/*  opacity: 0.4;*/
+/*}*/
 
 .filter-box .search-box .search .del {
   width: 40rpx;

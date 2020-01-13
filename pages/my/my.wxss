@@ -2,7 +2,7 @@
 }
 
 .banner {
-  height: 360rpx;
+  height: 300rpx;
   position: relative;
   display: flex;
   align-items: center;

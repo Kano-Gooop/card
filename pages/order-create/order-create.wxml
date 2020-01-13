@@ -48,7 +48,7 @@
       </view>
       <view class="carriage">
         <view class="label">运费</view>
-        <view class="price" wx:if="{{goods.carriage > 0}}">{{goods.carriage * num}}</view>
+        <view class="price" wx:if="{{goods.carriage > 0 && num < 2}}">{{goods.carriage * num}}</view>
         <view class="no-price" wx:else>免运费</view>
       </view>
     </view>
@@ -58,7 +58,7 @@
   <view class="order-foot">
     <view class="total">
       <view class="label">合计：</view>
-      <view class="price">{{(goods.use_attr == 1 ? goods.attr_list[attr_index].price : goods.price) * num + goods.carriage * num}}</view>
+      <view class="price">{{(goods.use_attr == 1 ? goods.attr_list[attr_index].price : goods.price) * num + (num > 1 ? 0 : goods.carriage)}}</view>
     </view>
     <form bindsubmit="purchase" class="pay-btn" report-submit>
       <button form-type="submit" loading="{{purchase_loading}}">提交结算</button>

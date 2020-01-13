@@ -6,6 +6,7 @@ Page({
 
     ids: [],
     cartList: [],
+    goods_num: 0,  // 物品总件数
     carriage: 0,  // 运费
     total: 0,  // 总计
     receiver: '',  // 收货人
@@ -50,15 +51,21 @@ Page({
   price_compute() {
     let cartList = this.data.cartList;
 
-    let carriage = 0, total = 0;
+    let carriage = 0, total = 0, goods_num = 0;
     for (let i = 0; i < cartList.length; i++) {
+      goods_num += cartList[i].num;
       carriage += Number(cartList[i].carriage) * cartList[i].num;
       total += Number(cartList[i].total_price) + Number(cartList[i].carriage) * cartList[i].num;
+    }
+    if (goods_num > 1) {
+      total -= carriage;
+      carriage = 0;
     }
 
     this.setData({
       carriage: carriage.toFixed(2),
-      total: total.toFixed(2)
+      total: total.toFixed(2),
+      goods_num: goods_num
     });
   },
   bind_input(e) {

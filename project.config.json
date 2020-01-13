@@ -78,7 +78,7 @@
 					"id": 4,
 					"name": "套牌创建/编辑",
 					"pathName": "pages/cardset-edit/cardset-edit",
-					"query": "id=2",
+					"query": "",
 					"scene": null
 				},
 				{

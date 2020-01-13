@@ -6,6 +6,8 @@ Page({
 
     // 筛选条件
     search: '',
+    search_focus: false,
+
     prop_type: 0,
 
     card_attr: [],  // 属性
@@ -88,6 +90,14 @@ Page({
       });
     });
   },
+  // 搜索框获得焦点
+  search_focus() {
+    this.setData({ search_focus: true });
+  },
+  // 搜索框失去焦点
+  search_blur() {
+    this.setData({ search_focus: false });
+  },
   // 卡牌筛选条件
   cardParams(complete) {
     app.ajax('api/cardParams', null, res => {
@@ -131,7 +141,10 @@ Page({
   },
   // 清空搜索框
   clear_search() {
-    this.setData({ search: '' }, () => {
+    this.setData({
+      search: '',
+      search_focus: false
+    }, () => {
       this.reset();
       this.cardList();
     });

@@ -77,5 +77,10 @@ Page({
         this.data.loading = false;
       });
     }
+  },
+  // 分享
+  onShareAppMessage() {
+    wx.showShareMenu();
+    return { path: app.share_path() };
   }
 });

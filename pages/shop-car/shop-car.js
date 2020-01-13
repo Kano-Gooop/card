@@ -75,12 +75,17 @@ Page({
   price_compute() {
     let cartList = this.data.cartList;
 
-    let carriage = 0, total = 0;
+    let carriage = 0, total = 0, goods_num = 0;
     for (let i = 0; i < cartList.length; i++) {
       if (cartList[i].checked) {
+        goods_num += cartList[i].num;
         carriage += Number(cartList[i].carriage) * cartList[i].num;
         total += Number(cartList[i].total_price) + Number(cartList[i].carriage) * cartList[i].num;
       }
+    }
+    if (goods_num > 1) {
+      total -= carriage;
+      carriage = 0;
     }
 
     this.setData({

@@ -48,7 +48,7 @@
       </view>
       <view class="carriage">
         <view class="label">运费</view>
-        <view class="price" wx:if="{{item.carriage > 0}}">{{item.carriage * item.num}}</view>
+        <view class="price" wx:if="{{item.carriage > 0 && goods_num < 2}}">{{item.carriage * item.num}}</view>
         <view class="no-price" wx:else>免运费</view>
       </view>
     </view>

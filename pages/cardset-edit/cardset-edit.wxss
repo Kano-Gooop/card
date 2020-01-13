@@ -124,7 +124,7 @@ page {
   right: -17rpx;
   background: #ff4259;
   border-radius: 12rpx;
-  font-size: 20rpx;
+  font-size: 24rpx;
   color: #fff;
   height: 24rpx;
   display: flex;
@@ -164,6 +164,7 @@ page {
   padding: 0 20rpx 0 35rpx;
   flex-grow: 1;
   margin-left: 28rpx;
+  position: relative;
 }
 
 .filter-box2 .search-box .search input {
@@ -172,10 +173,20 @@ page {
   flex-grow: 1;
 }
 
-.filter-box2 .search-box .search input .input-placeholder {
+.filter-box2 .search-box .place-holder {
+  position: absolute;
+  height: 60rpx;
+  line-height: 60rpx;
+  left: 35rpx;
   color: #fcfafa;
   opacity: 0.4;
+  font-size: 26rpx;
 }
+
+/*.filter-box2 .search-box .search input .input-placeholder {*/
+/*  color: #fcfafa;*/
+/*  opacity: 0.4;*/
+/*}*/
 
 .filter-box2 .search-box .search .del {
   width: 40rpx;
