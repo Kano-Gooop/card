@@ -18,8 +18,8 @@ App({
   },
   is_ios: '',
   my_config: {
-    base_url: 'https://card.psn.asia',
-    api: 'https://card.psn.asia/api/',
+    base_url: 'https://card.3z-boardgame.com',
+    api: 'https://card.3z-boardgame.com/api/',
     default_img: '/images/default-header.png',
     reg: {
       tel: /^1\d{10}$/,
