@@ -102,6 +102,14 @@
   color: #3d3737;
 }
 
+.info-box .seller-info {
+  padding: 0 24rpx;
+  font-size: 24rpx;
+  color: #bbb;
+  /* text-align: right; */
+  margin-top: 22rpx;
+}
+
 .info-box .fs {
   border-top: 2rpx solid rgba(0, 0, 0, 0.07);
   border-bottom: 2rpx solid rgba(0, 0, 0, 0.07);
@@ -119,7 +127,7 @@
 }
 
 .info-box .tiao {
-  height: 40rpx;
+  height: 30rpx;
   border-bottom: 7rpx solid #f4f1f1;
 }
 

@@ -9,6 +9,8 @@ Page({
     attr_id: 0,
     attr_index: 0,
     goods: {},
+    carriage: 0,  // 运费
+    total: 0,  // 总价
     receiver: '',  // 收货人
     tel: '',  // 电话
     address: '',  // 地址
@@ -44,7 +46,17 @@ Page({
           }
         }
       }
-      this.setData({ goods: res });
+
+      let data = this.data;
+      let carriage = res.carriage * data.num;
+      let total = (res.use_attr === 1 ? res.attr_list[this.data.attr_index].price : res.price) * data.num + (data.num > 1 ? 0 : res.carriage);
+      console.log(res, carriage, total);
+
+      this.setData({
+        goods: res,
+        carriage: carriage.toFixed(2),
+        total: total.toFixed(2),
+      });
     }, null, () => {
       if (complete) {
         complete();

@@ -51,7 +51,7 @@
   <view class="product-box">
     <view class="np-list">
       <navigator url="/pages/shop-detail/shop-detail?id={{item.id}}" class="np" wx:for="{{goods_list}}" wx:key="id">
-        <image src="{{item.cover}}" class="cover"></image>
+        <image src="{{item.cover}}" class="cover" mode="aspectFill"></image>
         <view class="info">
           <view class="title two-line-ellipsis">{{item.name}}</view>
           <view class="xia">

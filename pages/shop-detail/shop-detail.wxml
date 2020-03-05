@@ -38,6 +38,8 @@
       <view class="stock">剩余{{goods.stock}}件</view>
     </view>
 
+    <view class="seller-info">{{goods.service}}</view>
+
     <!-- 间隔条 -->
     <view class="tiao"></view>
   </view>
