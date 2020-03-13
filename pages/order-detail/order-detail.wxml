@@ -57,7 +57,7 @@
   <view class="multi-price">
     <view class="price-box1">
       <view class="label">商品金额</view>
-      <view class="price">{{order.total_price - order.carriage}}</view>
+      <view class="price">{{order.price}}</view>
     </view>
     <view class="price-box1">
       <view class="label">运费</view>

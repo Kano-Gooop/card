@@ -36,6 +36,7 @@ Page({
         amount += res.child[i].num;
       }
       res.amount = amount;
+      res.price = (res.total_price - res.carriage).toFixed(2);
       this.setData({ order: res });
     }, null, () => {
       if (complete) {
