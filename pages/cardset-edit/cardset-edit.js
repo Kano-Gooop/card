@@ -156,7 +156,7 @@ Page({
       let combo_key;
 
       for (let i = 0; i < res.list.length; i++) {
-        if (res.list[i].resource === '资源-事件') {
+        if (res.list[i].resource === '无') {
           res.list[i].resource = '';
         }
 

@@ -89,7 +89,7 @@
     <view catchtap class="cu-dialog tmodal">
       <image bindtap="hide_tongji" src="/icons/tongji-x.png" class="close"></image>
 
-      <view class="title">所需资源统计图</view>
+      <view class="title">费用分布图</view>
 
       <view class="column-image">
         <view class="kuai-list">

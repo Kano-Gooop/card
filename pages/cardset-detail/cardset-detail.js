@@ -124,7 +124,7 @@ Page({
     for (let i = 0; i < list.length; i++) {
       this.insert_camp(list[i]);
 
-      if (list[i].resource === '资源-事件') {
+      if (list[i].resource === '无') {
         list[i].resource = -2;
       }
 
