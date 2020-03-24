@@ -70,7 +70,7 @@ Page({
         form_share: options.form_share
       });
     } else {
-      this.setData({id: options.id });
+      this.setData({ id: options.id });
     }
     this.cardParams(() => {
       this.myComboDetail(() => {
@@ -113,13 +113,8 @@ Page({
   },
   // 格式化卡牌列表，将其按主牌（主牌再按类型分类）、备牌分类，将势力小图标放入卡牌对象中
   format_list(list) {
-    let main = this.data.type_list;
+    let main = [];
     let spare = [];
-
-    for (let i = 0; i < main.length; i++) {
-      main[i].list = [];
-      main[i].num = 0;
-    }
 
     for (let i = 0; i < list.length; i++) {
       this.insert_camp(list[i]);
@@ -140,32 +135,26 @@ Page({
         }
 
         main.push(list[i]);
-
-        // for (let j = 0; j < main.length; j++) {
-        //   if (list[i].type_id === main[j].id) {
-        //     main[j].list.push(list[i]);
-        //     main[j].num += list[i].num;
-        //     break;
-        //   }
-        // }
       } else {
         spare.push(list[i]);
       }
     }
 
-    // main = main.filter((value) => {
-    //   return value.list.length > 0;
-    // });
-
     return [main, spare];
   },
   insert_camp(card) {
-    for (let i = 0; i < this.data.camp_list.length; i++) {
-      if (card.camp_id === this.data.camp_list[i].id) {
-        card.camp_icon = this.data.camp_list[i].icon;
-        break;
+    card.camp_id = card.camp_id.split(',');
+    card.camp_icon = [];
+    for (let i = 0; i < card.camp_id.length; i++) {
+      for (let j = 0; j < this.data.camp_list.length; j++) {
+        if (parseInt(card.camp_id[i]) === this.data.camp_list[j].id) {
+          card.camp_icon[i] = this.data.camp_list[j].icon;
+          break;
+        }
       }
     }
+    
+    console.log(card.camp_icon);
   },
   show_tongji() {
     this.setData({ show_tongji: true });
@@ -274,11 +263,11 @@ Page({
   },
   // 分享
   onShareAppMessage() {
-    console.log(app.share_path({form_share: 1}));
+    console.log(app.share_path({ form_share: 1 }));
     wx.showShareMenu();
     return {
       title: '我的套牌',
-      path: app.share_path({form_share: 1})
+      path: app.share_path({ form_share: 1 })
     };
   }
 });

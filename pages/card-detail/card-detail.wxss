@@ -82,7 +82,7 @@
 .info .tc-list .tc {
   width: 50%;
   font-size: 28rpx;
-  margin-bottom: 27rpx;
+  margin-bottom: 22rpx;
   display: flex;
 }
 
@@ -98,6 +98,7 @@
 
 .info .tc-list .tc .value {
   color: rgba(0, 0, 0, 0.6);
+  line-height: 1.4;
 }
 
 .long-info {

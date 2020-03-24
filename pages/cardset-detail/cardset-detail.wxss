@@ -55,21 +55,8 @@
   color: #fff;
 }
 
-.sub-pai-box {
-  padding: 32rpx 24rpx 0;
-}
-
-.sub-pai-box:last-child {
-  padding-bottom: 32rpx;
-}
-
-.sub-pai-box .title {
-  font-size: 24rpx;
-  color: rgba(0, 0, 0, 0.6);
-}
-
-.sub-pai-box .pai-list {
-  margin-top: 23rpx;
+.zhu-box .pai-list {
+  padding: 40rpx 24rpx;
 }
 
 .bei-box > .title {

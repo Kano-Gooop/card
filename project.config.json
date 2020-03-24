@@ -120,7 +120,7 @@
 					"id": 10,
 					"name": "套牌详情",
 					"pathName": "pages/cardset-detail/cardset-detail",
-					"query": "id=2",
+					"query": "id=5",
 					"scene": null
 				},
 				{
@@ -218,6 +218,7 @@
 					"id": -1,
 					"name": "规则列表",
 					"pathName": "pages/rule-list/rule-list",
+					"query": "",
 					"scene": null
 				}
 			]

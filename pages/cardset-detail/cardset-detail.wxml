@@ -31,10 +31,10 @@
                 <image src="/images/resource-bg.png" class="bg"></image>
                 <view class="text">{{card.resource}}</view>
               </view>
-              <image src="{{card.camp_icon}}" class="force"></image>
+              <image src="{{item}}" class="force" wx:for="{{card.camp_icon}}" wx:key="index"></image>
             </view>
           </view>
-          <view class="card-type">{{card.wushuang == 1 ? '无双' : ''}}{{card.type}}</view>
+          <view class="card-type">{{card.wushuang == 1 ? '「无双」' : ''}}{{card.type}}</view>
         </view>
       </navigator>
     </view>
@@ -53,10 +53,10 @@
                 <image src="/images/resource-bg.png" class="bg"></image>
                 <view class="text">{{item.resource}}</view>
               </view>
-              <image src="{{item.camp_icon}}" class="force"></image>
+              <image src="{{item}}" class="force" wx:for="{{card.camp_icon}}" wx:key="index"></image>
             </view>
           </view>
-          <view class="card-type">{{item.wushuang == 1 ? '无双' : ''}}[{{item.type}}]</view>
+          <view class="card-type">{{item.wushuang == 1 ? '「无双」' : ''}}{{item.type}}</view>
         </view>
       </navigator>
     </view>
