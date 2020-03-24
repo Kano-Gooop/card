@@ -20,26 +20,23 @@
   <view class="zhu-box">
     <view class="title">主牌</view>
 
-    <view class="sub-pai-box" wx:for="{{main}}" wx:key="id">
-      <view class="title">{{item.type_name}}（{{item.num}}）</view>
-      <view class="pai-list">
-        <navigator url="/pages/card-detail/card-detail?id={{card.card_id}}" class="pai" wx:for="{{item.list}}" wx:for-item="card" wx:key="id">
-          <image src="{{card.cover}}" class="cover"></image>
-          <view class="info">
-            <view class="top-line">
-              <view class="title">{{card.card_name}} * {{card.num}}</view>
-              <view class="icons">
-                <view class="resource" wx:if="{{card.resource != -2}}">
-                  <image src="/images/resource-bg.png" class="bg"></image>
-                  <view class="text">{{card.resource}}</view>
-                </view>
-                <image src="{{card.camp_icon}}" class="force"></image>
+    <view class="pai-list">
+      <navigator url="/pages/card-detail/card-detail?id={{card.card_id}}" class="pai" wx:for="{{main}}" wx:for-item="card" wx:key="id">
+        <image src="{{card.cover}}" class="cover"></image>
+        <view class="info">
+          <view class="top-line">
+            <view class="title">{{card.card_name}} * {{card.num}}</view>
+            <view class="icons">
+              <view class="resource" wx:if="{{card.resource != -2}}">
+                <image src="/images/resource-bg.png" class="bg"></image>
+                <view class="text">{{card.resource}}</view>
               </view>
+              <image src="{{card.camp_icon}}" class="force"></image>
             </view>
-            <view class="card-type">{{card.wushuang == 1 ? '无双' : ''}}{{card.type}}</view>
           </view>
-        </navigator>
-      </view>
+          <view class="card-type">{{card.wushuang == 1 ? '无双' : ''}}{{card.type}}</view>
+        </view>
+      </navigator>
     </view>
   </view>
 
@@ -59,7 +56,7 @@
               <image src="{{item.camp_icon}}" class="force"></image>
             </view>
           </view>
-          <view class="card-type">{{item.wushuang == 1 ? '无双' : ''}}{{item.type}}</view>
+          <view class="card-type">{{item.wushuang == 1 ? '无双' : ''}}[{{item.type}}]</view>
         </view>
       </navigator>
     </view>

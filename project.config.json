@@ -213,6 +213,12 @@
 					"pathName": "pages/logistics/logistics",
 					"query": "id=13",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "规则列表",
+					"pathName": "pages/rule-list/rule-list",
+					"scene": null
 				}
 			]
 		}

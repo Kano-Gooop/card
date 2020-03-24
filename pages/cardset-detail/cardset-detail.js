@@ -139,21 +139,23 @@ Page({
           this.data.card_num_list[list[i].resource].num += list[i].num;
         }
 
-        for (let j = 0; j < main.length; j++) {
-          if (list[i].type_id === main[j].id) {
-            main[j].list.push(list[i]);
-            main[j].num += list[i].num;
-            break;
-          }
-        }
+        main.push(list[i]);
+
+        // for (let j = 0; j < main.length; j++) {
+        //   if (list[i].type_id === main[j].id) {
+        //     main[j].list.push(list[i]);
+        //     main[j].num += list[i].num;
+        //     break;
+        //   }
+        // }
       } else {
         spare.push(list[i]);
       }
     }
 
-    main = main.filter((value) => {
-      return value.list.length > 0;
-    });
+    // main = main.filter((value) => {
+    //   return value.list.length > 0;
+    // });
 
     return [main, spare];
   },

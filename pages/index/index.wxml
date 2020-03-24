@@ -18,7 +18,7 @@
   <view class="main">
     <!-- 金刚区 -->
     <view class="king-kong">
-      <navigator url="/pages/rule/rule" class="kk kk1">
+      <navigator url="/pages/rule-list/rule-list" class="kk kk1">
         <image src="/images/rules.png"></image>
       </navigator>
       <navigator url="/pages/blood-gas/blood-gas" class="kk kk2">

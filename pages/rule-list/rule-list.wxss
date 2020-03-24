@@ -1,0 +1,34 @@
+.page {
+  background: #fcfafa;
+}
+
+.gg-box {
+  padding: 42rpx 24rpx;
+}
+
+.gg-box .gg:first-child {
+  margin-top: 0;
+}
+
+.gg-box .gg {
+  margin-top: 35rpx;
+  display: flex;
+  align-items: center;
+  padding-bottom: 35rpx;
+  border-bottom: 2rpx solid #ddd;
+}
+
+.gg-box .gg .title {
+  width: auto;
+  flex-grow: 1;
+  font-size: 30rpx;
+  color: #333;
+}
+
+.gg-box .gg .date {
+  margin-left: 20rpx;
+  flex-shrink: 0;
+  font-size: 24rpx;
+  color: #3d3737;
+  opacity: 0.4;
+}
