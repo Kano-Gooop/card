@@ -53,7 +53,7 @@
                 <image src="/images/resource-bg.png" class="bg"></image>
                 <view class="text">{{item.resource}}</view>
               </view>
-              <image src="{{item}}" class="force" wx:for="{{card.camp_icon}}" wx:key="index"></image>
+              <image src="{{camp}}" class="force" wx:for="{{item.camp_icon}}" wx:key="index" wx:for-item="camp"></image>
             </view>
           </view>
           <view class="card-type">{{item.wushuang == 1 ? '「无双」' : ''}}{{item.type}}</view>
