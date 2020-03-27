@@ -39,6 +39,10 @@
   opacity: 0.8;
 }
 
+.status .desc.invalid {
+  color: #ff544a;
+}
+
 .pro-list {
   padding: 47rpx 24rpx 0;
   background: #fff;
@@ -282,11 +286,11 @@
   padding-right: 24rpx;
 }
 
-.foot-btn-box button:first-child {
+.foot-btn-box .btn:first-child {
   margin-left: 0;
 }
 
-.foot-btn-box button {
+.foot-btn-box .btn {
   padding: 0;
   margin: 0 0 0 30rpx;
   min-height: auto;

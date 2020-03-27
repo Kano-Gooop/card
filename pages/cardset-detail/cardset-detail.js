@@ -125,7 +125,7 @@ Page({
 
       if (list[i].combo_key.split('_')[2] === '1') {
         if (list[i].resource === -2) {
-          this.data.card_num_list[0].num += list[i].num;
+          // this.data.card_num_list[0].num += list[i].num;
         } else if (list[i].resource === 'X') {
           this.data.card_num_list[8].num += list[i].num;
         } else if (list[i].resource >= 7) {

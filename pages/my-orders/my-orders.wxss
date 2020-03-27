@@ -81,6 +81,10 @@
   color: #3c77f3;
 }
 
+.order-info .text.invalid {
+  color: #ff5a37;
+}
+
 .pro-box {
   margin-top: 24rpx;
 }

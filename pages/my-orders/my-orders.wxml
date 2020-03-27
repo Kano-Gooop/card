@@ -24,7 +24,8 @@
     <navigator url="/pages/order-detail/order-detail?id={{item.id}}" class="order" wx:for="{{order_list}}" wx:key="id">
       <view class="order-info">
         <div class="label">订单状态</div>
-        <view class="text">{{item.status_text}}</view>
+        <view class="text invalid" wx:if="{{item.status == 0 && item.deadline <= 0}}">订单已失效</view>
+        <view class="text" wx:else>{{item.status_text}}</view>
       </view>
       <view class="pro-box">
         <view class="pro" wx:for="{{item.child}}" wx:for-item="order" wx:key="index">
@@ -52,7 +53,7 @@
         </view>
       </view>
       <view class="btn-box">
-        <block wx:if="{{item.status == 0}}">
+        <block wx:if="{{item.status == 0 && item.deadline > 0}}">
           <button catchtap="orderCancel" data-order="{{item}}">取消订单</button>
           <button catchtap="orderSnPay" class="highlight" data-order="{{item}}">付款</button>
         </block>

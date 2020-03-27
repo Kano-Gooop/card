@@ -10,7 +10,8 @@
     <view class="text-box">
       <block wx:if="{{order.status == 0}}">
         <view class="title">待付款</view>
-        <view class="desc">这份订单还未支付，赶快去支付吧~</view>
+        <view class="desc" wx:if="{{order.deadline > 0}}">剩{{count_down}}自动关闭</view>
+        <view class="desc invalid" wx:else>订单已失效</view>
       </block>
       <block wx:if="{{order.status == 1}}">
         <view class="title">待发货</view>
@@ -111,21 +112,21 @@
   </view>
 
   <view class="foot-btn-box">
-    <block wx:if="{{order.status == 0}}">
-      <button catchtap="orderCancel" data-order="{{item}}">取消订单</button>
-      <button catchtap="orderSnPay" class="highlight" data-order="{{item}}">付款</button>
+    <block wx:if="{{order.status == 0 && order.deadline > 0}}">
+      <view catchtap="orderCancel" class="btn" data-order="{{item}}">取消订单</view>
+      <view catchtap="orderSnPay" class="btn highlight" data-order="{{item}}">付款</view>
     </block>
 
     <block wx:if="{{order.status == 1}}">
-      <button catchtap="refund_click" data-order="{{item}}">退款</button>
+      <view catchtap="refund_click" class="btn" data-order="{{item}}">退款</view>
     </block>
 
     <block wx:if="{{order.status == 2 || order.status == 3}}">
-      <button catchtap="to_logistics" data-id="{{item.id}}">查看物流</button>
+      <view catchtap="to_logistics" class="btn" data-id="{{item.id}}">查看物流</view>
     </block>
 
     <block wx:if="{{order.status == 2}}">
-      <button catchtap="orderConfirm" data-order="{{item}}" class="highlight">确认收货</button>
+      <view catchtap="orderConfirm" data-order="{{item}}" class="btn highlight">确认收货</view>
     </block>
   </view>
 

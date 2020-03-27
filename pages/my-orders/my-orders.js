@@ -15,7 +15,9 @@ Page({
     // 退款
     refund_show: false,
     reason: '',
-    refund_id: 0
+    refund_id: 0,
+
+    seed: 0  // 倒计时种子
   },
   onLoad(options) {
     if (options.status) {
@@ -27,6 +29,9 @@ Page({
     });
 
     this.setData({ is_ios: app.is_ios });
+  },
+  onUnload() {
+    clearInterval(this.data.seed);
   },
   tab_change(e) {
     if (!this.data.loading) {
@@ -97,7 +102,16 @@ Page({
           
           res[i].sum = sum;
         }
-        this.setData({ order_list: this.data.order_list.concat(res) });
+        this.setData({ order_list: this.data.order_list.concat(res) }, () => {
+          clearInterval(this.data.seed);
+          this.data.seed = setInterval(() => {
+            let order_list = this.data.order_list;
+            for (let i = 0; i < order_list.length; i++) {
+              order_list[i].deadline--;
+            }
+            this.setData({order_list: order_list});
+          }, 1000);
+        });
       }
 
       this.data.page++;

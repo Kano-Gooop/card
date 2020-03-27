@@ -16,7 +16,9 @@ Page({
     // 退款
     refund_show: false,
     reason: '',
-    refund_id: 0
+    refund_id: 0,
+
+    count_down: ''  // 未付款时倒计时文字
   },
   onLoad(options) {
     this.data.id = options.id;
@@ -37,7 +39,24 @@ Page({
       }
       res.amount = amount;
       res.price = (res.total_price - res.carriage).toFixed(2);
-      this.setData({ order: res });
+
+      this.setData({ order: res }, () => {
+        if (this.data.order.deadline > 0) {
+          this.setData({ count_down: this.count_down_str() });
+
+          let seed = setInterval(() => {
+            this.data.order.deadline--;
+            this.setData({
+              count_down: this.count_down_str(),
+              ['order.deadline']: this.data.order.deadline
+            }, () => {
+              if (this.data.order.deadline <= 0) {
+                clearInterval(seed);
+              }
+            });
+          }, 1000);
+        }
+      });
     }, null, () => {
       if (complete) {
         complete();
@@ -202,5 +221,25 @@ Page({
   // 去物流页
   to_logistics() {
     wx.navigateTo({ url: '/pages/logistics/logistics?id=' + this.data.id });
+  },
+  // 倒计时秒数转换成时间文字
+  count_down_str() {
+    let str = '';
+    let rest = this.data.order.deadline;
+
+    // 小时
+    let hour = Math.floor(rest / 3600) + '';
+    str += ('0' + hour).slice(-2) + '小时';
+    rest %= 3600;
+
+    // 分钟
+    let minute = Math.floor(rest / 60);
+    str += ('0' + minute).slice(-2) + '分钟';
+    rest %= 60;
+
+    // 秒
+    str += ('0' + rest).slice(-2) + '秒';
+
+    return str;
   }
 });
