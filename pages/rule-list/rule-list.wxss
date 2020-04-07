@@ -18,7 +18,6 @@
   text-align: center;
   border: 8rpx solid #438eff;
   border-width: 0 8rpx;
-  color: #438eff;
   border-radius: 8rpx;
   box-shadow: 0 5rpx 15rpx rgba(0, 0, 0, 0.1);
 }
@@ -26,8 +25,8 @@
 .gg-box .gg .title {
   width: auto;
   flex-grow: 1;
-  font-size: 30rpx;
-  color: #333;
+  font-size: 32rpx;
+  color: #438eff;
 }
 
 .gg-box .gg .date {
