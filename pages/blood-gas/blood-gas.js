@@ -162,7 +162,11 @@ Page({
     }
 
     let seed = setInterval(() => {
-      this.setData({ [roll_field]: Math.floor(Math.random() * max) + 1 });
+      let temp_roll_value = Math.floor(Math.random() * max) + 1;
+      if ([2, 4].indexOf(no) !== -1) {
+        temp_roll_value = temp_roll_value === 1 ? '正' : '反';
+      }
+      this.setData({ [roll_field]: temp_roll_value });
     }, 20);
 
     setTimeout(() => {
